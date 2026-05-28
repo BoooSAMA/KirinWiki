@@ -1,0 +1,18 @@
+---
+import Navbar from "../components/Navbar.astro"
+const { title } = Astro.props
+---
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />   <!-- 各页面自己的内容会插入这里 -->
+    </main>
+  </body>
+</html>
+---
