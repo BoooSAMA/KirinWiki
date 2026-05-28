@@ -2,15 +2,15 @@
 import Navbar from "../components/Navbar.astro"
 const { title } = Astro.props
 ---
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-  </head>
-  <body>
+  </head> <!-- 使用 Tailwind CSS 的类来设置背景色、文本颜色、最小高度和字体 -->
+  <body class="bg-gray-50 text-gray-800 min-h-screen font-sans"> <!-- 浅灰背景不再惨白 -->
     <Navbar />
-    <main>
+    <main class="max-w-3xl mx-auto px-6 py-12"> <!--  内容自动居中，区域有内边距，不贴边 -->
       <slot />   <!-- 各页面自己的内容会插入这里 -->
     </main>
   </body>

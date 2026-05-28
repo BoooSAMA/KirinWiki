@@ -1,14 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 ---
-<BaseLayout title="Personal Homepage">
-  <h1>Your Name</h1>
-  <p>A brief introduction about yourself</p>
-  <section>
-    <a href="/blog">📝 Blog</a>
-    <a href="/projects">💼 Projects</a>
-    <a href="/pictures">🖼️ Pictures</a>
-    <a href="/shares">🔗 Shares</a>
-    <a href="/about">👤 About</a>
+<BaseLayout title="Homepage">
+
+  <!-- 首页欢迎语和简介 -->
+  <section class="text-center mb-16 pt-8">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to KirinWiki</h1>
+    <p class="text-lg text-gray-500" max-w-lg mx-auto>
+      A personal blog about technology, projects
+    </p>
+  </section>
+
+  <!-- 首页主要内容区域，使用网格布局展示不同的板块 -->
+  <section class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+    {
+      [
+        { href: "/blog", emoji:"📝", label: " Blog", desc: "Read my latest blog posts" },
+        { href: "/projects", emoji:"💼", label: "💼 Projects", desc: "Check out my recent projects" },
+        { href: "/pictures", emoji:"🖼️", label: "🖼️ Pictures", desc: "View my photo collection" },
+        { href: "/shares", emoji:"🔗", label: "🔗 Shares", desc: "Find useful resources and links" },
+        { href: "/about", emoji:"👤", label: "👤 About", desc: "Learn more about me" },
+      ].map(({ href, emoji, label, desc }) => (
+         <a
+        href={href}
+        class="block bg-white rounded-2xl p-6 shadow-sm border border-gray-100
+               hover:shadow-md hover:-translate-y-1 transition-all duration-200
+               no-underline text-center"
+          >
+            <div class="text-3xl mb-2">{emoji}</div>
+            <div class="font-medium text-gray-900">{label}</div>
+            <div class="text-sm text-gray-400 mt-1">{desc}</div>
+        </a>
+      ))
+    }
+  </section>
+
+  <!-- 首页底部的社交链接 -->
+  <section class="mt-16 text-center">
+      <a href="https://github.com/BoooSAMA" class="hover:text-gray-700 transition-colors">GitHub</a>
+      <a href="mailto:booosama0113@gmail.com" class="hover:text-gray-700 transition-colors">Email</a>
+    </div>
   </section>
 </BaseLayout>

@@ -2,6 +2,14 @@
 import BaseLayout from "../../layouts/BaseLayout.astro"
 ---
 <BaseLayout title="Blog">
-  <h1>博客</h1>
-  <p>文章还没写，马上来。</p>
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">Blog</h1>
+  <p class="text-gray-500 mb-8">Articles not written yet, coming soon.</p>
+  <!-- 先放一个占位卡片，后面换成真实文章列表 -->
+  <div class="space-y-4">
+    <a href="/blog/first-post" class="block bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow no-underline">
+      <time class="text-sm text-gray-400">2026-05-28</time>
+      <h2 class="text-lg font-medium text-gray-900 mt-1">还没有文章</h2>
+      <p class="text-gray-500 text-sm mt-1">第一篇文章正在路上……</p>
+    </a>
+  </div>
 </BaseLayout>
