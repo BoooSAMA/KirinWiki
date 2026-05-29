@@ -23,8 +23,8 @@ import BaseLayout from "../layouts/BaseLayout.astro"
       ].map(({ href, emoji, label, desc }) => (
          <a
         href={href}
-        class="block bg-white rounded-2xl p-6 shadow-sm border border-gray-100
-               hover:shadow-md hover:-translate-y-1 transition-all duration-200
+        class="block ring-glow bg-white/25 backdrop-blur-md rounded-3xl p-6 shadow-lg border border-white/30
+               hover:shadow-xl hover:-translate-y-1 transition-all duration-200
                no-underline text-center"
           >
             <div class="text-3xl mb-2">{emoji}</div>

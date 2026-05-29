@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@property --p {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
 @layer base {
   body {
     background-color: #f3f5f7;
@@ -21,5 +27,50 @@
       /* 水蓝色 — top-left accent */
       radial-gradient(ellipse 40% 35% at 12% 12%, rgba(180, 225, 235, 0.28) 0%, transparent 50%);
     background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .ring-glow {
+    position: relative;
+  }
+
+  .ring-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    padding: 2px;
+    border-radius: inherit;
+    --p: 0%;
+    background: conic-gradient(
+      from -45deg,
+      /* Segment B: top-center → right (clockwise), grows with --p */
+      #60a5fa 0%,
+      #a78bfa calc(0% + var(--p) / 6),
+      #f472b6 calc(0% + var(--p) / 3),
+      #facc15 calc(0% + var(--p) / 2),
+      /* Gap — shrinks as --p increases, centered at bottom */
+      transparent calc(0% + var(--p) / 2),
+      transparent calc(100% - var(--p) / 2),
+      /* Segment A: left → top-center (counter-clockwise tail), grows with --p */
+      #facc15 calc(100% - var(--p) / 2),
+      #4ade80 calc(100% - var(--p) / 3),
+      #818cf8 calc(100% - var(--p) / 6),
+      #60a5fa 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    transition: --p 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .ring-glow:hover::before {
+    --p: 100%;
   }
 }
