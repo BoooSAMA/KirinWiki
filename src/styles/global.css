@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #f3f5f7;
+    background-image:
+      /* 水蓝色 — top-left quadrant */
+      radial-gradient(ellipse 75% 65% at 28% 32%, rgba(160, 230, 240, 0.45) 0%, transparent 65%),
+      /* 玫瑰金色 — top-right region */
+      radial-gradient(ellipse 60% 55% at 68% 22%, rgba(235, 195, 195, 0.42) 0%, transparent 65%),
+      /* 水银色 — lower-mid anchor */
+      radial-gradient(ellipse 65% 60% at 48% 62%, rgba(210, 218, 226, 0.45) 0%, transparent 60%),
+      /* 水蓝色 — mid-right wash */
+      radial-gradient(ellipse 45% 55% at 78% 48%, rgba(170, 222, 230, 0.38) 0%, transparent 55%),
+      /* 玫瑰金色 — lower-left splash */
+      radial-gradient(ellipse 50% 45% at 18% 68%, rgba(238, 190, 190, 0.38) 0%, transparent 58%),
+      /* 水银色 — top-edge highlight */
+      radial-gradient(ellipse 55% 35% at 52% 6%, rgba(218, 224, 230, 0.32) 0%, transparent 55%),
+      /* 玫瑰金色 — bottom-right accent */
+      radial-gradient(ellipse 38% 38% at 85% 82%, rgba(238, 195, 195, 0.30) 0%, transparent 50%),
+      /* 水蓝色 — top-left accent */
+      radial-gradient(ellipse 40% 35% at 12% 12%, rgba(180, 225, 235, 0.28) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}

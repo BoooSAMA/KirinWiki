@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+#AGENTS markdown file
+AGENTS.md
+
+#Tech reference markdown file
+技术栈分析参考.md
+
+#Building markdown file
+阶段学习搭建计划.md
