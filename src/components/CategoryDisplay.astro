@@ -1,0 +1,47 @@
+---
+import SmallPostCard from "./SmallPostCard.astro"
+
+interface PostMeta {
+  title: string
+  date: string
+  slug: string
+  description?: string
+}
+
+interface CategoryDisplayProps {
+  nameZh: string
+  nameEn: string
+  posts: PostMeta[]
+  basePath: string
+}
+
+const { nameZh, nameEn, posts, basePath } = Astro.props as CategoryDisplayProps
+
+function fmtDate(date: string) {
+  if (!date) return ""
+  const d = new Date(date)
+  if (isNaN(d.getTime())) return ""
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
+---
+
+{
+  posts.length > 0 && (
+    <section class="mb-10">
+      <div class="flex items-baseline gap-3 mb-4">
+        <h2 class="text-xl font-bold text-gray-900">{nameZh}</h2>
+        {nameEn && <span class="text-sm text-gray-400 font-mono">{nameEn}</span>}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {posts.map((post) => (
+          <SmallPostCard
+            title={post.title}
+            date={fmtDate(post.date)}
+            description={post.description}
+            href={`${basePath}/${post.slug}`}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}

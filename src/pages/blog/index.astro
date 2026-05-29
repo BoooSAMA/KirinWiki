@@ -1,15 +1,52 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
+
+const postModules = import.meta.glob("../../content/categories/**/*.md", {
+  eager: true,
+}) as Record<string, { frontmatter: Record<string, any>; file: string }>
+
+const categoryNames: Record<string, { zh: string; en: string }> = {
+  "build-log": { zh: "建站日志", en: "Build Log" },
+  blog: { zh: "默认", en: "Blog" },
+  projects: { zh: "作品集", en: "Projects" },
+}
+
+// Group posts by category, count them
+const categories: Record<string, { count: number }> = {}
+
+for (const [filePath] of Object.entries(postModules)) {
+  const parts = filePath.split("/")
+  const cat = parts[parts.length - 2]
+  if (!categories[cat]) categories[cat] = { count: 0 }
+  categories[cat].count++
+}
+
+const entries = Object.entries(categories)
 ---
+
 <BaseLayout title="Blog">
   <h1 class="text-3xl font-bold text-gray-900 mb-2">Blog</h1>
-  <p class="text-gray-500 mb-8">Articles not written yet, coming soon.</p>
-  <!-- 先放一个占位卡片，后面换成真实文章列表 -->
-  <div class="space-y-4">
-    <a href="/blog/first-post" class="block ring-glow bg-white/25 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/30 hover:shadow-xl transition-shadow no-underline">
-      <time class="text-sm text-gray-400">2026-05-28</time>
-      <h2 class="text-lg font-medium text-gray-900 mt-1">还没有文章</h2>
-      <p class="text-gray-500 text-sm mt-1">第一篇文章正在路上……</p>
-    </a>
+  <p class="text-gray-500 mb-8">选择分类</p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {
+      entries.map(([cat, info]) => {
+        const name = categoryNames[cat] ?? { zh: cat, en: "" }
+        return (
+          <a
+            href={`/blog/${cat}`}
+            class="block ring-glow bg-white/25 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/30 hover:shadow-xl hover:-translate-y-0.5 transition-all no-underline"
+          >
+            <h2 class="text-lg font-bold text-gray-900">{name.zh}</h2>
+            {name.en && (
+              <span class="text-sm text-gray-400 font-mono">{name.en}</span>
+            )}
+            <p class="text-sm text-gray-500 mt-2">
+              {info.count} 篇文章
+            </p>
+          </a>
+        )
+      })
+    }
   </div>
 </BaseLayout>

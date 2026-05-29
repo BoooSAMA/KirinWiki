@@ -1,0 +1,21 @@
+---
+export interface Props {
+  title: string
+  date: string
+  href: string
+  description?: string
+}
+
+const { title, date, href, description } = Astro.props
+---
+
+<a
+  href={href}
+  class="block ring-glow bg-white/25 backdrop-blur-md rounded-xl p-4 shadow-md border border-white/30 hover:shadow-lg transition-shadow no-underline min-w-0"
+>
+  {date && <time class="text-xs text-gray-400">{date}</time>}
+  <h3 class="text-sm font-medium text-gray-900 mt-1 leading-snug line-clamp-2">{title}</h3>
+  {description && (
+    <p class="text-xs text-gray-500 mt-1 line-clamp-2">{description}</p>
+  )}
+</a>

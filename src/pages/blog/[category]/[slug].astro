@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob(
+    "../../../content/categories/**/*.md",
+    { eager: true },
+  ) as Record<string, unknown>
+
+  return Object.keys(modules).map((filePath) => {
+    const parts = filePath.split("/")
+    const category = parts[parts.length - 2]
+    const slug = parts[parts.length - 1]
+      .replace(/\.md$/, "")
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+    return { params: { category, slug } }
+  })
+}
+
+const { category, slug } = Astro.params
+
+const categoryNames: Record<string, { zh: string; en: string }> = {
+  "build-log": { zh: "建站日志", en: "Build Log" },
+  blog: { zh: "默认", en: "Blog" },
+  projects: { zh: "作品集", en: "Projects" },
+}
+const catName = categoryNames[category] ?? { zh: category, en: "" }
+
+// Find the matching .md module
+const modules = import.meta.glob(
+  "../../../content/categories/**/*.md",
+  { eager: true },
+) as Record<string, { frontmatter: Record<string, any>; Content: any }>
+
+let fm: Record<string, any> = {}
+let ContentComp: any = null
+
+for (const [filePath, mod] of Object.entries(modules)) {
+  const parts = filePath.split("/")
+  const cat = parts[parts.length - 2]
+  const slg = parts[parts.length - 1]
+    .replace(/\.md$/, "")
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+  if (cat === category && slg === slug) {
+    fm = mod.frontmatter || {}
+    ContentComp = mod.Content
+    break
+  }
+}
+
+const postDate = fm.date
+  ? (() => {
+      const d = new Date(fm.date)
+      if (!isNaN(d.getTime()))
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+      return ""
+    })()
+  : ""
+---
+
+<BaseLayout title={`${fm.title || slug} - ${catName.zh}`}>
+  <nav class="flex items-center gap-4 text-sm text-gray-400 mb-8">
+    <a href="/blog" class="no-underline hover:text-gray-600 transition-colors">
+      &larr; 分类
+    </a>
+    <a
+      href={`/blog/${category}`}
+      class="no-underline hover:text-gray-600 transition-colors"
+    >
+      &larr; {catName.zh}
+    </a>
+  </nav>
+
+  <article>
+    <header class="mb-8 pb-6 border-b border-gray-200/50">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        {fm.title || slug}
+      </h1>
+      {postDate && (
+        <time class="text-sm text-gray-400">{postDate}</time>
+      )}
+      {fm.description && (
+        <p class="text-gray-500 mt-3 text-base leading-relaxed">
+          {fm.description}
+        </p>
+      )}
+    </header>
+
+    <div class="prose max-w-none">
+      {ContentComp ? <ContentComp /> : <p class="text-gray-400">暂无内容。</p>}
+    </div>
+  </article>
+</BaseLayout>

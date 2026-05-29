@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import CategoryDisplay from "../../components/CategoryDisplay.astro"
+
+export async function getStaticPaths() {
+  const postModules = import.meta.glob(
+    "../../content/categories/**/*.md",
+    { eager: true },
+  ) as Record<string, unknown>
+
+  const categorySet = new Set<string>()
+  for (const filePath of Object.keys(postModules)) {
+    const parts = filePath.split("/")
+    categorySet.add(parts[parts.length - 2])
+  }
+
+  return Array.from(categorySet).map((cat) => ({
+    params: { category: cat },
+  }))
+}
+
+const { category } = Astro.params
+
+const categoryNames: Record<string, { zh: string; en: string }> = {
+  "build-log": { zh: "建站日志", en: "Build Log" },
+  blog: { zh: "默认", en: "Blog" },
+  projects: { zh: "作品集", en: "Projects" },
+}
+const display = categoryNames[category] ?? { zh: category, en: "" }
+
+// Get posts for this category
+const postModules = import.meta.glob(
+  "../../content/categories/**/*.md",
+  { eager: true },
+) as Record<string, { frontmatter: Record<string, any>; file: string }>
+
+const posts: Array<{
+  title: string
+  date: string
+  slug: string
+  description?: string
+}> = []
+
+for (const [filePath, mod] of Object.entries(postModules)) {
+  const parts = filePath.split("/")
+  const cat = parts[parts.length - 2]
+  if (cat !== category) continue
+
+  const filename = parts[parts.length - 1].replace(/\.md$/, "")
+  const fm = mod.frontmatter
+
+  posts.push({
+    title: fm.title || filename,
+    date: fm.date || "",
+    slug: filename.toLowerCase().replace(/\s+/g, "-"),
+    description: fm.description,
+  })
+}
+
+posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+---
+
+<BaseLayout title={`${display.zh} - Blog`}>
+  <a
+    href="/blog"
+    class="inline-flex items-center text-sm text-gray-400 hover:text-gray-600 transition-colors no-underline mb-6"
+  >
+    &larr; 返回分类
+  </a>
+
+  <CategoryDisplay
+    nameZh={display.zh}
+    nameEn={display.en}
+    posts={posts}
+    basePath={`/blog/${category}`}
+  />
+</BaseLayout>
