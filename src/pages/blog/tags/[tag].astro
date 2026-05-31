@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+import SmallPostCard from "../../../components/SmallPostCard.astro"
+
+export async function getStaticPaths() {
+  const postModules = import.meta.glob(
+    "../../../content/categories/**/*.md",
+    { eager: true },
+  ) as Record<string, { frontmatter: Record<string, any>; file: string }>
+
+  const tagSet = new Set<string>()
+  for (const mod of Object.values(postModules)) {
+    const tags = mod.frontmatter.tags
+    if (!Array.isArray(tags)) continue
+    for (const tag of tags) {
+      if (typeof tag === "string") tagSet.add(tag.toLowerCase())
+    }
+  }
+
+  return Array.from(tagSet).map((tag) => ({
+    params: { tag },
+  }))
+}
+
+const { tag } = Astro.params
+
+// Find all posts with this tag
+const postModules = import.meta.glob(
+  "../../../content/categories/**/*.md",
+  { eager: true },
+) as Record<string, { frontmatter: Record<string, any> }>
+
+interface PostItem {
+  title: string
+  date: string
+  slug: string
+  category: string
+  description?: string
+  tags?: string[]
+}
+
+const posts: PostItem[] = []
+
+for (const [filePath, mod] of Object.entries(postModules)) {
+  const fm = mod.frontmatter
+  const tags: string[] = Array.isArray(fm.tags)
+    ? fm.tags.filter((t: unknown) => typeof t === "string")
+    : []
+
+  if (!tags.map((t) => t.toLowerCase()).includes(tag)) continue
+
+  const parts = filePath.split("/")
+  const category = parts[parts.length - 2]
+  const filename = parts[parts.length - 1].replace(/\.md$/, "")
+  const slug = filename.toLowerCase().replace(/\s+/g, "-")
+
+  posts.push({
+    title: fm.title || filename,
+    date: fm.date || "",
+    slug,
+    category,
+    description: fm.description,
+    tags,
+  })
+}
+
+posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+function fmtDate(date: string) {
+  if (!date) return ""
+  const d = new Date(date)
+  if (isNaN(d.getTime())) return ""
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
+---
+
+<BaseLayout title={`${tag} - Blog`}>
+  <nav class="flex items-center gap-4 text-sm text-gray-400 mb-8">
+    <a href="/blog" class="no-underline hover:text-gray-600 transition-colors">
+      &larr; 分类
+    </a>
+    <a href="/blog/tags" class="no-underline hover:text-gray-600 transition-colors">
+      &larr; 标签
+    </a>
+  </nav>
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">{tag}</h1>
+  <p class="text-gray-500 mb-8">{posts.length} 篇文章</p>
+
+  {
+    posts.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {posts.map((post) => (
+          <SmallPostCard
+            title={post.title}
+            date={fmtDate(post.date)}
+            description={post.description}
+            href={`/blog/${post.category}/${post.slug}`}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-400">没有找到相关文章。</p>
+    )
+  }
+</BaseLayout>

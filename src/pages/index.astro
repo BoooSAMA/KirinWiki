@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
+import LikeButton from "../components/LikeButton"
 ---
 <BaseLayout title="Homepage">
 
@@ -66,6 +67,11 @@ import BaseLayout from "../layouts/BaseLayout.astro"
       </button>
     </div>
   </section>
+
+  <!-- Like button -->
+  <div class="mt-8 flex justify-center">
+    <LikeButton slug="homepage" client:load />
+  </div>
 
   <script>
     const copyBtn = document.getElementById('copy-email-btn');

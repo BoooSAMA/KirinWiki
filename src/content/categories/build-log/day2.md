@@ -1,6 +1,7 @@
 ---
 title: "Day 2 — CSS 骨架修复 + 灯条动画 + 博客分类系统"
 date: 2026-05-29
+tags: ["CSS", "Tailwind", "Animation", "Debugging", "Architecture"]
 description: "修复 Tailwind 不生效、实现卡片 LED 灯条动画、搭建博客分类路由、连接建站日志文档"
 ---
 

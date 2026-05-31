@@ -59,6 +59,10 @@ const postDate = fm.date
       return ""
     })()
   : ""
+
+const tags: string[] = Array.isArray(fm.tags)
+  ? fm.tags.filter((t: unknown) => typeof t === "string")
+  : []
 ---
 
 <BaseLayout title={`${fm.title || slug} - ${catName.zh}`}>
@@ -74,25 +78,53 @@ const postDate = fm.date
     </a>
   </nav>
 
-  <ReadingBackdrop>
-    <article>
-      <header class="mb-8 pb-6 border-b border-gray-200/50">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">
-          {fm.title || slug}
-        </h1>
-        {postDate && (
-          <time class="text-sm text-gray-400">{postDate}</time>
-        )}
-        {fm.description && (
-          <p class="text-gray-500 mt-3 text-base leading-relaxed">
-            {fm.description}
-          </p>
-        )}
-      </header>
+  <div class="lg:flex lg:gap-8">
+    <!-- 主内容卡片 -->
+    <div class="min-w-0 flex-1">
+      <ReadingBackdrop>
+        <article>
+          <header class="mb-8 pb-6 border-b border-gray-200/50">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+              {fm.title || slug}
+            </h1>
+            {postDate && (
+              <time class="text-sm text-gray-400">{postDate}</time>
+            )}
+            {fm.description && (
+              <p class="text-gray-500 mt-3 text-base leading-relaxed">
+                {fm.description}
+              </p>
+            )}
+          </header>
 
-      <div class="prose max-w-none">
-        {ContentComp ? <ContentComp /> : <p class="text-gray-400">暂无内容。</p>}
-      </div>
-    </article>
-  </ReadingBackdrop>
+          <div class="prose max-w-none">
+            {ContentComp ? <ContentComp /> : <p class="text-gray-400">暂无内容。</p>}
+          </div>
+        </article>
+      </ReadingBackdrop>
+    </div>
+
+    <!-- 右侧标签栏 -->
+    {
+      tags.length > 0 && (
+        <aside class="lg:w-44 shrink-0 mt-6 lg:mt-0">
+          <div class="lg:sticky lg:top-24">
+            <h3 class="text-xs font-semibold text-gray-400 tracking-wider mb-3">
+              # 标签
+            </h3>
+            <div class="flex flex-wrap gap-1.5 lg:flex-col lg:gap-1">
+              {tags.map((tag) => (
+                <a
+                  href={`/blog/tags/${tag.toLowerCase()}`}
+                  class="inline-block text-xs no-underline bg-white/40 backdrop-blur-sm text-gray-500 rounded-full px-2.5 py-1 border border-white/40 hover:bg-white/60 hover:text-gray-700 transition-colors lg:w-full"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )
+    }
+  </div>
 </BaseLayout>

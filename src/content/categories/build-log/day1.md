@@ -1,6 +1,7 @@
 ---
 title: "Day 1 — 搭建个人网站的地基"
 date: 2026-05-28
+tags: ["Astro", "Cloudflare", "Tailwind", "Deployment", "DNS"]
 description: "注册 Cloudflare / GitHub，买域名，部署 Astro 博客，搭建页面骨架，Tailwind CSS 初装修"
 ---
 
