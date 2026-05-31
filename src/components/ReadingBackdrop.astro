@@ -1,0 +1,100 @@
+---
+// ReadingBackdrop - white card backdrop + persistence opacity slider
+export interface Props {
+  /** Default opacity 0–1, defaults to 0.92 */
+  defaultOpacity?: number
+}
+
+const { defaultOpacity = 0.92 } = Astro.props
+---
+
+<div class="relative">
+  <!-- White reading backdrop — opacity driven by CSS variable -->
+  <div
+    id="reading-bg"
+    class="absolute inset-0 bg-white rounded-xl shadow-sm border border-gray-100/50"
+    style="opacity: var(--reading-bg-opacity, 0.92);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Content -->
+  <div class="relative px-6 py-8">
+    <slot />
+  </div>
+
+  <!-- Floating slider: fixed bottom-right, glassmorphism pill -->
+  <div
+    id="opacity-control"
+    class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white/80 backdrop-blur-md rounded-full px-4 py-2.5 shadow-lg border border-gray-200/60"
+  >
+    <!-- eye icon -->
+    <svg
+      class="w-4 h-4 text-gray-400 flex-shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+    </svg>
+    <input
+      type="range"
+      id="opacity-slider"
+      min="0"
+      max="1"
+      step="0.05"
+      value={defaultOpacity}
+      class="w-24 h-1.5 cursor-pointer accent-gray-500 hover:accent-gray-700 transition-colors"
+      aria-label="阅读区域透明度"
+    />
+    <span id="opacity-value" class="text-xs text-gray-500 w-9 text-right font-mono tabular-nums">
+      {Math.round(defaultOpacity * 100)}%
+    </span>
+  </div>
+</div>
+
+<script>
+  const KEY = 'reading-bg-opacity'
+  const DEFAULT = 0.92
+
+  function getStored() {
+    try {
+      const v = localStorage.getItem(KEY)
+      if (v === null) return DEFAULT
+      const n = parseFloat(v)
+      return isNaN(n) ? DEFAULT : n
+    } catch {
+      return DEFAULT
+    }
+  }
+
+  function setStored(val) {
+    try {
+      localStorage.setItem(KEY, String(val))
+    } catch {
+      // storage unavailable (private mode, quota) — silently ignore
+    }
+  }
+
+  function apply(val) {
+    document.documentElement.style.setProperty('--reading-bg-opacity', String(val))
+    setStored(val)
+  }
+
+  const slider = document.getElementById('opacity-slider')
+  const display = document.getElementById('opacity-value')
+
+  if (slider) {
+    const stored = getStored()
+    slider.value = String(stored)
+    apply(stored)
+    if (display) display.textContent = Math.round(stored * 100) + '%'
+
+    slider.addEventListener('input', function () {
+      const v = parseFloat(this.value)
+      apply(v)
+      if (display) display.textContent = Math.round(v * 100) + '%'
+    })
+  }
+</script>

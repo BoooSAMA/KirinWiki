@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro"
+import ReadingBackdrop from "../../../components/ReadingBackdrop.astro"
 
 export async function getStaticPaths() {
   const modules = import.meta.glob(
@@ -73,23 +74,25 @@ const postDate = fm.date
     </a>
   </nav>
 
-  <article>
-    <header class="mb-8 pb-6 border-b border-gray-200/50">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">
-        {fm.title || slug}
-      </h1>
-      {postDate && (
-        <time class="text-sm text-gray-400">{postDate}</time>
-      )}
-      {fm.description && (
-        <p class="text-gray-500 mt-3 text-base leading-relaxed">
-          {fm.description}
-        </p>
-      )}
-    </header>
+  <ReadingBackdrop>
+    <article>
+      <header class="mb-8 pb-6 border-b border-gray-200/50">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+          {fm.title || slug}
+        </h1>
+        {postDate && (
+          <time class="text-sm text-gray-400">{postDate}</time>
+        )}
+        {fm.description && (
+          <p class="text-gray-500 mt-3 text-base leading-relaxed">
+            {fm.description}
+          </p>
+        )}
+      </header>
 
-    <div class="prose max-w-none">
-      {ContentComp ? <ContentComp /> : <p class="text-gray-400">暂无内容。</p>}
-    </div>
-  </article>
+      <div class="prose max-w-none">
+        {ContentComp ? <ContentComp /> : <p class="text-gray-400">暂无内容。</p>}
+      </div>
+    </article>
+  </ReadingBackdrop>
 </BaseLayout>
