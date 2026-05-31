@@ -12,7 +12,7 @@ const { defaultOpacity = 0.92 } = Astro.props
   <!-- White reading backdrop — opacity driven by CSS variable -->
   <div
     id="reading-bg"
-    class="absolute inset-0 bg-white rounded-xl shadow-sm border border-gray-100/50"
+    class="absolute inset-0 bg-white rounded-3xl shadow-sm border border-gray-100/50"
     style="opacity: var(--reading-bg-opacity, 0.92);"
     aria-hidden="true"
   ></div>
@@ -69,7 +69,10 @@ const { defaultOpacity = 0.92 } = Astro.props
     }
   }
 
-  function setStored(val) {
+  /**
+   * @param {number} val
+   */
+  function setStored(val: any) {
     try {
       localStorage.setItem(KEY, String(val))
     } catch {
@@ -77,13 +80,16 @@ const { defaultOpacity = 0.92 } = Astro.props
     }
   }
 
-  function apply(val) {
+  /**
+   * @param {number} val
+   */
+  function apply(val: number) {
     document.documentElement.style.setProperty('--reading-bg-opacity', String(val))
     setStored(val)
   }
 
-  const slider = document.getElementById('opacity-slider')
-  const display = document.getElementById('opacity-value')
+  const slider = document.getElementById('opacity-slider') as HTMLInputElement | null
+  const display = document.getElementById('opacity-value') as HTMLElement | null
 
   if (slider) {
     const stored = getStored()
