@@ -15,30 +15,52 @@ import os
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
+from urllib.parse import unquote
 
 MUSIC_DIR = Path(os.environ.get("MUSIC_DIR", "/home/cat/Music"))
 PORT = int(os.environ.get("MUSIC_SERVER_PORT", "8765"))
 
+MIME_MAP = {
+    "mp3": "audio/mpeg",
+    "flac": "audio/flac",
+    "m4a": "audio/mp4",
+    "ogg": "audio/ogg",
+    "wav": "audio/wav",
+    "ape": "audio/ape",
+}
+
 
 class MusicHandler(SimpleHTTPRequestHandler):
-    """将请求路径 /music/audio/Artist/Album/File 映射到 MUSIC_DIR/Artist/Album/File"""
-
     def translate_path(self, path: str) -> str:
-        # 期望路径如 /music/audio/艺术家/专辑/文件
-        # 去掉 /music/audio/ 前缀
+        # path 来自 HTTP 请求行，浏览器已做 URL 编码，需解码
+        decoded = unquote(path)
         prefix = "/music/audio/"
-        if path.startswith(prefix):
-            rel = path[len(prefix):]
-        elif path.startswith("/music/audio"):
-            rel = path[len("/music/audio"):].lstrip("/")
+        if decoded.startswith(prefix):
+            rel = decoded[len(prefix):]
+        elif decoded.startswith("/music/audio"):
+            rel = decoded[len("/music/audio"):].lstrip("/")
         else:
-            return str(MUSIC_DIR / path.lstrip("/"))
+            return str(MUSIC_DIR / decoded.lstrip("/"))
 
         target = str((MUSIC_DIR / rel).resolve())
-        # 安全检查：必须在 MUSIC_DIR 内
         if not target.startswith(str(MUSIC_DIR.resolve())):
             return "/"
         return target
+
+    def guess_type(self, path: str) -> str:
+        ext = path.lower().rsplit(".", 1)[-1]
+        return MIME_MAP.get(ext, "application/octet-stream")
+
+    def end_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Range")
+        self.send_header("Accept-Ranges", "bytes")
+        super().end_headers()
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.end_headers()
 
     def log_message(self, format, *args):
         print(f"[music] {self.address_string()} - {format % args}", file=sys.stderr)

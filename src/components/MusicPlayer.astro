@@ -1,10 +1,9 @@
 ---
 // MusicPlayer.astro — 固定底部播放器，View Transitions 切换页面时不断播
-// 歌单从 /music/playlist.json 动态加载（由 scripts/sync_music.py 生成）
+// 歌单优先加载 playlist.r2.json（生产），回退到 playlist.json（本地开发）
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
 
-<!-- data-astro-transition-persist 让这个元素在页面切换时不被销毁 -->
 <div id="aplayer" data-astro-transition-persist></div>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
@@ -18,7 +17,6 @@
     let restoreTime = 0;
     let restorePlaying = false;
 
-    // 读取上次播放状态
     try {
       const raw = localStorage.getItem('aplayer-state');
       if (raw) {
@@ -29,12 +27,15 @@
       }
     } catch {}
 
-    // 加载歌单并初始化
-    fetch('/music/playlist.json?' + Date.now()) // cache bust
-      .then((r) => {
-        if (!r.ok) throw new Error('歌单未找到');
-        return r.json();
-      })
+    async function loadPlaylist() {
+      const ts = Date.now();
+      let res = await fetch('/music/playlist.r2.json?' + ts);
+      if (!res.ok) res = await fetch('/music/playlist.json?' + ts);
+      if (!res.ok) throw new Error('歌单未找到');
+      return res.json();
+    }
+
+    loadPlaylist()
       .then((playlist) => {
         if (!playlist || playlist.length === 0) return;
 
@@ -51,7 +52,6 @@
 
         window.__ap = ap;
 
-        // 恢复播放进度
         if (restoreIndex >= 0 && restoreIndex < playlist.length) {
           ap.list.switch(restoreIndex);
           setTimeout(() => {
@@ -60,7 +60,6 @@
           }, 1000);
         }
 
-        // 保存播放状态
         function saveState() {
           try {
             localStorage.setItem(
@@ -78,8 +77,6 @@
         document.addEventListener('astro:before-swap', saveState);
         window.addEventListener('beforeunload', saveState);
       })
-      .catch(() => {
-        // 歌单不存在，静默不显示播放器
-      });
+      .catch(() => {});
   }
 </script>

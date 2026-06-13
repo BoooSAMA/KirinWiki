@@ -22,6 +22,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 MUSIC_DIR = Path(os.environ.get("MUSIC_DIR", "/home/cat/Music"))
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -145,10 +146,12 @@ def scan_music() -> list[dict]:
         if not meta["album"]:
             meta["album"] = get_relative_album(f)
 
-        rel_path = Path(meta["artist"]) / meta["album"] / f.name
+        # 用实际文件系统路径（server 和 R2 都映射此路径）
+        actual_path = f.relative_to(MUSIC_DIR)
 
         entries.append({
             "source": f,
+            "actual_path": actual_path,
             "artist": meta["artist"],
             "album": meta["album"],
             "name": meta["title"],
@@ -160,10 +163,12 @@ def scan_music() -> list[dict]:
 def generate_json(entries: list[dict]):
     playlist = []
     for entry in entries:
+        posix_path = entry["actual_path"].as_posix()
+        url_path = quote(posix_path, safe="/")
         playlist.append({
             "name": entry["name"],
             "artist": entry["artist"],
-            "url": f"/music/audio/{entry['artist']}/{entry['album']}/{entry['source'].name}",
+            "url": f"/music/audio/{url_path}",
             "cover": "",
         })
     return playlist
