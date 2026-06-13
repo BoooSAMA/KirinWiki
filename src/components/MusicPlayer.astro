@@ -216,6 +216,16 @@
 
         window.__ap = ap;
 
+        // 覆盖 APlayer 的内联定位——用 JS 设 !important 才压得住
+        const apEl = document.getElementById('aplayer');
+        if (apEl) {
+          apEl.style.setProperty('left', '16px', 'important');
+          apEl.style.setProperty('right', '16px', 'important');
+          apEl.style.setProperty('bottom', '16px', 'important');
+          apEl.style.setProperty('width', 'auto', 'important');
+          apEl.style.setProperty('border-radius', '16px', 'important');
+        }
+
         if (restoreIndex >= 0 && restoreIndex < playlist.length) {
           ap.list.switch(restoreIndex);
           setTimeout(() => {
