@@ -34,3 +34,6 @@ AGENTS.md
 
 # Local-only playlist (dev mode URLs, not needed in production)
 public/music/playlist.json
+
+# Local wrangler build artifacts
+.wrangler/
