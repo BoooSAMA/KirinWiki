@@ -8,6 +8,170 @@
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
+<style is:global>
+  /* ─── 浮动玻璃主体 ─── */
+  .aplayer.aplayer-fixed {
+    bottom: 16px !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
+    z-index: 100 !important;
+    /* 覆盖 APlayer JS 内联的 bottom:0;left:0;right:0 */
+  }
+
+  .aplayer.aplayer-fixed .aplayer-body {
+    background: rgba(255, 255, 255, 0.72) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* ─── 隐藏默认的专辑封面（我们没有封面图） ─── */
+  .aplayer.aplayer-fixed .aplayer-pic {
+    display: none !important;
+  }
+
+  /* ─── 进度条 ─── */
+  .aplayer .aplayer-bar-wrap {
+    padding: 8px 0 !important;
+  }
+  .aplayer .aplayer-bar-wrap .aplayer-bar {
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+  }
+  .aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    border-radius: 2px !important;
+    height: 100% !important;
+  }
+  .aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-thumb {
+    width: 14px !important;
+    height: 14px !important;
+    background: #667eea !important;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4) !important;
+    border: none !important;
+    transform: translateY(-5px) !important;
+  }
+
+  /* ─── 按钮颜色 ─── */
+  .aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+    fill: #555 !important;
+  }
+  .aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
+    fill: #667eea !important;
+  }
+
+  /* ─── 歌名/歌手 ─── */
+  .aplayer .aplayer-info .aplayer-music {
+    margin-bottom: 2px !important;
+  }
+  .aplayer .aplayer-info .aplayer-music .aplayer-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1a1a2e !important;
+  }
+  .aplayer .aplayer-info .aplayer-music .aplayer-author {
+    font-size: 12px !important;
+    color: #888 !important;
+  }
+
+  /* ─── 时间 ─── */
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+    font-size: 12px !important;
+    color: #999 !important;
+  }
+
+  /* ─── 播放列表下拉 ─── */
+  .aplayer.aplayer-fixed .aplayer-list {
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+    bottom: 72px !important;
+    max-height: 320px !important;
+  }
+  .aplayer .aplayer-list ol li {
+    border-top: 1px solid rgba(0, 0, 0, 0.04) !important;
+    padding: 8px 18px !important;
+    color: #444 !important;
+    font-size: 13px !important;
+  }
+  .aplayer .aplayer-list ol li:hover {
+    background: rgba(0, 0, 0, 0.03) !important;
+  }
+  .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: rgba(102, 126, 234, 0.08) !important;
+    color: #667eea !important;
+  }
+  .aplayer .aplayer-list ol li .aplayer-list-index {
+    color: #bbb !important;
+  }
+  .aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-index {
+    color: #667eea !important;
+  }
+
+  /* ─── 音量滑块 ─── */
+  .aplayer .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar {
+    border-radius: 4px !important;
+    width: 4px !important;
+  }
+  .aplayer .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
+    background: linear-gradient(180deg, #667eea, #764ba2) !important;
+    border-radius: 4px !important;
+  }
+
+  /* ─── 暗色模式支持 ─── */
+  @media (prefers-color-scheme: dark) {
+    .aplayer.aplayer-fixed .aplayer-body {
+      background: rgba(30, 30, 50, 0.78) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .aplayer .aplayer-info .aplayer-music .aplayer-title {
+      color: #eee !important;
+    }
+    .aplayer .aplayer-info .aplayer-music .aplayer-author {
+      color: #999 !important;
+    }
+    .aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
+      fill: #ccc !important;
+    }
+    .aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
+      fill: #a78bfa !important;
+    }
+    .aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+      background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
+    }
+    .aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-thumb {
+      background: #a78bfa !important;
+      box-shadow: 0 2px 8px rgba(167, 139, 250, 0.4) !important;
+    }
+    .aplayer .aplayer-bar-wrap .aplayer-bar {
+      background: rgba(255, 255, 255, 0.12) !important;
+    }
+    .aplayer.aplayer-fixed .aplayer-list {
+      background: rgba(30, 30, 50, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .aplayer .aplayer-list ol li {
+      color: #ccc !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    .aplayer .aplayer-list ol li:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+    .aplayer .aplayer-list ol li.aplayer-list-light {
+      background: rgba(124, 58, 237, 0.15) !important;
+      color: #a78bfa !important;
+    }
+  }
+</style>
+
 <script>
   if (!window.__aplayerInit) {
     window.__aplayerInit = true;
