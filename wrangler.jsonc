@@ -10,6 +10,12 @@
 	"observability": {
 		"enabled": true
 	},
+	"kv_namespaces": [
+		{
+			"binding": "SESSION",
+			"id": "62f6d1941d934bc3af6d7466975db850"
+		}
+	],
 	"d1_databases": [
 		{
 			"binding": "DB",
