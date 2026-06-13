@@ -31,3 +31,6 @@ AGENTS.md
 
 #Building markdown file
 阶段学习搭建计划.md
+
+# Generated music assets (local development only)
+public/music/

@@ -1,5 +1,6 @@
 ---
 // MusicPlayer.astro — 固定底部播放器，View Transitions 切换页面时不断播
+// 歌单从 /music/playlist.json 动态加载（由 scripts/sync_music.py 生成）
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
 
@@ -9,79 +10,76 @@
 <script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 <script>
-  // 只在首次加载时初始化，页面切换不重复初始化
   if (!window.__aplayerInit) {
     window.__aplayerInit = true;
 
-    // ========= 测试歌曲（后续替换为真实歌单） =========
-    const playlist = [
-      {
-        name: 'SoundHelix Song 1',
-        artist: 'SoundHelix',
-        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        cover: '',
-      },
-      {
-        name: 'SoundHelix Song 2',
-        artist: 'SoundHelix',
-        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-        cover: '',
-      },
-      {
-        name: 'SoundHelix Song 3',
-        artist: 'SoundHelix',
-        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-        cover: '',
-      },
-    ];
+    let ap = null;
+    let restoreIndex = -1;
+    let restoreTime = 0;
+    let restorePlaying = false;
 
-    // ========= 读取上次播放状态 =========
-    let saved = null;
+    // 读取上次播放状态
     try {
       const raw = localStorage.getItem('aplayer-state');
-      if (raw) saved = JSON.parse(raw);
+      if (raw) {
+        const s = JSON.parse(raw);
+        restoreIndex = s.index ?? -1;
+        restoreTime = s.currentTime ?? 0;
+        restorePlaying = !s.paused;
+      }
     } catch {}
 
-    // ========= 初始化 APlayer =========
-    const ap = new APlayer({
-      container: document.getElementById('aplayer'),
-      fixed: true,           // 固定底部，类似网易云/Spotify
-      order: 'list',
-      audio: playlist,
-      loop: 'all',
-      preload: 'none',
-      volume: saved?.volume ?? 0.7,
-    });
+    // 加载歌单并初始化
+    fetch('/music/playlist.json?' + Date.now()) // cache bust
+      .then((r) => {
+        if (!r.ok) throw new Error('歌单未找到');
+        return r.json();
+      })
+      .then((playlist) => {
+        if (!playlist || playlist.length === 0) return;
 
-    window.__ap = ap;
+        ap = new APlayer({
+          container: document.getElementById('aplayer'),
+          fixed: true,
+          order: 'list',
+          audio: playlist,
+          loop: 'all',
+          preload: 'none',
+          volume: 0.7,
+          listFolded: true,
+        });
 
-    // ========= 恢复播放进度 =========
-    if (saved && saved.index != null && saved.index < playlist.length) {
-      ap.list.switch(saved.index);
-      setTimeout(() => {
-        ap.seek(saved.currentTime || 0);
-        if (!saved.paused) ap.play();
-      }, 1000); // 等 APlayer 加载完再 seek
-    }
+        window.__ap = ap;
 
-    // ========= 保存播放状态 =========
-    function saveState() {
-      try {
-        localStorage.setItem(
-          'aplayer-state',
-          JSON.stringify({
-            index: ap.list.index,
-            currentTime: ap.audio.currentTime,
-            paused: ap.paused,
-            volume: ap.audio.volume,
-          })
-        );
-      } catch {}
-    }
+        // 恢复播放进度
+        if (restoreIndex >= 0 && restoreIndex < playlist.length) {
+          ap.list.switch(restoreIndex);
+          setTimeout(() => {
+            ap.seek(restoreTime);
+            if (restorePlaying) ap.play();
+          }, 1000);
+        }
 
-    // View Transitions 切换页面时保存
-    document.addEventListener('astro:before-swap', saveState);
-    // 刷新/关闭页面时保存
-    window.addEventListener('beforeunload', saveState);
+        // 保存播放状态
+        function saveState() {
+          try {
+            localStorage.setItem(
+              'aplayer-state',
+              JSON.stringify({
+                index: ap.list.index,
+                currentTime: ap.audio.currentTime,
+                paused: ap.paused,
+                volume: ap.audio.volume,
+              })
+            );
+          } catch {}
+        }
+
+        document.addEventListener('astro:before-swap', saveState);
+        window.addEventListener('beforeunload', saveState);
+      })
+      .catch(() => {
+        // 歌单不存在，静默不显示播放器
+      });
   }
 </script>

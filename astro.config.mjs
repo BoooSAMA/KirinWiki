@@ -13,6 +13,15 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
+  server: {
+    proxy: {
+      '/music/audio': {
+        target: 'http://127.0.0.1:8765',
+        changeOrigin: true,
+      }
+    }
+  },
+
   integrations: [preact()],
   adapter: cloudflare()
 });
