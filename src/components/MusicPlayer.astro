@@ -1,0 +1,87 @@
+---
+// MusicPlayer.astro — 固定底部播放器，View Transitions 切换页面时不断播
+---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
+
+<!-- data-astro-transition-persist 让这个元素在页面切换时不被销毁 -->
+<div id="aplayer" data-astro-transition-persist></div>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script>
+  // 只在首次加载时初始化，页面切换不重复初始化
+  if (!window.__aplayerInit) {
+    window.__aplayerInit = true;
+
+    // ========= 测试歌曲（后续替换为真实歌单） =========
+    const playlist = [
+      {
+        name: 'SoundHelix Song 1',
+        artist: 'SoundHelix',
+        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        cover: '',
+      },
+      {
+        name: 'SoundHelix Song 2',
+        artist: 'SoundHelix',
+        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+        cover: '',
+      },
+      {
+        name: 'SoundHelix Song 3',
+        artist: 'SoundHelix',
+        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+        cover: '',
+      },
+    ];
+
+    // ========= 读取上次播放状态 =========
+    let saved = null;
+    try {
+      const raw = localStorage.getItem('aplayer-state');
+      if (raw) saved = JSON.parse(raw);
+    } catch {}
+
+    // ========= 初始化 APlayer =========
+    const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,           // 固定底部，类似网易云/Spotify
+      order: 'list',
+      audio: playlist,
+      loop: 'all',
+      preload: 'none',
+      volume: saved?.volume ?? 0.7,
+    });
+
+    window.__ap = ap;
+
+    // ========= 恢复播放进度 =========
+    if (saved && saved.index != null && saved.index < playlist.length) {
+      ap.list.switch(saved.index);
+      setTimeout(() => {
+        ap.seek(saved.currentTime || 0);
+        if (!saved.paused) ap.play();
+      }, 1000); // 等 APlayer 加载完再 seek
+    }
+
+    // ========= 保存播放状态 =========
+    function saveState() {
+      try {
+        localStorage.setItem(
+          'aplayer-state',
+          JSON.stringify({
+            index: ap.list.index,
+            currentTime: ap.audio.currentTime,
+            paused: ap.paused,
+            volume: ap.audio.volume,
+          })
+        );
+      } catch {}
+    }
+
+    // View Transitions 切换页面时保存
+    document.addEventListener('astro:before-swap', saveState);
+    // 刷新/关闭页面时保存
+    window.addEventListener('beforeunload', saveState);
+  }
+</script>

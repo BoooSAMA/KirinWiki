@@ -1,7 +1,0 @@
-name = "kirinwiki"
-compatibility_date = "2025-06-01"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "blog-db"
-database_id = "fb14bb76-a187-48de-9583-9b10efc9d3b0"
