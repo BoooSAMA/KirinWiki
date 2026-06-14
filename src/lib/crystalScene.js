@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 let scene, camera, renderer, container
-let animationId, resizeHandler
+let animationId, resizeHandler, crystal
 
 const R = 500         // 星球曲率半径
 const GRID_SIZE = 420 // 地板总尺寸
@@ -138,8 +138,46 @@ export function createScene(el) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   container.appendChild(renderer.domElement)
 
+  // 生成环境贴图，让金属材质有东西可反射
+  const pmrem = new THREE.PMREMGenerator(renderer)
+  const envScene = new THREE.Scene()
+  envScene.background = new THREE.Color(0xf5f5f5)
+  scene.environment = pmrem.fromScene(envScene).texture
+  pmrem.dispose()
+
   scene.add(buildCurvedFloor())
   scene.add(buildHexGrid())
+
+  // 灯光
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4))
+  const sun = new THREE.DirectionalLight(0xffffff, 1.8)
+  sun.position.set(5, 10, 7)
+  scene.add(sun)
+  const fill = new THREE.DirectionalLight(0xffffff, 0.5)
+  fill.position.set(-4, 2, -5)
+  scene.add(fill)
+
+  // 银色金属水晶（末影水晶风格），位置摆远一格，拉高 2×
+  const outerMat = new THREE.MeshStandardMaterial({
+    color: 0xd0d0d0,
+    metalness: 0.85,
+    roughness: 0.1,
+  })
+  const outer = new THREE.Mesh(new THREE.OctahedronGeometry(1.6, 0), outerMat)
+  outer.scale.y = 2
+  outer.position.set(0, 3.5, 6.928)
+  scene.add(outer)
+
+  const innerMat = new THREE.MeshStandardMaterial({
+    color: 0xf0f0f0,
+    metalness: 0.95,
+    roughness: 0.0,
+  })
+  const inner = new THREE.Mesh(new THREE.OctahedronGeometry(0.85, 0), innerMat)
+  inner.rotation.y = Math.PI / 4
+  outer.add(inner)
+
+  crystal = outer
 
   resizeHandler = () => {
     const w = container.clientWidth
@@ -152,6 +190,11 @@ export function createScene(el) {
 
   function animate() {
     animationId = requestAnimationFrame(animate)
+    if (crystal) {
+      const t = performance.now() / 1000
+      crystal.rotation.y += 0.008
+      crystal.position.y = 2.0 + Math.sin(t * 0.7) * 0.25
+    }
     renderer.render(scene, camera)
   }
   animate()

@@ -308,6 +308,112 @@ localStorage player-state
 
 ---
 
+## 后期修复：页面切换累积播放器 + URL 不更新
+
+上线后发现两个严重 bug：切页面时播放器越攒越多导致卡顿，以及浏览器后退键无效（部署版正常但开发版 URL 不更新）。
+
+### 播放器累积的根因
+
+播放器组件同时输出带 `data-astro-transition-persist` 的 HTML 容器 + JS 初始化脚本。View Transitions 切换页面时，旧的持久容器应被保留、新的丢弃。但旧版脚本没有「清理已有 UI」的逻辑，每次导航重新执行脚本时又创建一份播放器 HTML，旧那份也没被正确移除。
+
+**修复**：音频与 UI 解耦。
+
+```
+旧方案：                             新方案：
+┌─────────────────────────┐          ┌──────────────────────────┐
+│ <audio persist>          │          │ <audio persist>           │
+│ <div persist> 内含播放器  │          │ <div persist></div>       │
+│  JS 只初始化一次          │          │ JS: cleanupPlayerDOM()    │
+└─────────────────────────┘          │     → 清理 #player-floating│
+                                      │      内部的所有子元素     │
+                                      │     → 重新创建 UI         │
+                                      └──────────────────────────┘
+```
+
+关键函数：
+
+```javascript
+function cleanupPlayerDOM() {
+  const root = document.getElementById('player-floating');
+  if (root) root.innerHTML = '';  // 清除所有旧 UI
+  // 移除旧的 <audio>（如果有重复）
+  const audios = document.querySelectorAll('#player-audio');
+  for (let i = 1; i < audios.length; i++) audios[i].remove();
+}
+```
+
+每次 IIFE 执行时先清理，再重建 UI。保证页面上永远只有一份播放器。
+
+### persist 重复导致 View Transitions 崩溃
+
+调试开发版后退键问题时，在控制台发现关键错误：
+
+```
+TypeError: can't access property "moveBefore", parent is null
+    moveBefore swap-functions.js:55
+    swapBodyElement swap-functions.js:70
+```
+
+追踪到 Astro 的 `swap-functions.js` 源码：
+
+```javascript
+function swapBodyElement(newElement, oldElement) {
+  // 第一步：找出旧页面中所有带 data-astro-transition-persist 的元素
+  for (const el of oldElement.querySelectorAll(`[${PERSIST_ATTR}]`)) {
+    const id = el.getAttribute(PERSIST_ATTR);
+    // 第二步：在新页面 HTML 中找到具有相同 persist-id 的元素
+    const newEl = newElement.querySelector(`[${PERSIST_ATTR}="${id}"]`);
+    if (!newEl) continue;
+    persistPairs.push({ old: el, newTarget: newEl });
+  }
+  // 第三步：替换 body
+  oldElement.replaceWith(newElement);
+  // 第四步：把旧 persist 元素插回新 DOM 中对应位置
+  for (const { old: el, newTarget } of persistPairs) {
+    moveBefore(newTarget.parentNode, el, newTarget);  // ← 崩溃在这里
+    newTarget.remove();
+  }
+}
+```
+
+**问题**：`<audio>` 和 `<div id="player-floating">` 都有 `data-astro-transition-persist`，但**都没有值**。`el.getAttribute(PERSIST_ATTR)` 对两者都返回 `""`（空字符串）。于是 `querySelector` 只找到**第一个匹配的元素**（`<audio>`），两个 persist 对指向同一个 `newTarget`。
+
+执行过程：
+
+```
+persistPairs = [
+  { old: <audio旧>, newTarget: <audio新> },    ← 两个对的 newTarget
+  { old: <div旧>,   newTarget: <audio新> }     ← 指向同一个元素
+]
+
+第 1 次迭代: moveBefore(audio新.parentNode, 旧audio, 音频新)
+             → 旧 audio 插到新 audio 前面
+             → newTarget.remove() 删掉音频新       ✅ 成功
+
+第 2 次迭代: moveBefore(audio新.parentNode, 旧div, 音频新)
+             → 但音频新已经被删了！parentNode 是 null！
+             → TypeError: can't access property "moveBefore", parent is null
+             ❌ 崩溃
+```
+
+崩溃后 `history.pushState` 没被执行 → URL 不更新 → 后退键无处可退。
+
+**修复**：给每个 persist 元素不同的值。
+
+```html
+<!-- 修复前 -->
+<audio data-astro-transition-persist></audio>
+<div data-astro-transition-persist></div>
+
+<!-- 修复后 -->
+<audio data-astro-transition-persist="audio"></audio>
+<div data-astro-transition-persist="floating"></div>
+```
+
+这样 `getAttribute` 返回 `"audio"` 和 `"floating"`，`querySelector` 能正确找到各自对应的元素，不会相互覆盖。
+
+---
+
 ## 反思
 
 ### APlayer 的教训
