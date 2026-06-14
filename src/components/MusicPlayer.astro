@@ -332,36 +332,11 @@
   border: none;
 }
 .vol-wrap:hover .vol-slider { width: 50px; margin-left: 4px; }
-
-/* ─── 暗色适配（深色模式已经就是深色，这里保持） ─── */
 </style>
 
 <script>
 (function() {
-  if (window.__playerReady) {
-    if (window.__player && window.__player.songs) {
-      renderTree(window.__player);
-      updateBarDisplay(window.__player);
-    }
-    return;
-  }
-  window.__playerReady = true;
-
-  /* ===== 状态 ===== */
-  const state = {
-    audio: document.getElementById('player-audio'),
-    songs: [],
-    tree: {},           // artist → { album → [songs] }
-    queue: [],          // flat URLs for sequential playback
-    queueIndex: -1,
-    currentUrl: null,
-    isPlaying: false,
-    panelOpen: false,
-    expanded: {},       // "artist" or "artist||album" → bool
-  };
-  window.__player = state;
-
-  /* ===== DOM 引用 ===== */
+  /* ===== DOM 引用（IIFE 级，函数和页面切换都需要） ===== */
   const $ = (id) => document.getElementById(id);
   const btnPlay = $('btn-play');
   const btnPrev = $('btn-prev');
@@ -377,7 +352,7 @@
   const treeEl = $('panel-tree');
   const emptyEl = $('panel-empty');
 
-  /* ===== 工具 ===== */
+  /* ===== 工具函数 ===== */
   function escapeHtml(s) {
     const d = document.createElement('div');
     d.textContent = s;
@@ -413,8 +388,11 @@
     return sorted;
   }
 
-  /* ===== 渲染树 ===== */
-  function renderTree(st) {
+  /* ===== 渲染树（IIFE 级，页面切换也能调用） ===== */
+  function renderTree() {
+    const st = window.__player;
+    if (!st || !st.tree) return;
+
     let html = '';
     const currentUrl = st.currentUrl;
     const exp = st.expanded || {};
@@ -454,10 +432,16 @@
     }
 
     treeEl.innerHTML = html;
+
+    // 确保面板类名不被 render 意外影响
+    panel.classList.toggle('open', st.panelOpen);
+    if (st.panelOpen && btnList) btnList.textContent = '✕';
   }
 
-  /* ===== 更新 UI ===== */
-  function updateBarDisplay(st) {
+  /* ===== 更新 UI（IIFE 级） ===== */
+  function updateBarDisplay() {
+    const st = window.__player;
+    if (!st) return;
     const audio = st.audio;
     const idx = st.queueIndex;
 
@@ -478,7 +462,9 @@
   }
 
   function updateProgressBar() {
-    const audio = state.audio;
+    const st = window.__player;
+    if (!st || !st.audio) return;
+    const audio = st.audio;
     if (!audio.duration || !audio.currentTime) {
       progress.value = 0;
       barTime.textContent = '0:00';
@@ -491,6 +477,30 @@
     barTime.textContent = formatTime(audio.currentTime);
     progress.style.background = `linear-gradient(to right, #818cf8 ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
   }
+
+  /* ===== 页面切换时重新渲染（此时 renderTree 已定义） ===== */
+  if (window.__playerReady) {
+    if (window.__player && window.__player.songs) {
+      renderTree();
+      updateBarDisplay();
+    }
+    return;
+  }
+  window.__playerReady = true;
+
+  /* ===== 首次加载状态 ===== */
+  const state = {
+    audio: document.getElementById('player-audio'),
+    songs: [],
+    tree: {},
+    queue: [],
+    queueIndex: -1,
+    currentUrl: null,
+    isPlaying: false,
+    panelOpen: false,
+    expanded: {},
+  };
+  window.__player = state;
 
   /* ===== 加载歌单 ===== */
   async function loadPlaylist() {
@@ -520,7 +530,7 @@
 
     state.songs = songs;
     state.tree = buildTree(songs);
-    renderTree(state);
+    renderTree();
     if (emptyEl) emptyEl.classList.add('hidden');
 
     // 设置 audio
@@ -562,8 +572,8 @@
           audio.play().catch(() => {});
           state.isPlaying = true;
         }
-        updateBarDisplay(state);
-        renderTree(state);
+        renderTree();
+        updateBarDisplay();
       }
     }
 
@@ -594,7 +604,6 @@
       } catch {}
     }
 
-    // 页面切换时保存 UI 状态
     document.addEventListener('astro:before-swap', persistUI);
 
     // 尝试恢复 UI 状态
@@ -611,17 +620,17 @@
       }
     } catch {}
 
-    // 自动展开当前歌曲的路径（如果有保存）
+    // 自动展开当前歌曲的路径
     if (state.currentUrl) {
       const song = songs.find(s => s.url === state.currentUrl);
       if (song) {
         state.expanded[song.artist] = true;
         state.expanded[song.artist + '||' + song.album] = true;
-        renderTree(state);
+        renderTree();
       }
     }
 
-    updateBarDisplay(state);
+    updateBarDisplay();
   }).catch(e => {
     console.warn('player: load failed', e);
     if (emptyEl) {
@@ -638,8 +647,8 @@
     audio.play().catch(() => {});
     state.currentUrl = url;
     state.isPlaying = true;
-    updateBarDisplay(state);
-    renderTree(state);
+    updateBarDisplay();
+    renderTree();
   }
 
   function playSong(url) {
@@ -674,8 +683,6 @@
   }
 
   /* ===== 事件绑定 ===== */
-
-  // 播放/暂停
   btnPlay.addEventListener('click', () => {
     const audio = state.audio;
     if (!audio.src) {
@@ -691,14 +698,12 @@
       audio.pause();
       state.isPlaying = false;
     }
-    updateBarDisplay(state);
+    updateBarDisplay();
   });
 
-  // 上/下一首
   btnPrev.addEventListener('click', prevSong);
   btnNext.addEventListener('click', nextSong);
 
-  // 音量
   volSlider.addEventListener('input', () => {
     const v = volSlider.value / 100;
     state.audio.volume = v;
@@ -711,12 +716,13 @@
   });
 
   // 面板开关
-  btnList.addEventListener('click', () => {
+  btnList.addEventListener('click', (e) => {
+    e.stopPropagation();
     state.panelOpen = !state.panelOpen;
     panel.classList.toggle('open', state.panelOpen);
     btnList.textContent = state.panelOpen ? '✕' : '☰';
     if (state.panelOpen) {
-      renderTree(state);
+      renderTree();
       document.addEventListener('click', closePanelOutside);
     } else {
       document.removeEventListener('click', closePanelOutside);
@@ -733,7 +739,6 @@
     }
   }
 
-  // 进度条拖动
   progress.addEventListener('input', () => {
     const audio = state.audio;
     if (!audio.duration) return;
@@ -746,7 +751,6 @@
     const target = e.target.closest('[data-action]');
     if (!target) return;
 
-    // 阻止事件冒泡，防止外部点击监听器误判
     e.stopPropagation();
 
     const action = target.dataset.action;
@@ -754,14 +758,14 @@
     if (action === 'toggle-artist') {
       const key = target.dataset.key;
       state.expanded[key] = !state.expanded[key];
-      renderTree(state);
+      renderTree();
       return;
     }
 
     if (action === 'toggle-album') {
       const key = target.dataset.key;
       state.expanded[key] = !state.expanded[key];
-      renderTree(state);
+      renderTree();
       return;
     }
 
@@ -779,11 +783,6 @@
     }
   });
 
-  // 面板按钮点击也阻止向 document 冒泡
-  btnList.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-
   // 键盘快捷键
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -793,7 +792,7 @@
     }
   });
 
-  updateBarDisplay(state);
+  updateBarDisplay();
 })();
 </script>
 ```
