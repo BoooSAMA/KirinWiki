@@ -11,7 +11,7 @@ export function createScene(el) {
 
   const aspect = container.clientWidth / container.clientHeight
   camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100)
-  camera.position.set(5, 2.5, 5) // 20° 俯视（用户需求）
+  camera.position.set(0, 2.5, -7) // 底部中线，20° 俯视；格线横平竖直
   camera.lookAt(0, 0, 0)
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -20,14 +20,14 @@ export function createScene(el) {
   container.appendChild(renderer.domElement)
 
   const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 20),
+    new THREE.PlaneGeometry(40, 40),
     new THREE.MeshBasicMaterial({ color: 0xf8f8f8, side: THREE.DoubleSide }),
   )
   floor.rotation.x = -Math.PI / 2
   floor.position.y = -0.01 // 微下沉避免与格线 z-fighting
   scene.add(floor)
 
-  const grid = new THREE.GridHelper(20, 20, 0x333333, 0x333333)
+  const grid = new THREE.GridHelper(40, 10, 0xaaaaaa, 0xaaaaaa)
   scene.add(grid)
 
   resizeHandler = () => {

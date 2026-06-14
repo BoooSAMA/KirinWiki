@@ -17,7 +17,7 @@
 
   <!-- 播放栏（带彩灯边框） -->
   <div id="player-bar">
-    <div class="bar-border"></div>
+    <div id="bar-border" class="bar-border"></div>
     <div class="bar-content">
       <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
 
@@ -162,7 +162,7 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 彩灯边框层 — 线性渐变滑动，GPU 友好 */
+/* 彩灯边框层 — 默认暂停，播放时激活 */
 .bar-border {
   position: absolute;
   inset: 0;
@@ -170,9 +170,13 @@
     90deg,
     #ff0080, #ff4400, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080
   );
-  background-size: 300% 100%;
-  animation: border-slide 8s linear infinite;
+  // 动画默认暂停
+  animation: border-slide 12s linear infinite;
+  animation-play-state: paused;
   will-change: background-position;
+}
+.bar-border.active {
+  animation-play-state: running;
 }
 
 @keyframes border-slide {
@@ -351,6 +355,7 @@
   const panel = $('player-panel');
   const treeEl = $('panel-tree');
   const emptyEl = $('panel-empty');
+  const borderEl = $('bar-border');
 
   /* ===== 工具函数 ===== */
   function escapeHtml(s) {
@@ -547,6 +552,10 @@
       console.warn('player: audio error, skipping');
       setTimeout(nextSong, 1000);
     };
+
+    // 播放/暂停时切换灯条
+    audio.onplay = () => { if (borderEl) borderEl.classList.add('active'); };
+    audio.onpause = () => { if (borderEl) borderEl.classList.remove('active'); };
 
     // 恢复保存的状态
     let saved = null;
