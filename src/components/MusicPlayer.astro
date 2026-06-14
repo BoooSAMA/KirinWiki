@@ -22,13 +22,13 @@
       <!-- 顶行：竖排音量 + 切歌 + 歌单 -->
       <div class="br-top">
         <div class="vol-vert">
-          <button id="btn-vol" class="ctrl-btn sm" title="音量">🔊</button>
+          <button id="btn-vol" class="ctrl-btn sm" title="音量"></button>
           <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-vert">
         </div>
         <div class="br-top-right">
-          <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
-          <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
-          <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+          <button id="btn-prev" class="ctrl-btn sm" title="上一首"></button>
+          <button id="btn-next" class="ctrl-btn sm" title="下一首"></button>
+          <button id="btn-list" class="ctrl-btn" title="歌单"></button>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
 
       <!-- 中行：播放钮 + 歌曲信息 -->
       <div class="br-mid">
-        <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
+        <button id="btn-play" class="ctrl-btn" title="播放/暂停"></button>
         <div class="bar-info">
           <div id="bar-title" class="bar-title">未在播放</div>
           <div id="bar-artist" class="bar-artist">—</div>
@@ -382,6 +382,26 @@
   const emptyEl = $('panel-empty');
   const borderEl = $('bar-border');
 
+  /* ===== SVG 图标 ===== */
+  const I = {
+    play: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M5 3l12 7-12 7V3z" fill="currentColor"/></svg>',
+    pause: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="5" y="3" width="3" height="14" rx="1" fill="currentColor"/><rect x="12" y="3" width="3" height="14" rx="1" fill="currentColor"/></svg>',
+    prev: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4v12h2.5V4H4zm5.5 6l7-6v12l-7-6z" fill="currentColor"/></svg>',
+    next: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 16l7-6-7-6v12zm8.5-12v12H15V4h-2.5z" fill="currentColor"/></svg>',
+    vol: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm7 0v6a3.5 3.5 0 000-6z" fill="currentColor"/><path d="M12.5 10a2.5 2.5 0 00-2-2.45v4.9A2.5 2.5 0 0012.5 10z" fill="currentColor"/></svg>',
+    volLow: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm4.5 0v6a2 2 0 000-6z" fill="currentColor"/></svg>',
+    volMuted: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm8.5 3l-2 2m0-4l2 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
+    menu: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" fill="currentColor"/></svg>',
+    close: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
+  };
+
+  /* ===== 设置初始图标 ===== */
+  btnPlay.innerHTML = I.play;
+  btnPrev.innerHTML = I.prev;
+  btnNext.innerHTML = I.next;
+  btnVol.innerHTML = I.vol;
+  btnList.innerHTML = I.menu;
+
   /* ===== 工具函数 ===== */
   function escapeHtml(s) {
     const d = document.createElement('div');
@@ -465,7 +485,7 @@
 
     // 确保面板类名不被 render 意外影响
     panel.classList.toggle('open', st.panelOpen);
-    if (st.panelOpen && btnList) btnList.textContent = '✕';
+    if (st.panelOpen && btnList) btnList.innerHTML = I.close;
   }
 
   /* ===== 更新 UI（IIFE 级） ===== */
@@ -481,14 +501,14 @@
       if (song) {
         barTitle.textContent = song.name;
         barArtist.textContent = song.artist;
-        btnPlay.textContent = st.isPlaying ? '⏸' : '▶';
+        btnPlay.innerHTML = st.isPlaying ? I.pause : I.play;
         return;
       }
     }
 
     barTitle.textContent = '未在播放';
     barArtist.textContent = '—';
-    btnPlay.textContent = '▶';
+    btnPlay.innerHTML = I.play;
   }
 
   function updateProgressBar() {
@@ -649,7 +669,7 @@
         if (ui.panelOpen) {
           state.panelOpen = true;
           panel.classList.add('open');
-          btnList.textContent = '✕';
+          btnList.innerHTML = I.close;
         }
       }
     } catch {}
@@ -741,12 +761,12 @@
   volSlider.addEventListener('input', () => {
     const v = volSlider.value / 100;
     state.audio.volume = v;
-    btnVol.textContent = v === 0 ? '🔇' : v < 0.3 ? '🔈' : v < 0.7 ? '🔉' : '🔊';
+    btnVol.innerHTML = v === 0 ? I.volMuted : v < 0.3 ? I.volLow : I.vol;
   });
   btnVol.addEventListener('click', () => {
     const audio = state.audio;
     audio.muted = !audio.muted;
-    btnVol.textContent = audio.muted ? '🔇' : volSlider.value > 0 ? '🔊' : '🔈';
+    btnVol.innerHTML = audio.muted ? I.volMuted : volSlider.value > 0 ? I.vol : I.volMuted;
   });
 
   // 面板开关
@@ -754,7 +774,7 @@
     e.stopPropagation();
     state.panelOpen = !state.panelOpen;
     panel.classList.toggle('open', state.panelOpen);
-    btnList.textContent = state.panelOpen ? '✕' : '☰';
+    btnList.innerHTML = state.panelOpen ? I.close : I.menu;
     if (state.panelOpen) {
       renderTree();
       document.addEventListener('click', closePanelOutside);
@@ -768,7 +788,7 @@
     if (floating && !floating.contains(e.target)) {
       state.panelOpen = false;
       panel.classList.remove('open');
-      if (btnList) btnList.textContent = '☰';
+      if (btnList) btnList.innerHTML = I.menu;
       document.removeEventListener('click', closePanelOutside);
     }
   }
