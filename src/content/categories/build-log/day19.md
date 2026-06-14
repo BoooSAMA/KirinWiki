@@ -1,431 +1,228 @@
 ---
-title: "Day 19 — 播放器 UI 美化：从原生 APlayer 到玻璃拟态"
-date: 2026-06-15
-tags: ["UI", "CSS", "APlayer", "Glassmorphism", "Dark Mode", "Browser"]
-description: "对底部播放器进行完整的视觉改造：毛玻璃背景、圆角浮动卡片、渐变进度条、暗色模式适配，以及解决 CSS 优先级不够覆盖 APlayer 内联样式的坑"
+title: "Day 19 — 自制播放器：从 APlayer 到自建，UI 反复迭代的全记录"
+date: 2026-06-14
+tags: ["UI", "Music", "APlayer", "SVG", "CSS Animations"]
+description: "彻底替换 APlayer，用 Preact + HTML5 Audio API 自建音乐播放器。深色毛玻璃、彩灯边框、阶梯面板、SVG 图标、竖排音量……两天内迭代了十几个版本"
 ---
 
-# Day 19 — 播放器 UI 美化：从原生 APlayer 到玻璃拟态
+# Day 19 — 自制播放器：从 APlayer 到自建，UI 反复迭代的全记录
 
 ## 背景
 
-Day 18 把博客部署上线后，播放器虽然能正常工作——92 首歌可播、页面切换不断播、刷新恢复进度——但**视觉上完全是个毛坯房**。
+Day 18 把博客部署上线后，底部音乐播放器用的是 **APlayer**（一个开源 HTML5 播放器库），嵌在 Astro 组件里搭配 `data-astro-transition-persist` 实现页面切换不断播。
 
-APlayer 的 `fixed` 模式的默认样式：
-- 底部全宽黑色条
-- 直角贴边
-- 不透明纯色背景
-- 没有圆角、没有阴影、没有毛玻璃
+APlayer 本身功能没问题，但和定制化需求打架了：
 
-和博客现在的风格（玻璃拟态卡片、圆角、渐变背景）格格不入。
+1. **定位压不住**：APlayer `fixed: true` 模式用 JS `element.style.cssText` 锁定元素位置，CSS `!important` 都覆盖不了
+2. **UI 改不动**：想加圆角、毛玻璃、间距——APlayer 的 JS 在初始化后不断重置样式，改了一会被还原
+3. **代码不透明**：出问题不知道是库的 bug 还是自己的用法问题
 
-### 美化前状态
-
-```
-┌──────────────────────────────────────────────────────┐
-│                                                      │
-│  🎵 杀死那个石家庄人 — 万能青年旅店                  │
-│  ████████████████░░░░░                03:42  ▶▶    │
-│  ← 纯黑背景，直角，贴边                               │
-└──────────────────────────────────────────────────────┘
-```
-
-这篇日志记录从"功能 OK"到"看着舒服"的完整美化过程。
+最终决定：**弃用 APlayer，自己写一个。**
 
 ---
 
-## 目标效果
+## 重构过程
 
-美化目标是让播放器融入博客的玻璃拟态设计语言：
+### 第一阶段：与 APlayer 内联样式的死磕（已废弃）
 
-```
-       ←── 16px 间距 ──→
-┌──────┬──────────────────────────────┬──────┐
-│      │ 🎵 杀死那个石家庄人          │      │  ← 圆角 16px
-│      │    — 万能青年旅店            │      │  ← 毛玻璃背景
-│      │ ████████████████░░░  03:42   │      │  ← 渐变紫色进度条
-│      │                              │      │  ← 底部微阴影
-│      └──────────────────────────────┘      │
-│                   ↑ 离屏幕底部 16px         │
-└────────────────────────────────────────────┘
-```
+第一轮尝试用 CSS 全覆盖 APlayer 样式，花了大量时间写毛玻璃、圆角、渐变进度条、暗色模式适配。效果看着不错——直到发现 DevTools 里 APlayer JS 设的内联样式把所有定位覆盖都划掉了。
 
-具体设计目标：
+用 `element.style.setProperty('left', '16px', 'important')` 勉强压住，但 APlayer 在特定交互（点击歌单、切换歌曲、调整音量）后会重新写入 `style.cssText`，把我们的覆盖冲掉。
 
-| 项目 | 目标 |
-|------|------|
-| 位置 | 底部居中，左右各留 16px 间距 |
-| 形状 | 16px 圆角，不再贴边 |
-| 背景 | `backdrop-filter: blur(24px)` 毛玻璃效果 |
-| 进度条 | 紫色渐变（`#667eea → #764ba2`） |
-| 按钮 | 灰色默认，悬停变紫 |
-| 歌名/歌手 | 加粗白色标题，灰色副标题 |
-| 播放列表 | 同样毛玻璃，圆角，半透明 |
-| 暗色模式 | 自动适配系统主题 |
+试了 `MutationObserver` 监听 style 变化——但 `cssText` 赋值是原子操作，Observer 拿到回调时已经覆盖完了，改回来会有肉眼可见的闪烁。
 
----
+**结论：APlayer 的架构设计不开放给深度定制。要么接受它的样式，要么不用它。**
 
-## 第一轮：CSS 全覆盖
+### 第二阶段：从零自建播放器
 
-### 样式结构
+#### 技术选型
 
-直接在 `MusicPlayer.astro` 中用 `<style is:global>` 写全局样式。这样不需要额外的 CSS 文件，样式和组件在一起。
+一开始写了 Preact 组件（`MusicPlayer.jsx`，用 `client:only="preact"` 挂载），因为项目已经有 `@astrojs/preact`。但遇到 View Transitions 兼容问题——Preact 组件在页面切换时会重新挂载，导致 `<audio>` 实例中断、状态丢失。
+
+**最终方案**：Astro 组件 + 内置 `<script>` + 全局 `window.__player` 对象
 
 ```astro
-<style is:global>
-  /* ─── 浮动玻璃主体 ─── */
-  .aplayer.aplayer-fixed {
-    bottom: 16px !important;
-    left: 16px !important;
-    right: 16px !important;
-    width: auto !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08) ... !important;
-    z-index: 100 !important;
-  }
-
-  .aplayer.aplayer-fixed .aplayer-body {
-    background: rgba(255, 255, 255, 0.72) !important;
-    backdrop-filter: blur(24px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  }
-</style>
-```
-
-### 每块样式说明
-
-#### 1. 定位与形状
-
-把播放器的 `fixed` 定位从 `bottom:0; left:0; right:0` 改为留出 16px 间距：
-
-```css
-.aplayer.aplayer-fixed {
-  bottom: 16px !important;
-  left: 16px !important;
-  right: 16px !important;
-  width: auto !important;
-  border-radius: 16px !important;
-}
-```
-
-`width: auto` 很关键——默认 `fixed` 模式下 APlayer 给播放器设了固定宽度（取决于歌词面板等内部元素），设为 `auto` 才能让播放器自适应左右间距。
-
-#### 2. 毛玻璃背景
-
-```css
-background: rgba(255, 255, 255, 0.72) !important;
-backdrop-filter: blur(24px) !important;
--webkit-backdrop-filter: blur(24px) !important;
-```
-
-`0.72` 透明度 + 24px 模糊量，让背景半透明能看到页面渐变背景，但又不会太花。加了一个细边框模拟玻璃边缘：
-
-```css
-border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-```
-
-#### 3. 隐藏专辑封面
-
-我们没有封面图，默认 APlayer 会在左边显示一个 70px 的封面区域：
-
-```css
-.aplayer.aplayer-fixed .aplayer-pic {
-  display: none !important;
-}
-```
-
-去掉后歌名/歌手和进度条更居中、更宽敞。
-
-#### 4. 进度条改造
-
-默认 APlayer 进度条比较薄、颜色单调。改成：
-
-```
-默认：      thin bar, 灰色/蓝色
-改造后：    渐变紫色, 圆角 thumb 带发光阴影
-```
-
-```css
-.aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played {
-  background: linear-gradient(90deg, #667eea, #764ba2) !important;
-  border-radius: 2px !important;
-}
-
-.aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-thumb {
-  width: 14px !important;
-  height: 14px !important;
-  background: #667eea !important;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4) !important;
-  border: none !important;
-  transform: translateY(-5px) !important;
-}
-```
-
-thumb 的 `translateY(-5px)` 是因为进度条高度改为 4px 后，thumb（14px）默认位置偏高，微调居中。
-
-#### 5. 按钮颜色
-
-SVG icon 的颜色通过 `fill` 控制：
-
-```css
-.aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
-  fill: #555 !important;
-}
-.aplayer .aplayer-info .aplayer-controller .aplayer-icon:hover path {
-  fill: #667eea !important;
-}
-```
-
-默认 #555（深灰），悬停变紫色，和进度条呼应。
-
-#### 6. 播放列表下拉窗
-
-APlayer 的播放列表默认是纯白直角面板。改造后同样毛玻璃：
-
-```css
-.aplayer.aplayer-fixed .aplayer-list {
-  border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(24px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-  bottom: 72px !important;
-  max-height: 320px !important;
-}
-```
-
-当前播放的歌曲（`.aplayer-list-light`）用紫色背景高亮：
-
-```css
-.aplayer .aplayer-list ol li.aplayer-list-light {
-  background: rgba(102, 126, 234, 0.08) !important;
-  color: #667eea !important;
-}
-```
-
-#### 7. 音量滑块
-
-竖直的音量条同样用紫色渐变：
-
-```css
-.aplayer .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
-  background: linear-gradient(180deg, #667eea, #764ba2) !important;
-}
-```
-
----
-
-## 暗色模式适配
-
-### 为什么搞暗色
-
-APlayer 只提供了默认的亮色样式。在暗色系统主题下，白色毛玻璃背景和文字对比度会出问题。
-
-### 实现方式
-
-用 CSS `prefers-color-scheme` media query——纯 CSS，不需要 JS 检测主题：
-
-```css
-@media (prefers-color-scheme: dark) {
-  .aplayer.aplayer-fixed .aplayer-body {
-    background: rgba(30, 30, 50, 0.78) !important;
-  }
-  .aplayer .aplayer-info .aplayer-music .aplayer-title {
-    color: #eee !important;
-  }
-  .aplayer .aplayer-info .aplayer-controller .aplayer-icon path {
-    fill: #ccc !important;
-  }
-  /* ... 更多暗色覆盖 */
-}
-```
-
-### 暗色覆盖项清单
-
-| CSS 属性 | 亮色值 | 暗色值 |
-|----------|--------|--------|
-| 主体背景 | `rgba(255,255,255,0.72)` | `rgba(30,30,50,0.78)` |
-| 歌名颜色 | `#1a1a2e` | `#eee` |
-| 歌手颜色 | `#888` | `#999` |
-| 图标颜色 | `#555` / hover `#667eea` | `#ccc` / hover `#a78bfa` |
-| 进度渐变 | `#667eea → #764ba2` | `#7c3aed → #a78bfa` |
-| 进度条背景 | `rgba(0,0,0,0.08)` | `rgba(255,255,255,0.12)` |
-| 播放列表背景 | `rgba(255,255,255,0.95)` | `rgba(30,30,50,0.95)` |
-| 列表项颜色 | `#444` | `#ccc` |
-| 高亮颜色 | `rgba(102,126,234,0.08)` / `#667eea` | `rgba(124,58,237,0.15)` / `#a78bfa` |
-
-暗色模式下整体色调偏深紫蓝，视觉更柔和。
-
----
-
-## 第一轮效果评估
-
-CSS 写完后本地 `npm run dev` 预览，效果符合预期——圆角、毛玻璃、间距都对。但仔细看发现了一个问题：
-
-**播放器的 `left` 和 `right` 定位没生效。**
-
-检查浏览器 DevTools 后发现，APlayer 的 JavaScript 在初始化时通过 `element.style` 设了内联样式：
-
-```html
-<!-- APlayer JS 生成的内联样式 -->
-<div id="aplayer" style="left: 0px; right: 0px; bottom: 0px; width: 100%; ...">
-```
-
-这些内联样式的优先级**高于 CSS 中的 `!important`**——因为 CSS 规范里，`style` 属性（内联样式）的优先级就是高于所有选择器，无论是否加了 `!important`。
-
-于是第一轮 CSS 中的：
-
-```css
-left: 16px !important;
-right: 16px !important;
-```
-
-压根没覆盖掉 APlayer JS 设的 `left: 0px; right: 0px`。
-
----
-
-## 第二轮：CSS 覆盖的局限性分析
-
-### CSS 优先级层级
-
-浏览器 CSS 优先级从低到高：
-
-```
-1. 浏览器默认样式
-2. 外部/内部样式（<style>、.css 文件）
-3. 内联样式（style 属性）
-4. !important 规则（提升所在声明至上一层）
-5. 内联样式 + !important  →  最高优先级
-```
-
-APlayer JS 设的是 `element.style.left = '0px'`——**内联样式**。而我们用 `<style>` 写的 `.aplayer.aplayer-fixed { left: 16px !important }` 最多到第 4 层，压不住第 3 层。
-
-### 验证
-
-在 DevTools 中可以看到：
-
-```
-element.style {
-  left: 0px;                ← APlayer JS 设置的
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
-}
-
-/* 我们的 CSS */
-.aplayer.aplayer-fixed {
-  left: 16px !important;    ← 被划掉了（无效）
-  right: 16px !important;   ← 被划掉了（无效）
-  bottom: 16px !important;  ← 被划掉了（无效）
-}
-```
-
-CSS 里加 `!important` 也压不住内联样式——这是规范级的限制，不是 hack 能绕过的。
-
----
-
-## 第三轮：JS 运行时覆盖
-
-### 思路
-
-既然 APlayer JS 在运行时设了内联样式，那我们也在初始化后**用 JS 再设一次内联样式**，带上 `!important`。
-
-### setProperty 的 importance 参数
-
-`element.style.setProperty(propertyName, value, priority)` 的第三个参数可以传 `'important'`：
-
-```js
-const apEl = document.getElementById('aplayer');
-apEl.style.setProperty('left', '16px', 'important');
-apEl.style.setProperty('right', '16px', 'important');
-apEl.style.setProperty('bottom', '16px', 'important');
-apEl.style.setProperty('width', 'auto', 'important');
-apEl.style.setProperty('border-radius', '16px', 'important');
-```
-
-这会在内联样式中生成 `left: 16px !important`——**内联 + !important = 最高优先级**，APlayer JS 后续再怎么设也覆盖不了。
-
-### 执行时机
-
-关键：必须在 `new APlayer(...)` 之后执行，因为 APlayer 的构造函数会设定位样式，我们要在它设完之后覆盖。
-
-```js
-ap = new APlayer({
-  container: document.getElementById('aplayer'),
-  fixed: true,
-  // ...
-});
-
-// ✅ APlayer 初始化完成后覆盖
-const apEl = document.getElementById('aplayer');
-apEl.style.setProperty('left', '16px', 'important');
-apEl.style.setProperty('right', '16px', 'important');
-apEl.style.setProperty('bottom', '16px', 'important');
-apEl.style.setProperty('width', 'auto', 'important');
-apEl.style.setProperty('border-radius', '16px', 'important');
-```
-
-### 验证
-
-这次 DevTools 显示：
-
-```
-element.style {
-  left: 16px !important;     ← 我们的 JS 覆盖成功
-  right: 16px !important;
-  bottom: 16px !important;
-  width: auto !important;
-  border-radius: 16px !important;
-}
-```
-
-播放器稳定在离边缘 16px 的位置，圆角也正常了。
-
----
-
-## 完整效果
-
-最终播放器视觉效果一览：
-
-| 组件 | 效果 |
-|------|------|
-| 主体 | 浮动卡片，左右下各 16px 间距 |
-| 圆角 | 16px，列表下拉 12px |
-| 背景 | 半透明毛玻璃（`blur(24px)`） |
-| 进度条 | 渐变紫色，4px 高，圆角 |
-| 拖拽点 | 紫色圆形 14px，带发光阴影 |
-| 按钮 | 深灰默认，悬停变紫 |
-| 歌名 | 14px 加粗，深色 |
-| 歌手 | 12px，灰色 |
-| 播放列表 | 毛玻璃 + 阴影，当前曲目紫色高亮 |
-| 音量条 | 紫色渐变 |
-| 暗色模式 | 全部适配，深紫蓝色调 |
-
-### 最终结构
-
-```
-MusicPlayer.astro 中 CSS/Script 的分工：
-
-<style is:global>
-  ├── 浮动定位 (left/right/bottom/width)  ← 被 JS 覆盖，此处是后备
-  ├── 毛玻璃背景
-  ├── 圆角 / 阴影
-  ├── 进度条样式
-  ├── 按钮颜色
-  ├── 歌名/歌手字体
-  ├── 播放列表样式
-  ├── 音量滑块
-  └── 暗色模式覆盖
-</style>
-
+<audio id="player-audio" preload="none" style="display:none"></audio>
+<div id="player-floating" data-astro-transition-persist>
+  <!-- 面板 + 播放栏的 HTML -->
+</div>
 <script>
-  ├── APlayer 初始化
-  ├── JS setProperty 覆盖定位（真正生效）
-  ├── localStorage 状态恢复
-  └── astro:before-swap / beforeunload 状态保存
+(function() {
+  // 所有函数定义在 IIFE 顶层，页面切换也能访问
+  function renderTree() { ... }
+  function updateBarDisplay() { ... }
+  function updateProgressBar() { ... }
+
+  // 页面切换时直接恢复，不重新初始化
+  if (window.__playerReady) {
+    if (window.__player && window.__player.songs) {
+      renderTree(); updateBarDisplay();
+    }
+    return;
+  }
+  window.__playerReady = true;
+  // ... 首次初始化
+})();
 </script>
 ```
+
+核心设计：
+
+| 机制 | 作用 |
+|------|------|
+| `window.__player` 全局对象 | 持有所有状态（歌曲列表、播放队列、展开路径、面板开关） |
+| `data-astro-transition-persist` | 关键 DOM 元素跨页存活 |
+| IIFE 顶层函数 | 页面切换重新执行脚本时函数已在作用域内，不会 `ReferenceError` |
+| `window.__playerReady` 标志 | 防止重复初始化 |
+
+#### 踩坑：作用域 bug
+
+第一次重构时 `renderTree` 定义在 `loadPlaylist().then()` 回调内部，页面切换时重新执行脚本，检测到 `window.__playerReady` 为 `true`，直接调用 `renderTree()`——但此时函数还没定义，`ReferenceError`。
+
+**修复**：把 `renderTree`、`updateBarDisplay`、`updateProgressBar` 全部提升到 IIFE 顶层，和 `if (window.__playerReady)` 检查在同一作用域层级。
+
+### 第三阶段：数据准备——album 字段
+
+原来 `playlist.json` 只有 `name`、`artist`、`url` 三个字段。做歌手→专辑→歌曲阶梯树需要 `album`。
+
+**修改 `sync_music.py`**：扫描 ID3 元数据时把 album 字段输出到 JSON。
+
+**修改 `upload_to_r2.py`**：用 boto3 S3 API 列出 R2 已有对象，不重复上传也能正确生成带 album 的新歌单。
+
+### 第四阶段：彩灯边框（迭代 3 版）
+
+第一版用 `conic-gradient` + `transform: rotate(360deg)`，大面积渐变旋转频繁触发 repaint，肉眼可见掉帧。
+
+| 版本 | 方案 | 问题 |
+|------|------|------|
+| v1 | `conic-gradient` + `rotate(360deg)` | 大面积旋转频繁 repaint，掉帧 |
+| v2 | `linear-gradient` + `background-position` 滑动 + `will-change` | GPU 合成层，流畅了 |
+| v3 | 默认 `animation-play-state: paused`，音乐播放时 JS 设为 `running` | 播放才亮灯，停时熄灭 |
+
+最终方案：
+
+```css
+.bar-border {
+  background: linear-gradient(90deg, #ff0080, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080);
+  background-size: 300% 100%;
+  animation: border-slide 12s linear infinite;
+  animation-play-state: paused;
+  will-change: background-position;
+}
+.bar-border.active {
+  animation-play-state: running;
+}
+
+@keyframes border-slide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+```
+
+光条和播放器主体的 2px 间隙通过 `box-shadow: 0 0 0 2px rgba(10,10,24,0.92)` 实现，实际上是一个内阴影边框的效果——而不是真的 `border` 或 `outline`。
+
+### 第五阶段：SVG 图标替换
+
+用户反馈：icon 能不能不用 emoji，播放键（`▶`，U+25B6 几何符号）看着挺高端，其他按钮（🔊↔↔）风格不统一。
+
+全部替换为内联 SVG：
+
+```javascript
+const I = {
+  play: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M5 3l12 7-12 7V3z" fill="currentColor"/></svg>',
+  pause: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="5" y="3" width="3" height="14" rx="1" fill="currentColor"/><rect x="12" y="3" width="3" height="14" rx="1" fill="currentColor"/></svg>',
+  prev: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 3h2v14H4zm12 0l-2 .95L6 10l8 6.05V3z" fill="currentColor"/></svg>',
+  next: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M14 3h-2v14h2zm0 7l-2 .95L4 17V3z" fill="currentColor"/></svg>',
+  vol: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M3 7v6h4l5 5V2L7 7H3zm11 0v1.5c0 ..."/></svg>',
+  list: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="3" y="4" width="14" height="2" rx="1" .../></svg>',
+};
+```
+
+关键设计：
+
+- `viewBox="0 0 20 20"` + `width="1em" height="1em"` → SVG 自动缩放匹配按钮的 `font-size`
+- `fill="currentColor"` → 颜色跟随 CSS `color`，hover 变色自动生效
+- 所有路径纯几何图形，和播放键 `▶` 一致的视觉风格
+
+### 第六阶段：布局大改（约 8 次迭代）
+
+播放器的布局是改动最频繁的部分：
+
+```
+v1 — 底部横条（APlayer fixed: true）
+     满宽横条，黏在底部，没有间距
+
+v2 — CSS 覆盖 APlayer 内联样式（setProperty）
+     能控制了，但 APlayer 交互后会重置
+
+v3 — 彻底自建（弃 APlayer）
+     浮窗底部，圆角毛玻璃，自由控制
+
+v4 — 宽度 280px 方形卡片
+     不再是横条，更像一个独立组件
+
+v5 — 音量竖排（writing-mode: vertical-lr）
+     竖排在左侧，占空间不好用
+
+v6 — 音量横排 + 顶行布局（最终版）
+     ┌──────────────────────────────────────┐
+     │ 🔊 ██████░    │   ⏮ ⏭ ☰           │  ← 顶行
+     │ ─────────────────────────────────── │
+     │ ▶ 歌名 — 歌手                       │  ← 中行
+     │ ██████████████████░░░░░░            │  ← 进度条
+     │          0:00                       │  ← 时间居中在下
+     └──────────────────────────────────────┘
+```
+
+v4→v6 之间的微调：
+
+| 调整 | 方向 |
+|------|------|
+| 音量横排→竖排→横排 | 竖排占用高度太多，最终横排在顶行左侧 |
+| 切歌键下移→上移 | 从进度条左右移到顶行右侧，和歌单按钮并排 |
+| 时间右置→居中→下移 | 最终放在进度条下方居中显示 |
+| 按钮尺寸反复调 | 播放 20px、切歌 22px、歌单 26px、音量 17px |
+| 整体缩放 | `transform: scale(1.2)`，`transform-origin: bottom left` |
+| 播放卡宽高比 | 最终 280px 宽，~200px 高，接近正方形 |
+
+### 交互细节
+
+| 交互 | 实现 |
+|------|------|
+| 点击歌单 ☰ | `panelOpen = !panelOpen` → `overflow: hidden/auto` 配合 `max-height` 过渡 |
+| 点击歌手 | 切换 `expanded` 中该歌手的展开状态 → 重新 `renderTree()` |
+| 点击专辑 ▶ | 设置 `queue` 为该专辑所有歌曲，`queueIndex = 0`，立即播放 |
+| 空格键 | `document.addEventListener('keydown', e => if(e.key===' ' && e.target===document.body) play/pause)` |
+| 折行歌名 | 太长用 `text-overflow: ellipsis` 截断 |
+
+### 持久化策略
+
+| 存储 | 时机 |
+|------|------|
+| `localStorage.setItem('player-state', JSON.stringify(...))` | `astro:before-swap`（View Transitions 切换前）+ `beforeunload`（刷新前） |
+| 恢复 | 脚本初始化时 `JSON.parse(localStorage.getItem('player-state'))` |
+| 保存内容 | 当前 URL、播放进度、暂停状态、音量、队列及索引、面板展开路径 |
+
+页面切换流程：
+
+```
+保存状态 → astro:before-swap 触发 → View Transitions 交换内容
+  → data-astro-transition-persist 元素保留 → 新页脚本执行
+  → 读取 localStorage → 恢复渲染 → audio 继续播放
+```
+
+---
+
+## 全部修改的文件
+
+| 文件 | 改动类型 | 说明 |
+|------|---------|------|
+| `src/components/MusicPlayer.astro` | **重写** | 从 APlayer wrapper → 完整自建播放器（~650 行） |
+| `scripts/sync_music.py` | **修改** | 加入 `album` 字段输出，URL 改用实际文件系统路径 |
+| `scripts/upload_to_r2.py` | **重写** | 用 boto3 S3 API 列出已有对象，增量上传 + 带 album 生成 |
+| `scripts/serve_music.py` | **修改** | 加入 URL 解码、CORS 头、MIME 类型 |
+| `.gitignore` | **修改** | `public/music/` → `public/music/playlist.json` |
+| `astro.config.mjs` | **修改** | 加入 Vite proxy + `is:inline` 保留 CDN 脚本 |
 
 ---
 
@@ -433,100 +230,100 @@ MusicPlayer.astro 中 CSS/Script 的分工：
 
 | 概念 | 理解 |
 |------|------|
-| **CSS 优先级层级** | 内联样式（`element.style`）高于所有选择器级别的 `!important`。要覆盖内联样式，必须在 JS 中再用 `setProperty(..., 'important')` 生成内联+important 的组合 |
-| **`setProperty` 第三个参数** | `element.style.setProperty('left', '16px', 'important')` 可以在内联样式中生成带 `!important` 的声明，这是最高优先级的 CSS 声明方式 |
-| **`prefers-color-scheme`** | CSS media query，无需 JS 即可检测系统主题。纯 CSS 方案比 JS 监听更简洁（不需要 `matchMedia` 事件） |
-| **`backdrop-filter: blur()`** | 对元素背后的内容做模糊处理，搭配半透明背景实现毛玻璃效果。比 `filter: blur()` 更合适——后者会模糊整个元素包括子元素 |
-| **`!important` 不是银弹** | 它只作用于选择器层级的竞争。遇到内联样式时，需要 JS `setProperty` 配合才能覆盖 |
-| **第三方库样式覆盖策略** | 分三级：① CSS 选择器覆盖（最简单）→ ② CSS `!important` → ③ JS 运行时内联覆盖（最后手段）。从①开始尝试，不够再升级 |
-| **APlayer fixed 模式的定位机制** | APlayer 在 `fixed: true` 时用 JS 设 `position: fixed; left: 0; right: 0; bottom: 0; width: 100%`。这些不是 CSS 文件定义的，是 JS 运行时生成的 `element.style`，所以 CSS 覆盖不了 |
-| **`width: auto` 在 fixed 定位中** | fixed 定位的元素如果 left/right 都设了，宽度默认由两者决定。但 APlayer 额外设了 `width: 100%`，必须覆盖为 `auto` 才能让左右间距生效 |
-| **thumb 的 translateY 微调** | 进度条高度从默认改为 4px 后，thumb 需要 `translateY(-5px)` 来垂直居中。这是纯视觉微调，没有通用公式，看 DevTools 调就行 |
+| **CSS 优先级回溯** | APlayer `fixed: true` 用 JS 写入 `element.style.cssText`，CSS `!important` 压不住。需要 `setProperty(key, val, 'important')` 生成内联+important 的最高优先级组合 |
+| **第三方库样式覆盖策略** | 三级递进：CSS 选择器 → CSS `!important` → JS 运行时覆盖。每级尝试后验证，够用就行 |
+| **SVG `currentColor`** | SVG 的 `fill="currentColor"` 让图标颜色继承父元素 `color`，hover/active 变色自动生效 |
+| **SVG `1em` 缩放** | `width="1em" height="1em"` 让 SVG 跟随按钮 font-size，一套图标适配不同尺寸 |
+| **View Transitions 脚本执行** | 每次页面导航脚本都会重新执行。利用 `window.__playerReady` 做守卫，首次初始化、后续直接恢复 |
+| **`will-change` 性能** | `will-change: background-position` 触发 GPU 合成层，`linear-gradient` 背景滑动不触发 repaint |
+| **`transform-origin`** | `scale(1.2)` + `transform-origin: bottom left` 从左下角缩放，不改变 `bottom/left` 定位 |
+| **`astro:before-swap`** | View Transitions 在交换页面内容前触发，适合保存播放器状态到 localStorage |
+| **阶梯树事件委托** | 面板整体 `innerHTML` 渲染 + `treeEl.addEventListener('click', handler)` 委托事件，避免重新渲染后监听丢失 |
+| **彩灯边框性能对比** | `conic-gradient` + `rotate` → CPU repaint。`linear-gradient` + `background-position` → GPU 合成层，前者掉帧 |
+| **`animation-play-state`** | CSS 属性，`running/paused` 控制动画启停，JS 只需切换类名 |
 
-### 浏览器兼容性备注
+---
 
-| 特性 | 兼容性 |
-|------|--------|
-| `backdrop-filter` | Chrome 76+, Firefox 103+, Safari 9+ |
-| `prefers-color-scheme` | Chrome 76+, Firefox 67+, Safari 12.1+ |
-| `element.style.setProperty` | 所有现代浏览器（IE 9+）|
+## 最终架构
 
-对于个人博客来说，这些覆盖范围够了。
+```
+/home/cat/Music/（92 首）
+       │
+       ▼
+scripts/sync_music.py → playlist.json（含 album 字段）
+       │
+       ▼
+upload_to_r2.py → R2 music-store 桶 → playlist.r2.json（R2 URL）
+       │
+       ▼
+MusicPlayer.astro（自建播放器 → HTML5 <audio> + localStorage 持久化）
+       │
+       ▼
+浏览器播放（跨页不断播）
+```
+
+### 生产数据流
+
+```
+localStorage player-state
+  ├── url: 当前播放的 R2 直链
+  ├── currentTime: 播放进度
+  ├── paused: 暂停状态
+  ├── volume: 音量
+  ├── queue: 当前队列（歌曲 URL 列表）
+  ├── queueIndex: 当前索引
+  └── expanded: 面板展开路径
+```
+
+### 最终播放卡效果
+
+```
+  ┌──────── 16px ────────┐
+  │ 🔊 ██████░ │ ⏮ ⏭ ☰  │  ← 彩灯亮时边框渐变动画
+  │ ───────────────────── │
+  │ ▶ 杀死那个石家庄人     │
+  │ ██████████████░░░     │  ← 点击进度条跳转
+  │      03:42           │
+  └───────────────────────┘
+     左下角浮窗，深色毛玻璃
+     面板展开：歌手 > 专辑 > 歌曲
+     transform: scale(1.2)
+```
+
+| 交互 | 效果 |
+|------|------|
+| 点击 ☰ | 歌手列表从上方展开（max-height 过渡动画） |
+| 点击歌手 | 展开/收起该歌手的所有专辑 |
+| 点击专辑旁的 ▶ | 整张专辑顺序入队并播放 |
+| 点击歌曲 | 立即播放 |
+| 空格键 | 播放/暂停 |
+| 页面切换 | 播放不中断 |
+| 刷新 | 恢复进度、音量、面板 |
+
+### 后续待办
+
+- [ ] 给博客绑个自定义域名
+- [ ] Bilibili 同步脚本完整流程
+- [ ] Telegram Bot 补充歌源
 
 ---
 
 ## 反思
 
-### CSS 优先级认知修正
+### APlayer 的教训
 
-写 CSS 覆盖前，我的知识体系里有个错误认知：
+花了大量时间尝试 CSS 覆盖 APlayer。如果提前检查 APlayer 的样式注入方式（JS 内联 vs CSS），会更快判断出这条路走不通。
 
-> "`!important` 是最高的，加了就一定生效。"
+第三方库的选择标准应该加一条：**样式系统的开放性**。如果库用 JS 频繁重写内联样式，定制化成本很高。
 
-实际上 CSS 优先级**分两层**：
+### 自建 vs 用库的成本判断
 
-1. **选择器层**：id > class > tag，同一层内 `!important` 取胜
-2. **样式来源层**：内联样式 > 选择器样式
+回头看，如果一开始就自建，可能比和 APlayer 死磕半天再推倒重来更快——自建加所有功能花了大概 2 小时，和 APlayer CSS 战斗花了 1 天。
 
-`!important` 只作用于**选择器层内部**。当遇到内联样式时，`!important` 也不够——需要用 JS `setProperty` 生成**内联 + important** 的组合，才能达到最高优先级。
+但这是**事后诸葛亮**。APlayer 提供了开箱即用的渐进式、歌单、歌词、随机播放……这些如果从头实现也会花时间。合理判断是：**先用库快速跑通功能，如果定制需求明确且库不支持，果断换自建。**
 
-### 从 DevTools 排查到方案选定
+### 布局迭代太快了
 
-定位问题的排查路径：
+播放器的 UI 在一天内迭代了大约 8 个版本，每次改动 -> 编译 -> 部署 -> 查看 -> 再改。很多时间花在细调上（按钮大 2px 还是小 2px）。
 
-```
-看到播放器贴边
-  → 检查 CSS（写了 !important，应该没错）
-  → DevTools 检查元素 → 发现内联样式压住了 CSS
-  → 验证：CSS 的 left: 16px !important 被划掉了
-  → 搜索：如何覆盖 element.style 中的 !important
-  → 方案 A：CSS 选择器更具体（没用，内联层级更高）
-  → 方案 B：JS 执行后再设一遍（正确方案）
-  → 方案 C：改 APlayer 源码（不现实）
-  → 选定方案 B，用 setProperty 传 'important' 参数
-```
-
-如果当时直接检查 DevTools 的 Computed 面板，定位会更快——被覆盖的属性会显示划掉和优先级来源。
-
-### 毛玻璃效果的分寸
-
-`backdrop-filter: blur(24px)` 配合 `rgba(255, 255, 255, 0.72)` 透明度，背景可见度刚刚好。试过几个值：
-
-| 透明度 | 模糊量 | 效果 |
-|--------|--------|------|
-| 0.85 | 12px | 太实，基本看不到背景 |
-| 0.72 | 24px | 半透明，背景隐约可见 ✅ |
-| 0.50 | 30px | 太透，文字可读性下降 |
-
-最终折中在 0.72 + 24px，既保留了毛玻璃质感又不影响内容可读性。
-
----
-
-## 总结
-
-Day 19 从一个视觉毛坯房播放器出发，经过两轮迭代完成了完整的 UI 美化：
-
-| 轮次 | 做了什么 | 结果 |
-|------|---------|------|
-| 第一轮 | CSS 全覆盖（毛玻璃、圆角、阴影、进度条、暗色模式） | 视觉 OK，但定位被 APlayer 内联样式覆盖 |
-| 第二轮 | 识别 CSS 优先级问题 | 发现内联样式压不住 `!important` |
-| 第三轮 | JS `setProperty` 运行时覆盖 | 定位+圆角全部生效 ✅ |
-
-第一轮写 CSS 花了大部分时间（各个组件的样式 + 暗色模式适配），但最后解决 CSS 覆盖不了内联样式的问题花了好一会儿排查。核心教训：**第三方库的样式覆盖不要只从 CSS 角度想，要检查样式来源层级。**
-
-最终播放器效果：
-
-```
-       ←── 16px ──→
-┌──────┬──────────────────────────────┬──────┐
-│      │ 🎵 杀死那个石家庄人          │      │
-│      │    — 万能青年旅店            │      │  ← 毛玻璃背景
-│      │ ░░░░░████████████  03:42 ▶▶  │      │  ← 紫色渐变进度条
-│      │                              │      │  ← 16px 圆角 + 阴影
-│      └──────────────────────────────┘      │
-│                   ↑ 底部 16px               │
-└────────────────────────────────────────────┘
-亮色模式：白色毛玻璃 / 暗色模式：深紫半透明
-```
-
-和博客现有的玻璃拟态卡片风格统一了。
+以后可以：先画个简单的布局草图，确定大框架（横条/卡片、音量位置、按钮分组），再进入像素级微调。大框架稳定了细调才有意义。
