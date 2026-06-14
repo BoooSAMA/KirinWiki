@@ -3,12 +3,10 @@ import * as THREE from 'three'
 let scene, camera, renderer, container
 let animationId, resizeHandler
 
-const R = 500          // 星球曲率半径
-const GRID_SIZE = 420  // 地板总尺寸
-const DIVISIONS = 70   // 格线分割数
-const SPACING = GRID_SIZE / DIVISIONS // 6 单位一格
+const R = 500         // 星球曲率半径
+const GRID_SIZE = 420 // 地板总尺寸
 const HALF = GRID_SIZE / 2
-const CX = 3           // 中心偏移确保原点在瓷砖中心 (3%6=3)
+const CX = 3
 const CZ = 3
 
 function surfaceY(wx, wz) {
@@ -51,36 +49,77 @@ function buildCurvedFloor() {
   )
 }
 
-function buildCurvedGrid() {
-  const group = new THREE.Group()
-  const mat = new THREE.LineBasicMaterial({ color: 0xaaaaaa })
-  const LINE_SEG = 40
+function buildHexGrid() {
+  const hexSize = 4
+  const colSpacing = 1.5 * hexSize        // 6
+  const rowSpacing = Math.sqrt(3) * hexSize // ~6.928
+  const rowOffset = rowSpacing / 2          // ~3.464
+  const halfH = rowSpacing / 2
+  const halfW = hexSize
 
-  // X 向格线（沿 Z 方向排列）
-  for (let d = 0; d <= DIVISIONS; d++) {
-    const wz = CZ - HALF + d * SPACING
-    const pts = []
-    for (let s = 0; s <= LINE_SEG; s++) {
-      const wx = CX - HALF + (s / LINE_SEG) * GRID_SIZE
-      pts.push(new THREE.Vector3(wx, surfaceY(wx, wz), wz))
-    }
-    const geo = new THREE.BufferGeometry().setFromPoints(pts)
-    group.add(new THREE.Line(geo, mat))
+  const margin = 40
+  const xMin = CX - HALF - margin
+  const xMax = CX + HALF + margin
+  const zMin = CZ - HALF - margin
+  const zMax = CZ + HALF + margin
+
+  const cols = Math.ceil((xMax - xMin) / colSpacing) + 2
+  const rows = Math.ceil((zMax - zMin) / rowSpacing) + 2
+
+  const drawnEdges = new Set()
+  const positions = []
+
+  function edgeKey(ax, az, bx, bz) {
+    const ak = `${ax.toFixed(2)},${az.toFixed(2)}`
+    const bk = `${bx.toFixed(2)},${bz.toFixed(2)}`
+    return ak < bk ? `${ak}-${bk}` : `${bk}-${ak}`
   }
 
-  // Z 向格线（沿 X 方向排列）
-  for (let d = 0; d <= DIVISIONS; d++) {
-    const wx = CX - HALF + d * SPACING
-    const pts = []
-    for (let s = 0; s <= LINE_SEG; s++) {
-      const wz = CZ - HALF + (s / LINE_SEG) * GRID_SIZE
-      pts.push(new THREE.Vector3(wx, surfaceY(wx, wz), wz))
+  function addEdge(ax, ay, az, bx, by, bz) {
+    const key = edgeKey(ax, az, bx, bz)
+    if (!drawnEdges.has(key)) {
+      drawnEdges.add(key)
+      positions.push(ax, ay, az, bx, by, bz)
     }
-    const geo = new THREE.BufferGeometry().setFromPoints(pts)
-    group.add(new THREE.Line(geo, mat))
   }
 
-  return group
+  for (let col = 0; col < cols; col++) {
+    const cx = xMin + col * colSpacing
+    const zOff = (col % 2 === 1) ? rowOffset : 0
+
+    for (let row = 0; row < rows; row++) {
+      const cz = zMin + row * rowSpacing + zOff
+
+      // flat-top hexagon 6 顶点（顺时针）
+      const vx = [
+        cx + halfW,          // 右
+        cx + halfW / 2,      // 右下
+        cx - halfW / 2,      // 左下
+        cx - halfW,          // 左
+        cx - halfW / 2,      // 左上
+        cx + halfW / 2,      // 右上
+      ]
+      const vz = [
+        cz,
+        cz + halfH,
+        cz + halfH,
+        cz,
+        cz - halfH,
+        cz - halfH,
+      ]
+
+      for (let v = 0; v < 6; v++) {
+        const w = (v + 1) % 6
+        const vy1 = surfaceY(vx[v], vz[v])
+        const vy2 = surfaceY(vx[w], vz[w])
+        addEdge(vx[v], vy1, vz[v], vx[w], vy2, vz[w])
+      }
+    }
+  }
+
+  const geo = new THREE.BufferGeometry()
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+  return new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ color: 0xaaaaaa }))
 }
 
 export function createScene(el) {
@@ -100,7 +139,7 @@ export function createScene(el) {
   container.appendChild(renderer.domElement)
 
   scene.add(buildCurvedFloor())
-  scene.add(buildCurvedGrid())
+  scene.add(buildHexGrid())
 
   resizeHandler = () => {
     const w = container.clientWidth

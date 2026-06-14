@@ -369,6 +369,16 @@
 
 <script>
 (function() {
+  /* ===== 安全保险：清除重复的持久化元素 ===== */
+  function dedupePersist(id) {
+    const all = document.querySelectorAll(`#${CSS.escape(id)}`);
+    if (all.length > 1) {
+      for (let i = 1; i < all.length; i++) all[i].remove();
+    }
+  }
+  dedupePersist('player-audio');
+  dedupePersist('player-floating');
+
   /* ===== DOM 引用（IIFE 级，函数和页面切换都需要） ===== */
   const $ = (id) => document.getElementById(id);
   const btnPlay = $('btn-play');
