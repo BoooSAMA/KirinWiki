@@ -1,25 +1,41 @@
 ---
 // MusicPlayer.astro — 固定底部播放器，View Transitions 切换页面时不断播
 // 歌单优先加载 playlist.r2.json（生产），回退到 playlist.json（本地开发）
+// 架构：外层 wrapper 控制浮动定位和圆角，内层 APlayer 取消 fixed 定位
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
 
-<div id="aplayer" data-astro-transition-persist></div>
+<div id="player-floating" data-astro-transition-persist>
+  <div id="aplayer"></div>
+</div>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 <style is:global>
-  /* ─── 浮动玻璃主体 ─── */
+  /* ─── 外层浮动容器（完全由我们控制定位） ─── */
+  #player-floating {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 100;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ─── 强制 APlayer 使用相对定位，呆在 wrapper 里面 ─── */
   .aplayer.aplayer-fixed {
-    bottom: 16px !important;
-    left: 16px !important;
-    right: 16px !important;
-    width: auto !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
-    z-index: 100 !important;
-    /* 覆盖 APlayer JS 内联的 bottom:0;left:0;right:0 */
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    z-index: auto !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   .aplayer.aplayer-fixed .aplayer-body {
@@ -93,7 +109,7 @@
     -webkit-backdrop-filter: blur(24px) !important;
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-    bottom: 72px !important;
+    bottom: 100% !important;
     max-height: 320px !important;
   }
   .aplayer .aplayer-list ol li {
@@ -128,6 +144,9 @@
 
   /* ─── 暗色模式支持 ─── */
   @media (prefers-color-scheme: dark) {
+    #player-floating {
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
     .aplayer.aplayer-fixed .aplayer-body {
       background: rgba(30, 30, 50, 0.78) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -215,16 +234,6 @@
         });
 
         window.__ap = ap;
-
-        // 覆盖 APlayer 的内联定位——用 JS 设 !important 才压得住
-        const apEl = document.getElementById('aplayer');
-        if (apEl) {
-          apEl.style.setProperty('left', '16px', 'important');
-          apEl.style.setProperty('right', '16px', 'important');
-          apEl.style.setProperty('bottom', '16px', 'important');
-          apEl.style.setProperty('width', 'auto', 'important');
-          apEl.style.setProperty('border-radius', '16px', 'important');
-        }
 
         if (restoreIndex >= 0 && restoreIndex < playlist.length) {
           ap.list.switch(restoreIndex);
