@@ -1,6 +1,6 @@
 ---
 title: "Day 19 — 播放器 UI 美化：从原生 APlayer 到玻璃拟态"
-date: 2026-06-14
+date: 2026-06-15
 tags: ["UI", "CSS", "APlayer", "Glassmorphism", "Dark Mode", "Browser"]
 description: "对底部播放器进行完整的视觉改造：毛玻璃背景、圆角浮动卡片、渐变进度条、暗色模式适配，以及解决 CSS 优先级不够覆盖 APlayer 内联样式的坑"
 ---

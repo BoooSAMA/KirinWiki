@@ -1,6 +1,6 @@
 ---
 title: "Day 18 — 首次部署：从 Pages 到 Workers 的认知修正"
-date: 2026-06-13
+date: 2026-06-14
 tags: ["Deployment", "Cloudflare", "Workers", "Wrangler", "R2", "Domain"]
 description: "实际部署时发现项目已经配置了 Workers 模式而非 Pages，全程踩坑记录：构建、部署、R2 自定义域名绑定、音频上线"
 ---
