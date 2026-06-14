@@ -162,21 +162,21 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 彩灯边框层 */
+/* 彩灯边框层 — 线性渐变滑动，GPU 友好 */
 .bar-border {
   position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
+  inset: 0;
+  background: linear-gradient(
+    90deg,
     #ff0080, #ff4400, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080
   );
-  animation: border-spin 8s linear infinite;
+  background-size: 300% 100%;
+  animation: border-slide 8s linear infinite;
+  will-change: background-position;
 }
 
-@keyframes border-spin {
-  to { transform: rotate(360deg); }
+@keyframes border-slide {
+  to { background-position: 300% 0; }
 }
 
 /* 内容层（盖住边框中心，留 2px 边） */
@@ -745,6 +745,10 @@
   treeEl.addEventListener('click', (e) => {
     const target = e.target.closest('[data-action]');
     if (!target) return;
+
+    // 阻止事件冒泡，防止外部点击监听器误判
+    e.stopPropagation();
+
     const action = target.dataset.action;
 
     if (action === 'toggle-artist') {
@@ -773,6 +777,11 @@
       playAlbum(artist, album);
       return;
     }
+  });
+
+  // 面板按钮点击也阻止向 document 冒泡
+  btnList.addEventListener('click', (e) => {
+    e.stopPropagation();
   });
 
   // 键盘快捷键
