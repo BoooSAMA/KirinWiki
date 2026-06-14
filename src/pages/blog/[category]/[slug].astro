@@ -66,13 +66,16 @@ const tags: string[] = Array.isArray(fm.tags)
 ---
 
 <BaseLayout title={`${fm.title || slug} - ${catName.zh}`}>
-  <nav class="flex items-center gap-4 text-sm text-gray-400 mb-8">
-    <a href="/blog" class="no-underline hover:text-gray-600 transition-colors">
+  <nav class="flex items-center gap-3 mb-8">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-gray-500 bg-gray-100/60 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
+    >
       &larr; 分类
     </a>
     <a
       href={`/blog/${category}`}
-      class="no-underline hover:text-gray-600 transition-colors"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-gray-500 bg-gray-100/60 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
     >
       &larr; {catName.zh}
     </a>

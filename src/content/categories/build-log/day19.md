@@ -1,6 +1,6 @@
 ---
 title: "Day 19 — 自制播放器：从 APlayer 到自建，UI 反复迭代的全记录"
-date: 2026-06-14
+date: 2026-06-15
 tags: ["UI", "Music", "APlayer", "SVG", "CSS Animations"]
 description: "彻底替换 APlayer，用 Preact + HTML5 Audio API 自建音乐播放器。深色毛玻璃、彩灯边框、阶梯面板、SVG 图标、竖排音量……两天内迭代了十几个版本"
 ---

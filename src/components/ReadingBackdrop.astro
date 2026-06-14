@@ -69,10 +69,7 @@ const { defaultOpacity = 0.92 } = Astro.props
     }
   }
 
-  /**
-   * @param {number} val
-   */
-  function setStored(val: any) {
+  function setStored(val) {
     try {
       localStorage.setItem(KEY, String(val))
     } catch {
@@ -80,27 +77,32 @@ const { defaultOpacity = 0.92 } = Astro.props
     }
   }
 
-  /**
-   * @param {number} val
-   */
-  function apply(val: number) {
+  function apply(val) {
     document.documentElement.style.setProperty('--reading-bg-opacity', String(val))
     setStored(val)
   }
 
-  const slider = document.getElementById('opacity-slider') as HTMLInputElement | null
-  const display = document.getElementById('opacity-value') as HTMLElement | null
+  function initSlider() {
+    const slider = document.getElementById('opacity-slider')
+    const display = document.getElementById('opacity-value')
+    if (!slider) return
 
-  if (slider) {
     const stored = getStored()
+    // sync slider position, CSS variable, and display text
     slider.value = String(stored)
     apply(stored)
     if (display) display.textContent = Math.round(stored * 100) + '%'
 
+    // use a named handler so astro:page-load re-binds cleanly
+    // (old DOM is gone after View Transition, so no duplicate listeners)
     slider.addEventListener('input', function () {
       const v = parseFloat(this.value)
       apply(v)
       if (display) display.textContent = Math.round(v * 100) + '%'
     })
   }
+
+  // astro:page-load fires on initial load AND after every View Transition
+  // This ensures the slider works regardless of how the user arrives at the page
+  document.addEventListener('astro:page-load', initSlider)
 </script>

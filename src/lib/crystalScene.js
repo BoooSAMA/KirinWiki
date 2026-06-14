@@ -2,6 +2,7 @@ import * as THREE from 'three'
 
 let scene, camera, renderer, container
 let animationId, resizeHandler, crystal
+let cameraTarget = new THREE.Vector3(2, 5, 5.87)
 
 const R = 500         // 星球曲率半径
 const GRID_SIZE = 420 // 地板总尺寸
@@ -130,8 +131,9 @@ export function createScene(el) {
 
   const aspect = container.clientWidth / container.clientHeight
   camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 200)
-  camera.position.set(0, 5, -7)
-  camera.lookAt(0, 4.39, 0)
+  camera.position.set(12, 7.5, 6)
+  cameraTarget.set(2, 5, 5.87)
+  camera.lookAt(cameraTarget)
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(container.clientWidth, container.clientHeight)
@@ -165,7 +167,7 @@ export function createScene(el) {
   })
   const outer = new THREE.Mesh(new THREE.OctahedronGeometry(1.6, 0), outerMat)
   outer.scale.y = 2
-  outer.position.set(0, 3.5, 6.928)
+  outer.position.set(-1, 4.5, 5.872)
   scene.add(outer)
 
   const innerMat = new THREE.MeshStandardMaterial({
@@ -178,6 +180,31 @@ export function createScene(el) {
   outer.add(inner)
 
   crystal = outer
+
+  const shadowCanvas = document.createElement('canvas')
+  shadowCanvas.width = 128
+  shadowCanvas.height = 128
+  const sCtx = shadowCanvas.getContext('2d')
+  const grad = sCtx.createRadialGradient(64, 64, 0, 64, 64, 64)
+  grad.addColorStop(0, 'rgba(0,0,0,0.7)')
+  grad.addColorStop(0.5, 'rgba(0,0,0,0.25)')
+  grad.addColorStop(1, 'rgba(0,0,0,0)')
+  sCtx.fillStyle = grad
+  sCtx.fillRect(0, 0, 128, 128)
+
+  const shadowTex = new THREE.CanvasTexture(shadowCanvas)
+  const shadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.5, 2.5),
+    new THREE.MeshBasicMaterial({
+      map: shadowTex,
+      transparent: true,
+      opacity: 0.65,
+      depthWrite: false,
+    }),
+  )
+  shadow.rotation.x = -Math.PI / 2
+  shadow.position.set(-1, surfaceY(-1, 5.872) + 0.02, 5.872)
+  scene.add(shadow)
 
   resizeHandler = () => {
     const w = container.clientWidth
@@ -192,12 +219,54 @@ export function createScene(el) {
     animationId = requestAnimationFrame(animate)
     if (crystal) {
       const t = performance.now() / 1000
+      const floatOffset = Math.sin(t * 0.7)
       crystal.rotation.y += 0.008
-      crystal.position.y = 2.0 + Math.sin(t * 0.7) * 0.25
+      crystal.position.y = 4.5 + floatOffset * 0.25
+      shadow.scale.setScalar(1 + floatOffset * 0.2)
+      shadow.material.opacity = 0.65 - floatOffset * 0.2
     }
     renderer.render(scene, camera)
   }
   animate()
+
+  const panel = document.createElement('div')
+  Object.assign(panel.style, {
+    position: 'fixed',
+    top: '24px',
+    left: '24px',
+    background: 'rgba(0,0,0,0.6)',
+    color: '#ccc',
+    padding: '10px 14px',
+    borderRadius: '8px',
+    font: '12px/1.7 monospace',
+    zIndex: '99999',
+    pointerEvents: 'auto',
+    userSelect: 'none',
+    backdropFilter: 'blur(4px)',
+    border: '1px solid rgba(255,255,255,0.08)',
+    cursor: 'pointer',
+    transition: 'background 0.15s',
+  })
+  const SVG_ICON = `<svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="10" rx="1"/><path d="M8 2V1a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1"/><path d="M3 6h2M3 9h4M3 12h5"/></svg>`
+  const SEP = `<span style="display:block;border-top:1px solid rgba(255,255,255,0.12);margin:5px 0 3px"></span>`
+  const panelContent = () =>
+    `<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;opacity:0.6">${SVG_ICON}复制坐标</span>${SEP}pos (${camera.position.x.toFixed(2)}, ${camera.position.y.toFixed(2)}, ${camera.position.z.toFixed(2)})<br>look (${cameraTarget.x.toFixed(2)}, ${cameraTarget.y.toFixed(2)}, ${cameraTarget.z.toFixed(2)})`
+
+  panel.dataset.coordPanel = ''
+  panel.title = '点击复制坐标'
+  panel.innerHTML = panelContent()
+  panel.onclick = () => {
+    const text = `pos(${camera.position.x.toFixed(2)},${camera.position.y.toFixed(2)},${camera.position.z.toFixed(2)}),look(${cameraTarget.x.toFixed(2)},${cameraTarget.y.toFixed(2)},${cameraTarget.z.toFixed(2)})`
+    navigator.clipboard.writeText(text).then(() => {
+      panel.style.background = 'rgba(34,197,94,0.7)'
+      panel.textContent = '✓ 已复制'
+      setTimeout(() => {
+        panel.style.background = 'rgba(0,0,0,0.6)'
+        panel.innerHTML = panelContent()
+      }, 1200)
+    })
+  }
+  document.body.appendChild(panel)
 }
 
 export function destroyScene() {
@@ -217,6 +286,7 @@ export function destroyScene() {
     }
   })
 
+  document.querySelectorAll('[data-coord-panel]').forEach(el => el.remove())
   renderer.dispose()
   container.removeChild(renderer.domElement)
 
