@@ -4,7 +4,9 @@
 // 歌单: /music/playlist.json（本地）/playlist.r2.json（生产自动转 R2 URL）
 ---
 
-<!-- CSS 全局样式由 BaseLayout 中的 is:global 提供 -->
+<!-- 持久化容器（空壳，内容由 JS 填充） -->
+<audio id="player-audio" data-astro-transition-persist preload="none" style="display:none"></audio>
+<div id="player-floating" data-astro-transition-persist></div>
 <style is:global>
 /* ─── 浮动容器 ─── */
 #player-floating {
@@ -88,22 +90,13 @@
 
 <script>
 (function() {
-  /* ===== 全局清理：每次脚本执行时，移除所有残留的 UI 元素 ===== */
-  function cleanupPlayerDOM() {
-    // 删除 UI 容器（不影响 audio）
-    const existing = document.getElementById('player-floating');
-    if (existing) existing.remove();
-
-    // 删除多余的 mount 点
-    document.querySelectorAll('#music-mount').forEach((el, i) => {
-      if (i > 0) el.remove();
-    });
-
-    // 清理 orphan audio（保留第一个）
-    const audios = document.querySelectorAll('#player-audio');
-    for (let i = 1; i < audios.length; i++) audios[i].remove();
+  /* ===== 去重：只清理多余的持久化元素，保留第一个 ===== */
+  function dedupePersist(id) {
+    const all = document.querySelectorAll(`#${CSS.escape(id)}`);
+    for (let i = 1; i < all.length; i++) all[i].remove();
   }
-  cleanupPlayerDOM();
+  dedupePersist('player-audio');
+  dedupePersist('player-floating');
 
   /* ===== 页面切换时：如果 player 已存在，只更新 UI ===== */
   if (window.__playerReady) {
@@ -116,12 +109,9 @@
   }
   window.__playerReady = true;
 
-  /* ===== 首次加载：构建所有 DOM ===== */
-  const audio = document.createElement('audio');
-  audio.id = 'player-audio';
-  audio.preload = 'none';
-  audio.style.display = 'none';
-  document.body.appendChild(audio);
+  /* ===== 首次加载：填充持久化容器 ===== */
+  const audio = document.getElementById('player-audio');
+  const floating = document.getElementById('player-floating');
 
   /* ===== SVG 图标 ===== */
   const I = {
@@ -137,8 +127,6 @@
   };
 
   /* ===== 构建 UI ===== */
-  const floating = document.createElement('div');
-  floating.id = 'player-floating';
   floating.innerHTML = `
     <div id="player-panel">
       <div class="panel-inner">
@@ -177,7 +165,6 @@
       </div>
     </div>
   `;
-  document.body.appendChild(floating);
 
   /* ===== DOM 引用 ===== */
   const $ = id => document.getElementById(id);
