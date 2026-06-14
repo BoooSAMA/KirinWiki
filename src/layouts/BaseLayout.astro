@@ -2,6 +2,7 @@
 import "../styles/global.css"
 import Navbar from "../components/Navbar.astro"
 import MusicPlayer from "../components/MusicPlayer.astro"
+import Background3D from "../components/Background3D.jsx"
 import { ClientRouter } from "astro:transitions"
 const { title } = Astro.props
 ---
@@ -11,8 +12,9 @@ const { title } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <ClientRouter />
-  </head> <!-- 使用 Tailwind CSS 的类来设置背景色、文本颜色、最小高度和字体 -->
+  </head>
   <body class="text-gray-800 min-h-screen font-sans">
+    <Background3D client:only="preact" />
     <Navbar />
     <main class="max-w-3xl mx-auto px-6 py-12"> <!--  内容自动居中，区域有内边距，不贴边 -->
       <slot />   <!-- 各页面自己的内容会插入这里 -->

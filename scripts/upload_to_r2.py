@@ -133,15 +133,31 @@ def generate_public_url(key: str) -> str:
         return f"/music/audio/{quote(key, safe='/')}"
 
 
-def update_playlist_json(uploaded: list[dict]):
-    """更新 playlist.r2.json，使用 R2 公开 URL"""
+def list_r2_keys(s3, bucket: str) -> set:
+    keys = set()
+    try:
+        paginator = s3.get_paginator("list_objects_v2")
+        for page in paginator.paginate(Bucket=bucket):
+            for obj in page.get("Contents", []):
+                keys.add(obj["Key"])
+    except Exception as e:
+        print(f"  ⚠️ 无法列出 R2 对象: {e}")
+    return keys
+
+
+def update_playlist_json(uploaded: list[dict], s3=None, bucket=None):
     local_songs = load_local_playlist()
-    uploaded_keys = {u["key"] for u in uploaded if u["status"] == "ok"}
+
+    r2_keys = set()
+    for u in uploaded:
+        if "key" in u:
+            r2_keys.add(u["key"])
+    if s3 and bucket:
+        r2_keys |= list_r2_keys(s3, bucket)
 
     r2_songs = []
     for song in local_songs:
-        # 从 URL 提取相对路径
-        url = song.get("url", "")
+        url = song["url"]
         if "/music/audio/" in url:
             key = url.split("/music/audio/", 1)[1]
             from urllib.parse import unquote
@@ -149,15 +165,15 @@ def update_playlist_json(uploaded: list[dict]):
         else:
             continue
 
-        if key in uploaded_keys:
+        if key in r2_keys:
             r2_songs.append({
                 "name": song["name"],
                 "artist": song["artist"],
+                "album": song.get("album", ""),
                 "url": generate_public_url(key),
                 "cover": song.get("cover", ""),
             })
         else:
-            # 未上传的歌曲保留本地 URL（在 R2 JSON 中放本地路径）
             r2_songs.append(song)
 
     R2_PLAYLIST.parent.mkdir(parents=True, exist_ok=True)
@@ -216,8 +232,7 @@ def main():
     total_size = sum(u["size"] for u in uploaded if u["status"] == "ok")
     print(f"\n✅ 完成: {ok} 上传成功, {err} 失败, {total_size/1024/1024:.1f}MB")
 
-    # 生成 R2 歌单
-    update_playlist_json(uploaded)
+    update_playlist_json(uploaded, s3, args.bucket)
     print(f"🎵 现在可以在生产环境使用 R2 歌单了")
 
 

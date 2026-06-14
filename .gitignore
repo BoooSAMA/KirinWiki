@@ -32,8 +32,8 @@ AGENTS.md
 #Building markdown file
 阶段学习搭建计划.md
 
-# Local-only playlist (dev mode URLs, not needed in production)
-public/music/playlist.json
+# playlist.json is now tracked — primary source for the player (album field + URL rewriting)
+# public/music/playlist.json
 
 # Local wrangler build artifacts
 .wrangler/

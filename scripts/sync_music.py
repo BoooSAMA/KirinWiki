@@ -168,6 +168,7 @@ def generate_json(entries: list[dict]):
         playlist.append({
             "name": entry["name"],
             "artist": entry["artist"],
+            "album": entry["album"],
             "url": f"/music/audio/{url_path}",
             "cover": "",
         })

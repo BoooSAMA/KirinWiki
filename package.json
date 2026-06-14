@@ -18,7 +18,8 @@
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.8",
     "preact": "^10.29.2",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "wrangler": "^4.100.0"
