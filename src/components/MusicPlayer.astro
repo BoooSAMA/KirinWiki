@@ -15,46 +15,50 @@
     </div>
   </div>
 
-  <!-- 播放栏（带彩灯边框，方形布局） -->
+  <!-- 播放栏（方形布局，音量竖排在上） -->
   <div id="player-bar">
     <div id="bar-border" class="bar-border"></div>
     <div class="bar-content">
-      <!-- 左半：主控制区 -->
-      <div class="bar-left">
-        <div class="bl-row">
-          <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
-          <div class="bar-info">
-            <div id="bar-title" class="bar-title">未在播放</div>
-            <div id="bar-artist" class="bar-artist">—</div>
-          </div>
-          <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
-          <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
-        </div>
-        <div class="bl-progress">
-          <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
-          <span id="bar-time" class="bar-time">0:00</span>
-        </div>
-      </div>
-
-      <!-- 右半：竖排音量 + 歌单 -->
-      <div class="bar-right">
-        <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+      <!-- 顶行：竖排音量 + 歌单 -->
+      <div class="br-top">
         <div class="vol-vert">
           <button id="btn-vol" class="ctrl-btn sm" title="音量">🔊</button>
           <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-vert">
         </div>
+        <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+      </div>
+
+      <div class="br-sep"></div>
+
+      <!-- 中行：播放钮 + 歌曲信息 -->
+      <div class="br-mid">
+        <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
+        <div class="bar-info">
+          <div id="bar-title" class="bar-title">未在播放</div>
+          <div id="bar-artist" class="bar-artist">—</div>
+        </div>
+      </div>
+
+      <!-- 下区域：进度 + 切歌 + 时间 -->
+      <div class="br-bot">
+        <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
+        <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
+        <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
+      </div>
+      <div id="br-time-row">
+        <span id="bar-time" class="bar-time">0:00</span>
       </div>
     </div>
   </div>
 </div>
 
 <style is:global>
-/* ─── 浮动容器 ─── */
+/* ─── 浮动容器（窄版） ─── */
 #player-floating {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: min(420px, calc(100vw - 40px));
+  width: 280px;
   z-index: 2147483647;
   display: flex;
   flex-direction: column;
@@ -158,7 +162,7 @@
 }
 .album-play:hover { color: #818cf8; background: rgba(129,140,248,0.12); }
 
-/* ─── 播放栏（方形布局） ─── */
+/* ─── 播放栏（窄款方形） ─── */
 #player-bar {
   position: relative;
   border-radius: 14px;
@@ -174,7 +178,6 @@
     90deg,
     #ff0080, #ff4400, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080
   );
-  /* 动画默认暂停，播放时由 JS 激活 */
   animation: border-slide 12s linear infinite;
   animation-play-state: paused;
   will-change: background-position;
@@ -187,7 +190,7 @@
   to { background-position: 300% 0; }
 }
 
-/* 内容层（盖住边框中心，留 2px 边） */
+/* 内容层（盖住边框，留 2px 边） */
 .bar-content {
   position: relative;
   margin: 2px;
@@ -195,28 +198,11 @@
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border-radius: 12px;
-  padding: 8px 6px 8px 10px;
-  display: flex;
-  align-items: stretch;
-  gap: 6px;
-  z-index: 1;
-  min-height: 90px;
-}
-
-/* ─── 左半：主控制区 ─── */
-.bar-left {
-  flex: 1;
+  padding: 10px 12px 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.bl-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  gap: 5px;
+  z-index: 1;
 }
 
 /* ─── 控制按钮 ─── */
@@ -237,7 +223,64 @@
 .ctrl-btn.sm { font-size: 14px; padding: 4px 5px; }
 #btn-play { font-size: 20px; padding: 4px 8px; }
 
-/* ─── 歌曲信息 ─── */
+/* ─── 顶行：音量 + 歌单 ─── */
+.br-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* 竖排音量 */
+.vol-vert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.vol-slider-vert {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 4px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  writing-mode: vertical-lr;
+  direction: rtl;
+}
+.vol-slider-vert::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #818cf8;
+  cursor: pointer;
+  border: none;
+}
+.vol-slider-vert::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #818cf8;
+  cursor: pointer;
+  border: none;
+}
+
+/* ─── 分隔线 ─── */
+.br-sep {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── 中行：播放 + 信息 ─── */
+.br-mid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .bar-info {
   flex: 1;
   min-width: 0;
@@ -258,8 +301,8 @@
   text-overflow: ellipsis;
 }
 
-/* ─── 进度行 ─── */
-.bl-progress {
+/* ─── 下行：切歌 + 进度 ─── */
+.br-bot {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -299,62 +342,16 @@
   border: 2px solid rgba(255,255,255,0.25);
 }
 
+/* ─── 时长时间（在进度条下方居中） ─── */
+#br-time-row {
+  display: flex;
+  justify-content: center;
+}
+
 .bar-time {
   font-size: 11px;
   color: rgba(255,255,255,0.4);
   font-variant-numeric: tabular-nums;
-  flex-shrink: 0;
-  width: 40px;
-  text-align: right;
-}
-
-/* ─── 右半：竖排音量 + 歌单 ─── */
-.bar-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2px;
-  flex-shrink: 0;
-  width: 28px;
-}
-
-.vol-vert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-/* 竖排音量滑块 */
-.vol-slider-vert {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 4px;
-  height: 48px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  writing-mode: vertical-lr;
-  direction: rtl;
-}
-.vol-slider-vert::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #818cf8;
-  cursor: pointer;
-  border: none;
-}
-.vol-slider-vert::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #818cf8;
-  cursor: pointer;
-  border: none;
 }
 </style>
 

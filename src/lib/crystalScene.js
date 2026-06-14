@@ -11,8 +11,8 @@ export function createScene(el) {
 
   const aspect = container.clientWidth / container.clientHeight
   camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100)
-  camera.position.set(0, 2.5, -7) // 底部中线，20° 俯视；格线横平竖直
-  camera.lookAt(0, 0, 0)
+  camera.position.set(0, 5, -7) // 降一格 (4)，5° 俯视
+  camera.lookAt(0, 4.39, 0) // 7*tan(5°) ≈ 0.61
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(container.clientWidth, container.clientHeight)
@@ -20,14 +20,16 @@ export function createScene(el) {
   container.appendChild(renderer.domElement)
 
   const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(40, 40),
+    new THREE.PlaneGeometry(44, 44),
     new THREE.MeshBasicMaterial({ color: 0xf8f8f8, side: THREE.DoubleSide }),
   )
   floor.rotation.x = -Math.PI / 2
-  floor.position.y = -0.01 // 微下沉避免与格线 z-fighting
+  floor.position.set(4, -0.01, 4) // +2 X 扩右一列，+2 Z 保持原点在瓷砖中心
   scene.add(floor)
 
-  const grid = new THREE.GridHelper(40, 10, 0xaaaaaa, 0xaaaaaa)
+  // 尺寸 +4（右扩一列），中心偏移确保原点仍在瓷砖中心
+  const grid = new THREE.GridHelper(44, 11, 0xaaaaaa, 0xaaaaaa)
+  grid.position.set(4, 0, 4)
   scene.add(grid)
 
   resizeHandler = () => {
