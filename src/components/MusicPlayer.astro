@@ -15,34 +15,34 @@
     </div>
   </div>
 
-  <!-- 播放栏（带彩灯边框） -->
+  <!-- 播放栏（带彩灯边框，方形布局） -->
   <div id="player-bar">
     <div id="bar-border" class="bar-border"></div>
     <div class="bar-content">
-      <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
-
-      <div class="bar-divider"></div>
-
-      <div class="bar-info">
-        <div id="bar-title" class="bar-title">未在播放</div>
-        <div id="bar-artist" class="bar-artist">—</div>
+      <!-- 左半：主控制区 -->
+      <div class="bar-left">
+        <div class="bl-row">
+          <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
+          <div class="bar-info">
+            <div id="bar-title" class="bar-title">未在播放</div>
+            <div id="bar-artist" class="bar-artist">—</div>
+          </div>
+          <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
+          <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
+        </div>
+        <div class="bl-progress">
+          <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
+          <span id="bar-time" class="bar-time">0:00</span>
+        </div>
       </div>
 
-      <div class="bar-divider"></div>
-
-      <div class="bar-progress">
-        <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
-        <span id="bar-time" class="bar-time">0:00</span>
-      </div>
-
-      <div class="bar-controls">
-        <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
-        <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
-        <span class="vol-wrap">
-          <button id="btn-vol" class="ctrl-btn sm" title="音量">🔊</button>
-          <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider">
-        </span>
+      <!-- 右半：竖排音量 + 歌单 -->
+      <div class="bar-right">
         <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+        <div class="vol-vert">
+          <button id="btn-vol" class="ctrl-btn sm" title="音量">🔊</button>
+          <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-vert">
+        </div>
       </div>
     </div>
   </div>
@@ -158,7 +158,7 @@
 }
 .album-play:hover { color: #818cf8; background: rgba(129,140,248,0.12); }
 
-/* ─── 播放栏 ─── */
+/* ─── 播放栏（方形布局） ─── */
 #player-bar {
   position: relative;
   border-radius: 14px;
@@ -195,11 +195,28 @@
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border-radius: 12px;
-  padding: 8px 12px;
+  padding: 8px 6px 8px 10px;
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  z-index: 1;
+  min-height: 90px;
+}
+
+/* ─── 左半：主控制区 ─── */
+.bar-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bl-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  z-index: 1;
+  gap: 6px;
 }
 
 /* ─── 控制按钮 ─── */
@@ -218,23 +235,14 @@
 .ctrl-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .ctrl-btn:active { transform: scale(0.92); }
 .ctrl-btn.sm { font-size: 14px; padding: 4px 5px; }
-#btn-play { font-size: 18px; padding: 4px 8px; }
-
-/* ─── 列分隔线 ─── */
-.bar-divider {
-  width: 1px;
-  height: 24px;
-  background: rgba(255,255,255,0.06);
-  flex-shrink: 0;
-}
+#btn-play { font-size: 20px; padding: 4px 8px; }
 
 /* ─── 歌曲信息 ─── */
 .bar-info {
-  flex-shrink: 1;
+  flex: 1;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 150px;
 }
 .bar-title {
   font-size: 13px;
@@ -250,19 +258,17 @@
   text-overflow: ellipsis;
 }
 
-/* ─── 进度条 ─── */
-.bar-progress {
-  flex: 1;
+/* ─── 进度行 ─── */
+.bl-progress {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-width: 60px;
 }
 
 #bar-progress {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
+  flex: 1;
   height: 4px;
   background: rgba(255,255,255,0.15);
   border-radius: 2px;
@@ -284,7 +290,6 @@
   transition: opacity 0.15s;
 }
 #bar-progress:hover::-webkit-slider-thumb { opacity: 1; }
-
 #bar-progress::-moz-range-thumb {
   width: 12px;
   height: 12px;
@@ -303,51 +308,54 @@
   text-align: right;
 }
 
-/* ─── 控制器组 ─── */
-.bar-controls {
+/* ─── 右半：竖排音量 + 歌单 ─── */
+.bar-right {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1px;
+  justify-content: flex-end;
+  gap: 2px;
   flex-shrink: 0;
+  width: 28px;
 }
 
-/* ─── 音量 ─── */
-.vol-wrap {
+.vol-vert {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0;
-  overflow: hidden;
-  transition: width 0.2s;
+  gap: 2px;
 }
-.vol-slider {
+
+/* 竖排音量滑块 */
+.vol-slider-vert {
   -webkit-appearance: none;
   appearance: none;
-  width: 0;
-  height: 4px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 2px;
+  width: 4px;
+  height: 48px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
   outline: none;
   cursor: pointer;
-  transition: width 0.2s;
+  writing-mode: vertical-lr;
+  direction: rtl;
 }
-.vol-slider::-webkit-slider-thumb {
+.vol-slider-vert::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #818cf8;
   cursor: pointer;
   border: none;
 }
-.vol-slider::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
+.vol-slider-vert::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #818cf8;
   cursor: pointer;
   border: none;
 }
-.vol-wrap:hover .vol-slider { width: 50px; margin-left: 4px; }
 </style>
 
 <script>
@@ -360,7 +368,7 @@
   const btnVol  = $('btn-vol');
   const btnList = $('btn-list');
   const progress = $('bar-progress');
-  const volSlider = $('vol-slider');
+  const volSlider = $('vol-slider-vert');
   const barTime  = $('bar-time');
   const barTitle = $('bar-title');
   const barArtist = $('bar-artist');
