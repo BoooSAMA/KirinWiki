@@ -21,10 +21,14 @@
     <div class="bar-content">
       <button id="btn-play" class="ctrl-btn" title="播放/暂停">▶</button>
 
+      <div class="bar-divider"></div>
+
       <div class="bar-info">
         <div id="bar-title" class="bar-title">未在播放</div>
         <div id="bar-artist" class="bar-artist">—</div>
       </div>
+
+      <div class="bar-divider"></div>
 
       <div class="bar-progress">
         <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
@@ -170,7 +174,7 @@
     90deg,
     #ff0080, #ff4400, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080
   );
-  // 动画默认暂停
+  /* 动画默认暂停，播放时由 JS 激活 */
   animation: border-slide 12s linear infinite;
   animation-play-state: paused;
   will-change: background-position;
@@ -215,6 +219,14 @@
 .ctrl-btn:active { transform: scale(0.92); }
 .ctrl-btn.sm { font-size: 14px; padding: 4px 5px; }
 #btn-play { font-size: 18px; padding: 4px 8px; }
+
+/* ─── 列分隔线 ─── */
+.bar-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
 
 /* ─── 歌曲信息 ─── */
 .bar-info {
