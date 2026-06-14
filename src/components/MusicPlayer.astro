@@ -1,61 +1,12 @@
 ---
 // MusicPlayer.astro — 自建播放器，深色毛玻璃 + 彩灯边框
-// 隐藏 <audio> 配合 View Transitions (data-astro-transition-persist)
-// 歌单访问: /music/playlist.json（本地用 localhost，生产自动转 R2 URL）
+// 音频与 UI 分离：audio 永不销毁，UI 每次导航重新渲染
+// 歌单: /music/playlist.json（本地）/playlist.r2.json（生产自动转 R2 URL）
 ---
 
-<audio id="player-audio" data-astro-transition-persist preload="none" style="display:none"></audio>
-
-<div id="player-floating" data-astro-transition-persist>
-  <!-- 面板（阶梯树） -->
-  <div id="player-panel">
-    <div class="panel-inner">
-      <div id="panel-tree"></div>
-      <div id="panel-empty" class="panel-empty hidden">歌单加载中…</div>
-    </div>
-  </div>
-
-  <!-- 播放栏（方形布局，音量竖排在上） -->
-  <div id="player-bar">
-    <div id="bar-border" class="bar-border"></div>
-    <div class="bar-content">
-      <!-- 顶行：横排音量 + 切歌 + 歌单 -->
-      <div class="br-top">
-        <div class="vol-horiz">
-          <button id="btn-vol" class="ctrl-btn sm" title="音量"></button>
-          <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-horiz">
-        </div>
-        <div class="br-top-right">
-          <button id="btn-prev" class="ctrl-btn sm" title="上一首"></button>
-          <button id="btn-next" class="ctrl-btn sm" title="下一首"></button>
-          <button id="btn-list" class="ctrl-btn" title="歌单"></button>
-        </div>
-      </div>
-
-      <div class="br-sep"></div>
-
-      <!-- 中行：播放钮 + 歌曲信息 -->
-      <div class="br-mid">
-        <button id="btn-play" class="ctrl-btn" title="播放/暂停"></button>
-        <div class="bar-info">
-          <div id="bar-title" class="bar-title">未在播放</div>
-          <div id="bar-artist" class="bar-artist">—</div>
-        </div>
-      </div>
-
-      <!-- 下区域：进度条（切歌钮移至顶行） -->
-      <div class="br-bot">
-        <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
-      </div>
-      <div id="br-time-row">
-        <span id="bar-time" class="bar-time">0:00</span>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- CSS 全局样式由 BaseLayout 中的 is:global 提供 -->
 <style is:global>
-/* ─── 浮动容器（窄版，放大 1.2x） ─── */
+/* ─── 浮动容器 ─── */
 #player-floating {
   position: fixed;
   bottom: 20px;
@@ -68,319 +19,168 @@
   transform: scale(1.2);
   transform-origin: bottom left;
 }
-
-/* ─── 面板 ─── */
 #player-panel {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
   border-radius: 14px;
-  background: rgba(8, 8, 20, 0.92);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(8,8,20,0.92);
+  backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.07);
 }
-
-#player-panel.open {
-  max-height: 380px;
-  opacity: 1;
-}
-
-.panel-inner {
-  padding: 8px 6px;
-  overflow-y: auto;
-  max-height: 360px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.12) transparent;
-}
-
+#player-panel.open { max-height: 380px; opacity: 1; }
+.panel-inner { padding: 8px 6px; overflow-y: auto; max-height: 360px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) transparent; }
 .panel-inner::-webkit-scrollbar { width: 4px; }
-.panel-inner::-webkit-scrollbar-track { background: transparent; }
 .panel-inner::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
-
-.panel-empty {
-  padding: 20px;
-  text-align: center;
-  color: rgba(255,255,255,0.4);
-  font-size: 13px;
-}
-
-/* ─── 树形结构 ─── */
+.panel-empty { padding: 20px; text-align: center; color: rgba(255,255,255,0.4); font-size: 13px; }
 .tree-artist { margin-bottom: 2px; }
-.tree-artist-label, .tree-album-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.12s;
-  user-select: none;
-}
-.tree-artist-label:hover, .tree-album-label:hover {
-  background: rgba(255,255,255,0.05);
-}
+.tree-artist-label, .tree-album-label { display: flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 8px; cursor: pointer; transition: background 0.12s; user-select: none; }
+.tree-artist-label:hover, .tree-album-label:hover { background: rgba(255,255,255,0.05); }
 .tree-artist-label { font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.92); }
-.tree-album-label {
-  padding-left: 24px;
-  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7);
-}
-.tree-icon {
-  font-size: 10px;
-  color: rgba(255,255,255,0.35);
-  flex-shrink: 0;
-  width: 14px;
-  text-align: center;
-}
-.tree-children { overflow: hidden; max-height: 0; transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+.tree-album-label { padding-left: 24px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+.tree-icon { font-size: 10px; color: rgba(255,255,255,0.35); flex-shrink: 0; width: 14px; text-align: center; }
+.tree-children { overflow: hidden; max-height: 0; transition: max-height 0.28s cubic-bezier(0.4,0,0.2,1); }
 .tree-children.open { max-height: 2000px; }
-
-/* 歌曲项 */
-.tree-song {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 8px 4px 44px;
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.55);
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.12s, color 0.12s;
-}
+.tree-song { display: flex; align-items: center; gap: 5px; padding: 4px 8px 4px 44px; font-size: 12.5px; color: rgba(255,255,255,0.55); cursor: pointer; border-radius: 6px; transition: background 0.12s, color 0.12s; }
 .tree-song:hover { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.75); }
-.tree-song.active {
-  color: #818cf8;
-  background: rgba(129, 140, 248, 0.1);
-}
+.tree-song.active { color: #818cf8; background: rgba(129,140,248,0.1); }
 .tree-song-icon { font-size: 10px; flex-shrink: 0; width: 14px; text-align: center; }
-
-/* 整专辑播放按钮 */
-.album-play {
-  font-size: 10px;
-  color: rgba(255,255,255,0.3);
-  cursor: pointer;
-  transition: color 0.15s;
-  padding: 2px;
-  border-radius: 4px;
-}
+.album-play { font-size: 10px; color: rgba(255,255,255,0.3); cursor: pointer; transition: color 0.15s; padding: 2px; border-radius: 4px; }
 .album-play:hover { color: #818cf8; background: rgba(129,140,248,0.12); }
 
-/* ─── 播放栏（窄款方形） ─── */
-#player-bar {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* 彩灯边框层 — 默认暂停，播放时激活 */
-.bar-border {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    #ff0080, #ff4400, #ffcc00, #00d4aa, #0066ff, #7c3aed, #ff0080
-  );
-  animation: border-slide 12s linear infinite;
-  animation-play-state: paused;
-  will-change: background-position;
-}
-.bar-border.active {
-  animation-play-state: running;
-}
-
-@keyframes border-slide {
-  to { background-position: 300% 0; }
-}
-
-/* 内容层（盖住边框，留 2px 边） */
-.bar-content {
-  position: relative;
-  margin: 2px;
-  background: rgba(10, 10, 24, 0.82);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border-radius: 12px;
-  padding: 10px 12px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  z-index: 1;
-}
+/* ─── 播放栏 ─── */
+#player-bar { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2); }
+.bar-border { position: absolute; inset: 0; background: linear-gradient(90deg,#ff0080,#ff4400,#ffcc00,#00d4aa,#0066ff,#7c3aed,#ff0080); background-size: 300% 100%; animation: border-slide 12s linear infinite; animation-play-state: paused; will-change: background-position; }
+.bar-border.active { animation-play-state: running; }
+@keyframes border-slide { to { background-position: 300% 0; } }
+.bar-content { position: relative; margin: 2px; background: rgba(10,10,24,0.82); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border-radius: 12px; padding: 10px 12px 8px; display: flex; flex-direction: column; gap: 5px; z-index: 1; }
 
 /* ─── 控制按钮 ─── */
-.ctrl-btn {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.75);
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 6px;
-  transition: background 0.12s, color 0.12s, transform 0.1s;
-  line-height: 1;
-  flex-shrink: 0;
-}
+.ctrl-btn { background: none; border: none; color: rgba(255,255,255,0.75); font-size: 16px; cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: background 0.12s, color 0.12s, transform 0.1s; line-height: 1; flex-shrink: 0; }
 .ctrl-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .ctrl-btn:active { transform: scale(0.92); }
 .ctrl-btn.sm { font-size: 14px; padding: 4px 5px; }
 #btn-play { font-size: 20px; padding: 4px 8px; }
-
-/* 顶行按钮放大 */
 #btn-prev, #btn-next { font-size: 22px; }
 #btn-list { font-size: 26px; }
 #btn-vol { font-size: 17px; }
 
-/* ─── 顶行：横排音量 + 切歌 + 歌单 ─── */
-.br-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.br-top-right {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* 横排音量 */
-.vol-horiz {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.vol-slider-horiz {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 70px;
-  height: 5px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-}
-.vol-slider-horiz::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #818cf8;
-  cursor: pointer;
-  border: none;
-}
-.vol-slider-horiz::-moz-range-thumb {
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #818cf8;
-  cursor: pointer;
-  border: none;
-}
-
-/* ─── 分隔线 ─── */
-.br-sep {
-  height: 1px;
-  background: rgba(255,255,255,0.05);
-}
-
-/* ─── 中行：播放 + 信息 ─── */
-.br-mid {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.bar-info {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.bar-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.92);
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.bar-artist {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* ─── 下行：切歌 + 进度 ─── */
-.br-bot {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-#bar-progress {
-  -webkit-appearance: none;
-  appearance: none;
-  flex: 1;
-  height: 4px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  transition: height 0.15s;
-}
+/* ─── 布局 ─── */
+.br-top { display: flex; align-items: center; justify-content: space-between; }
+.br-top-right { display: flex; align-items: center; gap: 4px; }
+.vol-horiz { display: flex; align-items: center; gap: 3px; }
+.vol-slider-horiz { -webkit-appearance: none; appearance: none; width: 70px; height: 5px; background: rgba(255,255,255,0.12); border-radius: 3px; outline: none; cursor: pointer; }
+.vol-slider-horiz::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: #818cf8; cursor: pointer; border: none; }
+.vol-slider-horiz::-moz-range-thumb { width: 13px; height: 13px; border-radius: 50%; background: #818cf8; cursor: pointer; border: none; }
+.br-sep { height: 1px; background: rgba(255,255,255,0.05); }
+.br-mid { display: flex; align-items: center; gap: 8px; }
+.bar-info { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; }
+.bar-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.92); overflow: hidden; text-overflow: ellipsis; }
+.bar-artist { font-size: 11px; color: rgba(255,255,255,0.45); overflow: hidden; text-overflow: ellipsis; }
+.br-bot { display: flex; align-items: center; gap: 6px; }
+#bar-progress { -webkit-appearance: none; appearance: none; flex: 1; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; outline: none; cursor: pointer; transition: height 0.15s; }
 #bar-progress:hover { height: 6px; }
-#bar-progress::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #818cf8, #6366f1);
-  cursor: pointer;
-  border: 2px solid rgba(255,255,255,0.25);
-  box-shadow: 0 0 12px rgba(129, 140, 248, 0.35);
-  opacity: 0;
-  transition: opacity 0.15s;
-}
+#bar-progress::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg,#818cf8,#6366f1); cursor: pointer; border: 2px solid rgba(255,255,255,0.25); box-shadow: 0 0 12px rgba(129,140,248,0.35); opacity: 0; transition: opacity 0.15s; }
 #bar-progress:hover::-webkit-slider-thumb { opacity: 1; }
-#bar-progress::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #818cf8, #6366f1);
-  cursor: pointer;
-  border: 2px solid rgba(255,255,255,0.25);
-}
-
-/* ─── 时长时间（在进度条下方居中） ─── */
-#br-time-row {
-  display: flex;
-  justify-content: center;
-}
-
-.bar-time {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  font-variant-numeric: tabular-nums;
-}
+#bar-progress::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg,#818cf8,#6366f1); cursor: pointer; border: 2px solid rgba(255,255,255,0.25); }
+#br-time-row { display: flex; justify-content: center; }
+.bar-time { font-size: 11px; color: rgba(255,255,255,0.4); font-variant-numeric: tabular-nums; }
 </style>
 
 <script>
 (function() {
-  /* ===== 安全保险：清除重复的持久化元素 ===== */
-  function dedupePersist(id) {
-    const all = document.querySelectorAll(`#${CSS.escape(id)}`);
-    if (all.length > 1) {
-      for (let i = 1; i < all.length; i++) all[i].remove();
-    }
-  }
-  dedupePersist('player-audio');
-  dedupePersist('player-floating');
+  /* ===== 全局清理：每次脚本执行时，移除所有残留的 UI 元素 ===== */
+  function cleanupPlayerDOM() {
+    // 删除 UI 容器（不影响 audio）
+    const existing = document.getElementById('player-floating');
+    if (existing) existing.remove();
 
-  /* ===== DOM 引用（IIFE 级，函数和页面切换都需要） ===== */
-  const $ = (id) => document.getElementById(id);
+    // 删除多余的 mount 点
+    document.querySelectorAll('#music-mount').forEach((el, i) => {
+      if (i > 0) el.remove();
+    });
+
+    // 清理 orphan audio（保留第一个）
+    const audios = document.querySelectorAll('#player-audio');
+    for (let i = 1; i < audios.length; i++) audios[i].remove();
+  }
+  cleanupPlayerDOM();
+
+  /* ===== 页面切换时：如果 player 已存在，只更新 UI ===== */
+  if (window.__playerReady) {
+    if (window.__player) {
+      if (typeof renderTree === 'function') renderTree();
+      if (typeof updateBarDisplay === 'function') updateBarDisplay();
+      if (typeof updateProgressBar === 'function') updateProgressBar();
+    }
+    return;
+  }
+  window.__playerReady = true;
+
+  /* ===== 首次加载：构建所有 DOM ===== */
+  const audio = document.createElement('audio');
+  audio.id = 'player-audio';
+  audio.preload = 'none';
+  audio.style.display = 'none';
+  document.body.appendChild(audio);
+
+  /* ===== SVG 图标 ===== */
+  const I = {
+    play: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M5 3l12 7-12 7V3z" fill="currentColor"/></svg>',
+    pause: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="5" y="3" width="3" height="14" rx="1" fill="currentColor"/><rect x="12" y="3" width="3" height="14" rx="1" fill="currentColor"/></svg>',
+    prev: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4v12h2.5V4H4zm5.5 6l7-6v12l-7-6z" fill="currentColor"/></svg>',
+    next: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 16l7-6-7-6v12zm8.5-12v12H15V4h-2.5z" fill="currentColor"/></svg>',
+    vol: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm7 0v6a3.5 3.5 0 000-6z" fill="currentColor"/><path d="M12.5 10a2.5 2.5 0 00-2-2.45v4.9A2.5 2.5 0 0012.5 10z" fill="currentColor"/></svg>',
+    volLow: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm4.5 0v6a2 2 0 000-6z" fill="currentColor"/></svg>',
+    volMuted: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm8.5 3l-2 2m0-4l2 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
+    menu: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="2" y="4" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="9" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="14" width="16" height="2" rx="1" fill="currentColor"/></svg>',
+    close: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
+  };
+
+  /* ===== 构建 UI ===== */
+  const floating = document.createElement('div');
+  floating.id = 'player-floating';
+  floating.innerHTML = `
+    <div id="player-panel">
+      <div class="panel-inner">
+        <div id="panel-tree"></div>
+        <div id="panel-empty" class="panel-empty hidden">歌单加载中…</div>
+      </div>
+    </div>
+    <div id="player-bar">
+      <div id="bar-border" class="bar-border"></div>
+      <div class="bar-content">
+        <div class="br-top">
+          <div class="vol-horiz">
+            <button id="btn-vol" class="ctrl-btn sm" title="音量">${I.vol}</button>
+            <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-horiz">
+          </div>
+          <div class="br-top-right">
+            <button id="btn-prev" class="ctrl-btn sm" title="上一首">${I.prev}</button>
+            <button id="btn-next" class="ctrl-btn sm" title="下一首">${I.next}</button>
+            <button id="btn-list" class="ctrl-btn" title="歌单">${I.menu}</button>
+          </div>
+        </div>
+        <div class="br-sep"></div>
+        <div class="br-mid">
+          <button id="btn-play" class="ctrl-btn" title="播放/暂停">${I.play}</button>
+          <div class="bar-info">
+            <div id="bar-title" class="bar-title">未在播放</div>
+            <div id="bar-artist" class="bar-artist">—</div>
+          </div>
+        </div>
+        <div class="br-bot">
+          <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
+        </div>
+        <div id="br-time-row">
+          <span id="bar-time" class="bar-time">0:00</span>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(floating);
+
+  /* ===== DOM 引用 ===== */
+  const $ = id => document.getElementById(id);
   const btnPlay = $('btn-play');
   const btnPrev = $('btn-prev');
   const btnNext = $('btn-next');
@@ -395,26 +195,6 @@
   const treeEl = $('panel-tree');
   const emptyEl = $('panel-empty');
   const borderEl = $('bar-border');
-
-  /* ===== SVG 图标 ===== */
-  const I = {
-    play: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M5 3l12 7-12 7V3z" fill="currentColor"/></svg>',
-    pause: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="5" y="3" width="3" height="14" rx="1" fill="currentColor"/><rect x="12" y="3" width="3" height="14" rx="1" fill="currentColor"/></svg>',
-    prev: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4v12h2.5V4H4zm5.5 6l7-6v12l-7-6z" fill="currentColor"/></svg>',
-    next: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 16l7-6-7-6v12zm8.5-12v12H15V4h-2.5z" fill="currentColor"/></svg>',
-    vol: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm7 0v6a3.5 3.5 0 000-6z" fill="currentColor"/><path d="M12.5 10a2.5 2.5 0 00-2-2.45v4.9A2.5 2.5 0 0012.5 10z" fill="currentColor"/></svg>',
-    volLow: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm4.5 0v6a2 2 0 000-6z" fill="currentColor"/></svg>',
-    volMuted: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm8.5 3l-2 2m0-4l2 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
-    menu: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 4h16v2H2V4zm0 5h16v2H2V9zm0 5h16v2H2v-2z" fill="currentColor"/></svg>',
-    close: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
-  };
-
-  /* ===== 设置初始图标 ===== */
-  btnPlay.innerHTML = I.play;
-  btnPrev.innerHTML = I.prev;
-  btnNext.innerHTML = I.next;
-  btnVol.innerHTML = I.vol;
-  btnList.innerHTML = I.menu;
 
   /* ===== 工具函数 ===== */
   function escapeHtml(s) {
@@ -432,15 +212,15 @@
     return `${m}:${String(s).padStart(2,'0')}`;
   }
 
-  /* ===== 树构建 ===== */
+  /* ===== 构建树 ===== */
   function buildTree(songs) {
     const raw = {};
-    for (const song of songs) {
-      const a = song.artist || '未知';
-      const al = song.album || '未知';
+    for (const s of songs) {
+      const a = s.artist || '未知';
+      const al = s.album || '未知';
       if (!raw[a]) raw[a] = {};
       if (!raw[a][al]) raw[a][al] = [];
-      raw[a][al].push(song);
+      raw[a][al].push(s);
     }
     const sorted = {};
     for (const artist of Object.keys(raw).sort((a,b) => a.localeCompare(b, 'zh'))) {
@@ -452,63 +232,38 @@
     return sorted;
   }
 
-  /* ===== 渲染树（IIFE 级，页面切换也能调用） ===== */
+  /* ===== 渲染树 ===== */
   function renderTree() {
     const st = window.__player;
     if (!st || !st.tree) return;
-
     let html = '';
     const currentUrl = st.currentUrl;
     const exp = st.expanded || {};
-
     for (const [artist, albums] of Object.entries(st.tree)) {
       const aKey = artist;
       const aOpen = exp[aKey];
-      html += `<div class="tree-artist">
-        <div class="tree-artist-label" data-action="toggle-artist" data-key="${escapeHtml(aKey)}">
-          <span class="tree-icon">${aOpen ? '▾' : '▸'}</span>
-          ${escapeHtml(artist)}
-        </div>
-        <div class="tree-children${aOpen ? ' open' : ''}">`;
-
+      html += `<div class="tree-artist"><div class="tree-artist-label" data-action="toggle-artist" data-key="${escapeHtml(aKey)}"><span class="tree-icon">${aOpen ? '▾' : '▸'}</span>${escapeHtml(artist)}</div><div class="tree-children${aOpen ? ' open' : ''}">`;
       for (const [album, songs] of Object.entries(albums)) {
         const alKey = aKey + '||' + album;
         const alOpen = exp[alKey];
-        html += `<div class="tree-album">
-          <div class="tree-album-label" data-action="toggle-album" data-key="${escapeHtml(alKey)}">
-            <span class="tree-icon">${alOpen ? '▾' : '▸'}</span>
-            <span class="album-play" data-action="play-album" data-artist="${escapeHtml(artist)}" data-album="${escapeHtml(album)}" title="播放整张专辑">▶</span>
-            ${escapeHtml(album)}
-          </div>
-          <div class="tree-children${alOpen ? ' open' : ''}">`;
-
+        html += `<div class="tree-album"><div class="tree-album-label" data-action="toggle-album" data-key="${escapeHtml(alKey)}"><span class="tree-icon">${alOpen ? '▾' : '▸'}</span><span class="album-play" data-action="play-album" data-artist="${escapeHtml(artist)}" data-album="${escapeHtml(album)}" title="播放整张专辑">▶</span>${escapeHtml(album)}</div><div class="tree-children${alOpen ? ' open' : ''}">`;
         for (const song of songs) {
           const isActive = song.url === currentUrl;
-          html += `<div class="tree-song${isActive ? ' active' : ''}" data-action="play-song" data-url="${escapeHtml(song.url)}">
-            <span class="tree-song-icon">${isActive ? '🔊' : '♪'}</span>
-            ${escapeHtml(song.name)}
-          </div>`;
+          html += `<div class="tree-song${isActive ? ' active' : ''}" data-action="play-song" data-url="${escapeHtml(song.url)}"><span class="tree-song-icon">${isActive ? '🔊' : '♪'}</span>${escapeHtml(song.name)}</div>`;
         }
-
         html += `</div></div>`;
       }
       html += `</div></div>`;
     }
-
     treeEl.innerHTML = html;
-
-    // 确保面板类名不被 render 意外影响
     panel.classList.toggle('open', st.panelOpen);
-    if (st.panelOpen && btnList) btnList.innerHTML = I.close;
   }
 
-  /* ===== 更新 UI（IIFE 级） ===== */
+  /* ===== 更新 UI ===== */
   function updateBarDisplay() {
     const st = window.__player;
     if (!st) return;
-    const audio = st.audio;
     const idx = st.queueIndex;
-
     if (idx >= 0 && idx < st.queue.length) {
       const url = st.queue[idx];
       const song = st.songs.find(s => s.url === url);
@@ -519,7 +274,6 @@
         return;
       }
     }
-
     barTitle.textContent = '未在播放';
     barArtist.textContent = '—';
     btnPlay.innerHTML = I.play;
@@ -528,33 +282,22 @@
   function updateProgressBar() {
     const st = window.__player;
     if (!st || !st.audio) return;
-    const audio = st.audio;
-    if (!audio.duration || !audio.currentTime) {
+    const a = st.audio;
+    if (!a.duration || !a.currentTime) {
       progress.value = 0;
       barTime.textContent = '0:00';
       progress.style.background = 'rgba(255,255,255,0.15)';
       return;
     }
-    const pct = (audio.currentTime / audio.duration) * 100;
-    const val = Math.round(pct * 10);
-    progress.value = Math.min(val, 1000);
-    barTime.textContent = formatTime(audio.currentTime);
+    const pct = (a.currentTime / a.duration) * 100;
+    progress.value = Math.round(Math.min(pct * 10, 1000));
+    barTime.textContent = formatTime(a.currentTime);
     progress.style.background = `linear-gradient(to right, #818cf8 ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
   }
 
-  /* ===== 页面切换时重新渲染（此时 renderTree 已定义） ===== */
-  if (window.__playerReady) {
-    if (window.__player && window.__player.songs) {
-      renderTree();
-      updateBarDisplay();
-    }
-    return;
-  }
-  window.__playerReady = true;
-
-  /* ===== 首次加载状态 ===== */
+  /* ===== 状态 ===== */
   const state = {
-    audio: document.getElementById('player-audio'),
+    audio,
     songs: [],
     tree: {},
     queue: [],
@@ -569,7 +312,6 @@
   /* ===== 加载歌单 ===== */
   async function loadPlaylist() {
     const ts = Date.now();
-
     let res = await fetch('/music/playlist.json?' + ts);
     if (!res.ok) {
       res = await fetch('/music/playlist.r2.json?' + ts);
@@ -581,7 +323,7 @@
   loadPlaylist().then(songs => {
     if (!songs || songs.length === 0) return;
 
-    // 生产环境：将本地 URL 转换为 R2 URL
+    // 生产环境将本地 URL 转 R2 URL
     const isProd = import.meta.env.PROD;
     if (isProd) {
       const r2Base = 'https://music.myproxy2.cc.cd/';
@@ -594,29 +336,15 @@
 
     state.songs = songs;
     state.tree = buildTree(songs);
-    renderTree();
-    if (emptyEl) emptyEl.classList.add('hidden');
-
-    // 设置 audio
-    const audio = state.audio;
 
     audio.ontimeupdate = () => updateProgressBar();
     audio.onloadedmetadata = () => updateProgressBar();
-
-    audio.onended = () => {
-      nextSong();
-    };
-
-    audio.onerror = () => {
-      console.warn('player: audio error, skipping');
-      setTimeout(nextSong, 1000);
-    };
-
-    // 播放/暂停时切换灯条
+    audio.onended = () => { nextSong(); };
+    audio.onerror = () => { setTimeout(nextSong, 1000); };
     audio.onplay = () => { if (borderEl) borderEl.classList.add('active'); };
     audio.onpause = () => { if (borderEl) borderEl.classList.remove('active'); };
 
-    // 恢复保存的状态
+    // 恢复状态
     let saved = null;
     try {
       const raw = localStorage.getItem('player-state');
@@ -640,13 +368,15 @@
           audio.play().catch(() => {});
           state.isPlaying = true;
         }
-        renderTree();
-        updateBarDisplay();
       }
     }
 
-    // 定期保存状态
-    function persistState() {
+    renderTree();
+    updateBarDisplay();
+    if (emptyEl) emptyEl.classList.add('hidden');
+
+    // 持久化
+    function persist() {
       try {
         localStorage.setItem('player-state', JSON.stringify({
           url: state.currentUrl,
@@ -656,15 +386,6 @@
           queue: state.queue,
           queueIndex: state.queueIndex,
         }));
-      } catch {}
-    }
-
-    document.addEventListener('astro:before-swap', persistState);
-    window.addEventListener('beforeunload', persistState);
-
-    // 保存展开状态 + 面板状态
-    function persistUI() {
-      try {
         localStorage.setItem('player-ui', JSON.stringify({
           expanded: state.expanded,
           panelOpen: state.panelOpen,
@@ -672,9 +393,10 @@
       } catch {}
     }
 
-    document.addEventListener('astro:before-swap', persistUI);
+    document.addEventListener('astro:before-swap', persist);
+    window.addEventListener('beforeunload', persist);
 
-    // 尝试恢复 UI 状态
+    // 恢复 UI 状态
     try {
       const uiRaw = localStorage.getItem('player-ui');
       if (uiRaw) {
@@ -683,12 +405,11 @@
         if (ui.panelOpen) {
           state.panelOpen = true;
           panel.classList.add('open');
-          btnList.innerHTML = I.close;
         }
       }
     } catch {}
 
-    // 自动展开当前歌曲的路径
+    // 自动展开当前歌路径
     if (state.currentUrl) {
       const song = songs.find(s => s.url === state.currentUrl);
       if (song) {
@@ -697,10 +418,7 @@
         renderTree();
       }
     }
-
-    updateBarDisplay();
   }).catch(e => {
-    console.warn('player: load failed', e);
     if (emptyEl) {
       emptyEl.textContent = '歌单加载失败';
       emptyEl.classList.remove('hidden');
@@ -709,7 +427,6 @@
 
   /* ===== 播放控制 ===== */
   function playUrl(url) {
-    const audio = state.audio;
     audio.src = url;
     audio.currentTime = 0;
     audio.play().catch(() => {});
@@ -740,7 +457,6 @@
   }
 
   function prevSong() {
-    const audio = state.audio;
     if (audio.currentTime > 3) {
       audio.currentTime = 0;
       return;
@@ -752,11 +468,8 @@
 
   /* ===== 事件绑定 ===== */
   btnPlay.addEventListener('click', () => {
-    const audio = state.audio;
     if (!audio.src) {
-      if (state.songs.length > 0) {
-        playSong(state.songs[0].url);
-      }
+      if (state.songs.length > 0) playSong(state.songs[0].url);
       return;
     }
     if (audio.paused) {
@@ -774,16 +487,14 @@
 
   volSlider.addEventListener('input', () => {
     const v = volSlider.value / 100;
-    state.audio.volume = v;
+    audio.volume = v;
     btnVol.innerHTML = v === 0 ? I.volMuted : v < 0.3 ? I.volLow : I.vol;
   });
   btnVol.addEventListener('click', () => {
-    const audio = state.audio;
     audio.muted = !audio.muted;
-    btnVol.innerHTML = audio.muted ? I.volMuted : volSlider.value > 0 ? I.vol : I.volMuted;
+    btnVol.innerHTML = audio.muted ? I.volMuted : I.vol;
   });
 
-  // 面板开关
   btnList.addEventListener('click', (e) => {
     e.stopPropagation();
     state.panelOpen = !state.panelOpen;
@@ -798,60 +509,38 @@
   });
 
   function closePanelOutside(e) {
-    const floating = document.getElementById('player-floating');
-    if (floating && !floating.contains(e.target)) {
+    const pf = document.getElementById('player-floating');
+    if (pf && !pf.contains(e.target)) {
       state.panelOpen = false;
       panel.classList.remove('open');
-      if (btnList) btnList.innerHTML = I.menu;
+      btnList.innerHTML = I.menu;
       document.removeEventListener('click', closePanelOutside);
     }
   }
 
   progress.addEventListener('input', () => {
-    const audio = state.audio;
     if (!audio.duration) return;
-    const pct = progress.value / 1000;
-    audio.currentTime = pct * audio.duration;
+    audio.currentTime = (progress.value / 1000) * audio.duration;
   });
 
-  // 树交互（事件委托）
   treeEl.addEventListener('click', (e) => {
     const target = e.target.closest('[data-action]');
     if (!target) return;
-
     e.stopPropagation();
-
     const action = target.dataset.action;
-
     if (action === 'toggle-artist') {
-      const key = target.dataset.key;
-      state.expanded[key] = !state.expanded[key];
+      state.expanded[target.dataset.key] = !state.expanded[target.dataset.key];
       renderTree();
-      return;
-    }
-
-    if (action === 'toggle-album') {
-      const key = target.dataset.key;
-      state.expanded[key] = !state.expanded[key];
+    } else if (action === 'toggle-album') {
+      state.expanded[target.dataset.key] = !state.expanded[target.dataset.key];
       renderTree();
-      return;
-    }
-
-    if (action === 'play-song') {
-      const url = target.dataset.url;
-      playSong(url);
-      return;
-    }
-
-    if (action === 'play-album') {
-      const artist = target.dataset.artist;
-      const album = target.dataset.album;
-      playAlbum(artist, album);
-      return;
+    } else if (action === 'play-song') {
+      playSong(target.dataset.url);
+    } else if (action === 'play-album') {
+      playAlbum(target.dataset.artist, target.dataset.album);
     }
   });
 
-  // 键盘快捷键
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.code === 'Space') {
@@ -863,4 +552,3 @@
   updateBarDisplay();
 })();
 </script>
-```
