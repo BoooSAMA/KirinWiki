@@ -12,7 +12,7 @@ const { defaultOpacity = 0.92 } = Astro.props
   <!-- White reading backdrop — opacity driven by CSS variable -->
   <div
     id="reading-bg"
-    class="absolute inset-0 bg-white rounded-3xl shadow-sm border border-gray-100/50"
+    class="absolute inset-0 bg-[var(--glass-bg)] rounded-3xl shadow-sm border border-gray-100/50"
     style="opacity: var(--reading-bg-opacity, 0.92);"
     aria-hidden="true"
   ></div>
@@ -25,7 +25,7 @@ const { defaultOpacity = 0.92 } = Astro.props
   <!-- Floating slider: fixed bottom-right, glassmorphism pill -->
   <div
     id="opacity-control"
-    class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white/80 backdrop-blur-md rounded-full px-4 py-2.5 shadow-lg border border-gray-200/60"
+    class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[var(--glass-bg)] backdrop-blur-md rounded-full px-4 py-2.5 shadow-lg border border-gray-200/60"
   >
     <!-- eye icon -->
     <svg

@@ -1,0 +1,103 @@
+<h2>🌏 新加坡时间 · 背景明暗度方案</h2>
+<p class="subtitle">根据当地时间自动调整背景亮度，这里展示几种可能的方向——看看哪种更吸引你？</p>
+
+<div class="section">
+  <h3>方向 A：整体暗色叠加覆盖</h3>
+  <p>在现有纯白背景 + 3D场景上，根据时间叠加一层半透明黑色遮罩，白天完全透明，午夜最暗。实现最简单，保留现有所有设计。</p>
+  <div style="display:flex;gap:16px;margin-top:12px;">
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#ffffff;height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">☀️</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">中午 · 0% 暗度</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#e6dcc0;height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌅</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">黄昏 · 25% 暗度</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#8b7e6a;height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌆</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">傍晚 · 50% 暗度</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#2d2a2a;height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌙</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">午夜 · 85% 暗度</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方向 B：3D场景动态换色</h3>
+  <p>Three.js 3D水晶场景根据时间改变背景色和环境光颜色。白天保持白色/金色，夜晚变为深蓝/紫色，水晶自动发光。视觉效果最丰富，但改动较大。</p>
+  <div style="display:flex;gap:16px;margin-top:12px;">
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(135deg,#ffffff,#f0f4ff);height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🏔️</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">白昼场景</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(135deg,#ffd4a0,#f0c080);height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌇</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">日落暖色</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(135deg,#1a1a3e,#2d1b69);height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌃</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">夜晚深蓝</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(135deg,#0d0d2b,#1a0a3e);height:120px;display:flex;align-items:center;justify-content:center;font-size:28px;">🌌</div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">深夜星空</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方向 C：CSS渐变色时间过渡</h3>
+  <p>不使用3D场景，用CSS从白到深蓝的渐变背景，加上头顶的 HTML/CSS 太阳/月亮图标模拟昼夜循环。轻量级，无 JavaScript 性能开销，完全用 CSS 变量实现。</p>
+  <div style="display:flex;gap:16px;margin-top:12px;">
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(180deg,#87CEEB,#E0F0FF);height:120px;position:relative;">
+        <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:#FFD700;box-shadow:0 0 20px #FFD700;"></div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">正午晴空</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(180deg,#FF6B35,#FF8C42,#FFD700);height:120px;position:relative;">
+        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:30px;height:30px;border-radius:50%;background:#FF4500;box-shadow:0 0 25px #FF4500;"></div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">日落晚霞</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(180deg,#1a1a3e,#2d1b69);height:120px;position:relative;">
+        <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);width:28px;height:28px;border-radius:50%;background:#F0E68C;box-shadow:0 0 15px rgba(240,230,140,0.5);"></div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">月夜星空</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:linear-gradient(180deg,#0a0a2e,#000011);height:120px;position:relative;">
+        <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:#C0C0C0;box-shadow:0 0 10px rgba(192,192,192,0.3);"></div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">深夜晚空</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>方向 D：最小化方案 — 仅卡片暗度</h3>
+  <p>保持背景（3D/白色）不变，仅调节内容卡片的磨砂玻璃不透明度。白天磨砂清晰（不透明度高），夜晚卡片半透明让背景透出。改动最小最安全。</p>
+  <div style="display:flex;gap:16px;margin-top:12px;">
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#ffffff;height:120px;display:flex;align-items:center;justify-content:center;">
+        <div style="background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);padding:16px 24px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);">☀️ 清晰内容</div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">白天 · 高不透明度</div>
+    </div>
+    <div style="flex:1;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.2);">
+      <div style="background:#ffffff;height:120px;display:flex;align-items:center;justify-content:center;">
+        <div style="background:rgba(255,255,255,0.4);backdrop-filter:blur(4px);padding:16px 24px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);">🌙 半透明</div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(255,255,255,0.05);font-size:13px;text-align:center;">夜晚 · 低不透明度</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p><strong>现在我想问你：</strong></p>
+  <p style="color:rgba(255,255,255,0.6);">这几个方向哪个更接近你想要的效果？或者其他想法？在终端告诉我就行~</p>
+</div>

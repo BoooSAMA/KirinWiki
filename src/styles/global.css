@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* Time-based day/night theme variables */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-text: #374151;       /* gray-800 */
+  --glass-text-secondary: #6b7280; /* gray-500 */
+  --glass-text-muted: #9ca3af;     /* gray-400 */
+  --glass-bg-secondary: rgba(243, 244, 246, 0.6); /* gray-100/60 */
+}
+
+[data-theme="night"] {
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-text: #e5e7eb;       /* gray-200 */
+  --glass-text-secondary: #9ca3af; /* gray-400 */
+  --glass-text-muted: #6b7280;     /* gray-500 */
+  --glass-bg-secondary: rgba(0, 0, 0, 0.3);
+}
+
 @property --p {
   syntax: '<percentage>';
   initial-value: 0%;
@@ -8,7 +27,7 @@
 
 @layer base {
   body {
-    background-color: #ffffff;
+    background-color: var(--time-bg-color, #ffffff);
   }
 }
 

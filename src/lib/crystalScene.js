@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 
-let scene, camera, renderer, container
+let scene, camera, renderer, container, envScene
 let animationId, resizeHandler, crystal
+let floorMesh, hexGrid
 let cameraTarget = new THREE.Vector3(2, 5, 5.87)
 
 const R = 500         // 星球曲率半径
@@ -142,13 +143,48 @@ export function createScene(el) {
 
   // 生成环境贴图，让金属材质有东西可反射
   const pmrem = new THREE.PMREMGenerator(renderer)
-  const envScene = new THREE.Scene()
+  envScene = new THREE.Scene()
   envScene.background = new THREE.Color(0xf5f5f5)
   scene.environment = pmrem.fromScene(envScene).texture
   pmrem.dispose()
 
-  scene.add(buildCurvedFloor())
-  scene.add(buildHexGrid())
+  window.__setSceneBackground = (hex) => {
+    if (!scene || !renderer) return
+    const color = new THREE.Color(hex)
+    scene.background = color
+
+    if (envScene) {
+      envScene.background = color
+      const pmrem2 = new THREE.PMREMGenerator(renderer)
+      scene.environment = pmrem2.fromScene(envScene).texture
+      pmrem2.dispose()
+    }
+
+    // 根据背景色亮度同步调整地板和网格线颜色
+    const r = parseInt(hex.slice(1, 3), 16) / 255
+    const g = parseInt(hex.slice(3, 5), 16) / 255
+    const b = parseInt(hex.slice(5, 7), 16) / 255
+    const bgBrightness = 0.299 * r + 0.587 * g + 0.114 * b
+    // 地板: 白天接近 0xf8f8f8, 夜晚最低 0x1a1a1a
+    const floorFrac = 0.1 + bgBrightness * 0.87
+    // 网格: 白天接近 0xaaaaaa, 夜晚最低 0x404040
+    const gridFrac = 0.25 + bgBrightness * 0.42
+
+    const fv = Math.round(floorFrac * 255)
+    const gv = Math.round(gridFrac * 255)
+
+    if (floorMesh) {
+      floorMesh.material.color.setRGB(fv / 255, fv / 255, fv / 255)
+    }
+    if (hexGrid) {
+      hexGrid.material.color.setRGB(gv / 255, gv / 255, gv / 255)
+    }
+  }
+
+  floorMesh = buildCurvedFloor()
+  hexGrid = buildHexGrid()
+  scene.add(floorMesh)
+  scene.add(hexGrid)
 
   // 灯光
   scene.add(new THREE.AmbientLight(0xffffff, 0.4))
