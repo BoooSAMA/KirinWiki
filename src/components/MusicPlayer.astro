@@ -5,39 +5,26 @@
 ---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" />
 
-<div id="player-floating" data-astro-transition-persist>
-  <div id="aplayer"></div>
-</div>
+<div id="aplayer" data-astro-transition-persist></div>
 
 <script is:inline src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 
 <style is:global>
-  /* ─── 外层浮动容器（完全由我们控制定位） ─── */
-  #player-floating {
-    position: fixed;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    z-index: 100;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  /* ─── 浮动主体：用 margin 撑出间距，让 APlayer 的 JS 内联定位不影响视觉 ─── */
+  .aplayer.aplayer-fixed {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+    margin-bottom: 16px !important;
+    width: auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06) !important;
   }
 
-  /* ─── APlayer 以内联方式呆在 wrapper 里 ─── */
-  #aplayer {
-    width: 100% !important;
-    margin: 0 !important;
-  }
-  #aplayer .aplayer {
-    box-shadow: none !important;
-  }
-
-  #aplayer .aplayer-body {
+  .aplayer.aplayer-fixed .aplayer-body {
     background: rgba(255, 255, 255, 0.72) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   /* ─── 隐藏默认的专辑封面（我们没有封面图） ─── */
@@ -219,7 +206,7 @@
 
         ap = new APlayer({
           container: document.getElementById('aplayer'),
-          fixed: false,
+          fixed: true,
           order: 'list',
           audio: playlist,
           loop: 'all',
