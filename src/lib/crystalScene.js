@@ -20,16 +20,15 @@ export function createScene(el) {
   container.appendChild(renderer.domElement)
 
   const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(44, 44),
+    new THREE.PlaneGeometry(80, 80),
     new THREE.MeshBasicMaterial({ color: 0xf8f8f8, side: THREE.DoubleSide }),
   )
   floor.rotation.x = -Math.PI / 2
-  floor.position.set(4, -0.01, 4) // +2 X 扩右一列，+2 Z 保持原点在瓷砖中心
+  floor.position.set(6, -0.01, 6)
   scene.add(floor)
 
-  // 尺寸 +4（右扩一列），中心偏移确保原点仍在瓷砖中心
-  const grid = new THREE.GridHelper(44, 11, 0xaaaaaa, 0xaaaaaa)
-  grid.position.set(4, 0, 4)
+  const grid = new THREE.GridHelper(80, 20, 0xaaaaaa, 0xaaaaaa)
+  grid.position.set(6, 0, 6)
   scene.add(grid)
 
   resizeHandler = () => {

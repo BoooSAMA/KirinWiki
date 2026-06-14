@@ -19,13 +19,17 @@
   <div id="player-bar">
     <div id="bar-border" class="bar-border"></div>
     <div class="bar-content">
-      <!-- 顶行：竖排音量 + 歌单 -->
+      <!-- 顶行：竖排音量 + 切歌 + 歌单 -->
       <div class="br-top">
         <div class="vol-vert">
           <button id="btn-vol" class="ctrl-btn sm" title="音量">🔊</button>
           <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-vert">
         </div>
-        <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+        <div class="br-top-right">
+          <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
+          <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
+          <button id="btn-list" class="ctrl-btn" title="歌单">☰</button>
+        </div>
       </div>
 
       <div class="br-sep"></div>
@@ -39,11 +43,9 @@
         </div>
       </div>
 
-      <!-- 下区域：进度 + 切歌 + 时间 -->
+      <!-- 下区域：进度条（切歌钮移至顶行） -->
       <div class="br-bot">
-        <button id="btn-prev" class="ctrl-btn sm" title="上一首">⏮</button>
         <input type="range" id="bar-progress" min="0" max="1000" value="0" step="1">
-        <button id="btn-next" class="ctrl-btn sm" title="下一首">⏭</button>
       </div>
       <div id="br-time-row">
         <span id="bar-time" class="bar-time">0:00</span>
@@ -228,6 +230,12 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.br-top-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 /* 竖排音量 */
