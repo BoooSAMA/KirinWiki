@@ -24,21 +24,16 @@
     box-shadow: 0 6px 32px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
   }
 
-  /* ─── 强制 APlayer 使用相对定位，呆在 wrapper 里面 ─── */
-  .aplayer.aplayer-fixed {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    top: auto !important;
+  /* ─── APlayer 以内联方式呆在 wrapper 里 ─── */
+  #aplayer {
     width: 100% !important;
     margin: 0 !important;
-    z-index: auto !important;
+  }
+  #aplayer .aplayer {
     box-shadow: none !important;
-    border-radius: 0 !important;
   }
 
-  .aplayer.aplayer-fixed .aplayer-body {
+  #aplayer .aplayer-body {
     background: rgba(255, 255, 255, 0.72) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
@@ -46,7 +41,7 @@
   }
 
   /* ─── 隐藏默认的专辑封面（我们没有封面图） ─── */
-  .aplayer.aplayer-fixed .aplayer-pic {
+  #aplayer .aplayer-pic {
     display: none !important;
   }
 
@@ -102,7 +97,7 @@
   }
 
   /* ─── 播放列表下拉 ─── */
-  .aplayer.aplayer-fixed .aplayer-list {
+  #aplayer .aplayer-list {
     border-radius: 12px !important;
     background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(24px) !important;
@@ -147,7 +142,7 @@
     #player-floating {
       box-shadow: 0 6px 32px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
     }
-    .aplayer.aplayer-fixed .aplayer-body {
+    #aplayer .aplayer-body {
       background: rgba(30, 30, 50, 0.78) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -173,7 +168,7 @@
     .aplayer .aplayer-bar-wrap .aplayer-bar {
       background: rgba(255, 255, 255, 0.12) !important;
     }
-    .aplayer.aplayer-fixed .aplayer-list {
+    #aplayer .aplayer-list {
       background: rgba(30, 30, 50, 0.95) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
@@ -224,7 +219,7 @@
 
         ap = new APlayer({
           container: document.getElementById('aplayer'),
-          fixed: true,
+          fixed: false,
           order: 'list',
           audio: playlist,
           loop: 'all',
