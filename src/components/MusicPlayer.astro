@@ -19,11 +19,11 @@
   <div id="player-bar">
     <div id="bar-border" class="bar-border"></div>
     <div class="bar-content">
-      <!-- 顶行：竖排音量 + 切歌 + 歌单 -->
+      <!-- 顶行：横排音量 + 切歌 + 歌单 -->
       <div class="br-top">
-        <div class="vol-vert">
+        <div class="vol-horiz">
           <button id="btn-vol" class="ctrl-btn sm" title="音量"></button>
-          <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-vert">
+          <input type="range" id="vol-slider" min="0" max="100" value="70" class="vol-slider-horiz">
         </div>
         <div class="br-top-right">
           <button id="btn-prev" class="ctrl-btn sm" title="上一首"></button>
@@ -55,7 +55,7 @@
 </div>
 
 <style is:global>
-/* ─── 浮动容器（窄版） ─── */
+/* ─── 浮动容器（窄版，放大 1.2x） ─── */
 #player-floating {
   position: fixed;
   bottom: 20px;
@@ -65,6 +65,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  transform: scale(1.2);
+  transform-origin: bottom left;
 }
 
 /* ─── 面板 ─── */
@@ -229,10 +231,10 @@
 #btn-prev, #btn-next { font-size: 22px; }
 #btn-list { font-size: 26px; }
 
-/* ─── 顶行：音量 + 歌单 ─── */
+/* ─── 顶行：横排音量 + 切歌 + 歌单 ─── */
 .br-top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -242,38 +244,35 @@
   gap: 4px;
 }
 
-/* 竖排音量 */
-.vol-vert {
+/* 横排音量 */
+.vol-horiz {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
 }
 
-.vol-slider-vert {
+.vol-slider-horiz {
   -webkit-appearance: none;
   appearance: none;
-  width: 4px;
-  height: 44px;
+  width: 54px;
+  height: 4px;
   background: rgba(255,255,255,0.12);
-  border-radius: 3px;
+  border-radius: 2px;
   outline: none;
   cursor: pointer;
-  writing-mode: vertical-lr;
-  direction: rtl;
 }
-.vol-slider-vert::-webkit-slider-thumb {
+.vol-slider-horiz::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #818cf8;
   cursor: pointer;
   border: none;
 }
-.vol-slider-vert::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
+.vol-slider-horiz::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #818cf8;
   cursor: pointer;
@@ -377,7 +376,7 @@
   const btnVol  = $('btn-vol');
   const btnList = $('btn-list');
   const progress = $('bar-progress');
-  const volSlider = $('vol-slider-vert');
+  const volSlider = $('vol-slider');
   const barTime  = $('bar-time');
   const barTitle = $('bar-title');
   const barArtist = $('bar-artist');
