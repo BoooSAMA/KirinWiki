@@ -309,31 +309,48 @@ window.__setSceneBackground = (hex) => {
 
 ---
 
-## 辅助工具：FPS 监视器
+## 辅助工具：调试面板（FPS + 3D 坐标）
 
-为了方便后续性能调试，在 `BaseLayout.astro` 中添加了浮窗 FPS 面板：
+为了方便后续性能调试和 3D 场景开发，将原先独立在 `crystalScene.js` 中的坐标显示面板和 FPS 监视器**整合为统一的调试面板**。
+
+### 整合过程
+
+`crystalScene.js` 原先在 `createScene()` 中直接创建了一个独立的 DOM 面板显示相机坐标（`camera.position` + `cameraTarget`），并可点击复制。这导致坐标面板在每页都会出现，无法统一控制显隐。
+
+**重构方案**：
+
+1. **`crystalScene.js`**：移除坐标面板的 DOM 代码（约 40 行），改为在 `animate()` 循环中通过全局变量暴露相机状态：
+   ```javascript
+   function animate() {
+     animationId = requestAnimationFrame(animate)
+     // …水晶动画逻辑…
+     renderer.render(scene, camera)
+
+     // 暴露相机状态供调试面板读取
+     window.__cameraState = {
+       pos: { x: camera.position.x, y: camera.position.y, z: camera.position.z },
+       look: { x: cameraTarget.x, y: cameraTarget.y, z: cameraTarget.z },
+     }
+   }
+   ```
+
+2. **`BaseLayout.astro`**：FPS 监视器扩展为调试面板，每秒一并读取 `window.__cameraState` 并渲染：
+
+```
+  60 FPS          ← 颜色编码：绿 ≥55 / 黄 30-55 / 红 <30
+  ─────────────
+  pos 12.00, 7.50, 6.00     ← 实时相机坐标
+  look 2.00, 5.00, 5.87     ← 实时相机目标点
+```
+
+### 功能说明
 
 - **快捷键**：`Ctrl + Shift + F` 切换显示/隐藏
-- **位置**：左下角（播放器上方，避免遮挡）
+- **位置**：左上角（`top: 80px`，导航栏下方）
 - **颜色编码**：🟢 ≥55fps / 🟡 30-55fps / 🔴 <30fps
-- **实现**：纯 `requestAnimationFrame` 计数，每秒更新一次，自身开销几乎为零
-
-```javascript
-function tick(now) {
-  frames++
-  const delta = now - lastTime
-  if (delta >= 1000) {
-    fps = Math.round((frames * 1000) / delta)
-    frames = 0
-    lastTime = now
-    el.textContent = `${fps} FPS`
-    if (fps >= 55) el.style.color = '#4ade80'
-    else if (fps >= 30) el.style.color = '#facc15'
-    else el.style.color = '#f87171'
-  }
-  requestAnimationFrame(tick)
-}
-```
+- **点击面板**：复制当前 3D 坐标到剪贴板（格式：`pos(x,y,z),look(x,y,z)`），显示绿色反馈"✓ 坐标已复制"1 秒后恢复
+- **默认隐藏**，快捷键唤醒
+- **自身开销**：纯 `requestAnimationFrame` 计数，每秒更新一次 DOM，几乎为零
 
 ---
 
@@ -342,9 +359,9 @@ function tick(now) {
 | 文件 | 操作 | 类型 |
 |------|------|------|
 | `src/styles/global.css` | 修改 | 不透明度提升 + `will-change` 工具类 |
-| `src/layouts/BaseLayout.astro` | 修改 | `ClientRouter` fallback 移除 + `contain:strict` + FPS 监视器 |
+| `src/layouts/BaseLayout.astro` | 修改 | `ClientRouter` fallback 移除 + `contain:strict` + 调试面板（FPS+3D坐标） |
 | `src/lib/timeTheme.js` | 修改 | `applyColor` 去重 + `astro:page-load` 监听 + RAF 去重 |
-| `src/lib/crystalScene.js` | 修改 | `__setSceneBackground` hex 去重缓存 |
+| `src/lib/crystalScene.js` | 修改 | `__setSceneBackground` hex 去重缓存 + 坐标面板整合为 `window.__cameraState` |
 | `src/components/Navbar.astro` | 修改 | 模糊强度降低 + `glass-blur` |
 | `src/components/SmallPostCard.astro` | 修改 | 移除模糊 |
 | `src/components/ReadingBackdrop.astro` | 修改 | 移除模糊 |
@@ -373,6 +390,7 @@ function tick(now) {
 | **`astro:page-load` 事件** | Astro 在 View Transitions 导航完成后触发此事件。相比 `<script is:inline>` 在 DOM 过渡期间执行，`astro:page-load` 在新 DOM 完全就位后才触发，更可靠地处理页面切换后的状态恢复 |
 | **`contain: strict` 的性能意义** | `contain: layout style paint` 将元素声明为独立渲染子树。浏览器在 View Transitions 页面切换时不必为此子树重新计算布局和样式，可以直接复用上一帧的合成结果 |
 | **PMREMGenerator 的开销** | Three.js 的 PMREMGenerator 通过预过滤环境图生成粗糙度-金属度 PBR 贴图，每次生成都涉及多级下采样和卷积计算。在动画循环中每帧调用会造成严重的 GPU 管线阻塞 |
+| **`window.__` 全局变量作为模块间通信的轻量手段** | 当两个模块（`crystalScene.js` 生成数据、`BaseLayout.astro` 的调试面板消费数据）在 Astro 的模块系统中无法直接导入引用时，通过约定的全局变量（`window.__cameraState`）传递高频更新的运行时数据是一种低开销方案。在 animate 循环中每帧赋值、调试面板每秒读取，避免了 props 传递或事件派发的复杂性和性能开销 |
 
 ---
 
