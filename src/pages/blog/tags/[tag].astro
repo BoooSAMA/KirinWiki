@@ -51,13 +51,13 @@ for (const [filePath, mod] of Object.entries(postModules)) {
 
   const parts = filePath.split("/")
   const category = parts[parts.indexOf("categories") + 1]
-  const filename = parts[parts.length - 1].replace(/\.md$/, "")
-  const slug = filename.toLowerCase().replace(/\s+/g, "-")
 
   posts.push({
-    title: fm.title || filename,
+    title: fm.title || parts[parts.length - 1].replace(/\.md$/, ""),
     date: fm.date || "",
-    slug,
+    slug: parts.slice(parts.indexOf("categories") + 2)
+      .map(s => s.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-"))
+      .join("-"),
     category,
     description: fm.description,
     tags,

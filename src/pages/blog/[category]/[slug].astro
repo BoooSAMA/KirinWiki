@@ -11,10 +11,9 @@ export async function getStaticPaths() {
   return Object.keys(modules).map((filePath) => {
     const parts = filePath.split("/")
     const category = parts[parts.indexOf("categories") + 1]
-    const slug = parts[parts.length - 1]
-      .replace(/\.md$/, "")
-      .toLowerCase()
-      .replace(/\s+/g, "-")
+    const slug = parts.slice(parts.indexOf("categories") + 2)
+      .map(s => s.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-"))
+      .join("-")
     return { params: { category, slug } }
   })
 }
@@ -44,10 +43,9 @@ let ContentComp: any = null
 for (const [filePath, mod] of Object.entries(modules)) {
   const parts = filePath.split("/")
   const cat = parts[parts.indexOf("categories") + 1]
-  const slg = parts[parts.length - 1]
-    .replace(/\.md$/, "")
-    .toLowerCase()
-    .replace(/\s+/g, "-")
+  const slg = parts.slice(parts.indexOf("categories") + 2)
+    .map(s => s.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-"))
+    .join("-")
   if (cat === category && slg === slug) {
     fm = mod.frontmatter || {}
     ContentComp = mod.Content
