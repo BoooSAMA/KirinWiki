@@ -259,7 +259,7 @@ export function createScene(el) {
     if (crystal) {
       const t = performance.now() / 1000
       const floatOffset = Math.sin(t * 0.7)
-      crystal.rotation.y += 0.0056
+      crystal.rotation.y += 0.0039
       crystal.position.y = 4.5 + floatOffset * 0.25
       shadow.scale.setScalar(1 + floatOffset * 0.2)
       shadow.material.opacity = 0.65 - floatOffset * 0.2
