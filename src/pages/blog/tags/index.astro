@@ -31,14 +31,14 @@ const sortedTags = Object.entries(tagCounts).sort((a, b) => {
   <nav class="flex items-center gap-3 mb-6">
     <a
       href="/blog"
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-gray-500 bg-gray-100/80 rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
     >
       &larr; 分类
     </a>
   </nav>
 
-  <h1 class="text-3xl font-bold text-gray-900 mb-2">Tags</h1>
-  <p class="text-gray-500 mb-8">按标签浏览所有文章</p>
+  <h1 class="text-3xl font-bold text-[var(--glass-text)] mb-2">Tags</h1>
+  <p class="text-[var(--glass-text-secondary)] mb-8">按标签浏览所有文章</p>
 
   {
     sortedTags.length > 0 ? (
@@ -46,17 +46,17 @@ const sortedTags = Object.entries(tagCounts).sort((a, b) => {
         {sortedTags.map(([tag, count]) => (
           <a
             href={`/blog/tags/${tag}`}
-            class="inline-flex items-center gap-2 no-underline ring-glow bg-white/85 rounded-xl px-4 py-3 border border-white/30 hover:shadow-md transition-shadow"
+            class="inline-flex items-center gap-2 no-underline ring-glow bg-[var(--glass-bg)] rounded-xl px-4 py-3 border border-[var(--glass-border)] hover:shadow-md transition-shadow"
           >
-            <span class="text-sm font-medium text-gray-700">{tag}</span>
-            <span class="text-xs text-gray-400 bg-gray-100 rounded-full px-2 py-0.5">
+            <span class="text-sm font-medium text-[var(--glass-text)]">{tag}</span>
+            <span class="text-xs text-[var(--glass-text-muted)] bg-[var(--glass-bg-secondary)] rounded-full px-2 py-0.5">
               {count}
             </span>
           </a>
         ))}
       </div>
     ) : (
-      <p class="text-gray-400">暂无标签。</p>
+      <p class="text-[var(--glass-text-muted)]">暂无标签。</p>
     )
   }
 </BaseLayout>

@@ -29,8 +29,8 @@ function fmtDate(date: string) {
   posts.length > 0 && (
     <section class="mb-10">
       <div class="flex items-baseline gap-3 mb-4">
-        <h2 class="text-xl font-bold text-gray-900">{nameZh}</h2>
-        {nameEn && <span class="text-sm text-gray-400 font-mono">{nameEn}</span>}
+        <h2 class="text-xl font-bold text-[var(--glass-text)]">{nameZh}</h2>
+        {nameEn && <span class="text-sm text-[var(--glass-text-muted)] font-mono">{nameEn}</span>}
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {posts.map((post) => (

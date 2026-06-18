@@ -6,8 +6,8 @@ import LikeButton from "../components/LikeButton"
 
   <!-- 首页欢迎语和简介 -->
   <section class="text-center mb-16 pt-8">
-    <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to KirinWiki</h1>
-    <p class="text-lg text-gray-500 max-w-lg mx-auto">
+    <h1 class="text-4xl font-bold text-[var(--glass-text)] mb-4">Welcome to KirinWiki</h1>
+    <p class="text-lg text-[var(--glass-text-secondary)] max-w-lg mx-auto">
       A personal blog about technology, projects
     </p>
   </section>
@@ -24,13 +24,13 @@ import LikeButton from "../components/LikeButton"
       ].map(({ href, emoji, label, desc }) => (
          <a
         href={href}
-        class="block ring-glow bg-white/85 rounded-3xl p-6 shadow-lg border border-white/30
-               hover:shadow-xl hover:-translate-y-1 transition-all duration-200
+        class="block ring-glow bg-[var(--glass-bg)] rounded-3xl p-6 shadow-lg border border-[var(--glass-border)]
+               hover:shadow-xl hover:-translate-y-1 transition-shadow duration-200
                no-underline text-center"
           >
             <div class="text-3xl mb-2">{emoji}</div>
-            <div class="font-medium text-gray-900">{label}</div>
-            <div class="text-sm text-gray-400 mt-1">{desc}</div>
+            <div class="font-medium text-[var(--glass-text)]">{label}</div>
+            <div class="text-sm text-[var(--glass-text-muted)] mt-1">{desc}</div>
         </a>
       ))
     }
@@ -44,7 +44,7 @@ import LikeButton from "../components/LikeButton"
         href="https://github.com/BoooSAMA"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center text-gray-500 bg-gray-100/80 rounded-lg p-2 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
+        class="inline-flex items-center justify-center text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg p-2 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
         title="GitHub"
       >
         <svg class="w-5 h-5" viewBox="0 0 98 96" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@ import LikeButton from "../components/LikeButton"
       <!-- Email（点击复制到剪贴板） -->
       <button
         id="copy-email-btn"
-        class="inline-flex items-center justify-center text-gray-500 bg-gray-100/80 rounded-lg p-2 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors cursor-pointer"
+        class="inline-flex items-center justify-center text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg p-2 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors cursor-pointer"
         title="点击复制邮箱"
       >
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

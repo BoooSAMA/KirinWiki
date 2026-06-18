@@ -76,12 +76,12 @@ function loop(timestamp) {
   if (!lastTimeCheck || timestamp - lastTimeCheck > 60000) {
     lastTimeCheck = timestamp
     const { hour, minute } = getSingaporeTime()
-    currentColor = interpolateColor(hour, minute)
-  }
+    const newColor = interpolateColor(hour, minute)
 
-  // Apply the current interpolated color every frame
-  if (currentColor) {
-    applyColor(currentColor)
+    // Only apply when color actually changes (prevents 60fps repaint spam)
+    if (newColor !== currentColor) {
+      applyColor(newColor)
+    }
   }
 
   rafId = requestAnimationFrame(loop)

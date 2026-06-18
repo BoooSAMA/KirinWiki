@@ -148,8 +148,11 @@ export function createScene(el) {
   scene.environment = pmrem.fromScene(envScene).texture
   pmrem.dispose()
 
+  let __lastBgHex = null
   window.__setSceneBackground = (hex) => {
-    if (!scene || !renderer) return
+    if (!scene || !renderer || hex === __lastBgHex) return
+    __lastBgHex = hex
+
     const color = new THREE.Color(hex)
     scene.background = color
 

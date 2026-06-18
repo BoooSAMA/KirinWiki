@@ -53,3 +53,64 @@ if (root && !window.__bg3dInitialized) {
 // Start time-based theme after scene is created
 initTimeTheme()
 </script>
+
+<script>
+// ─── Floating FPS Monitor ───
+// Toggle: Ctrl+Shift+F
+(() => {
+  if (window.__fpsMonitorInstalled) return
+  window.__fpsMonitorInstalled = true
+
+  const el = document.createElement('div')
+  Object.assign(el.style, {
+    position: 'fixed',
+    bottom: '76px',
+    left: '20px',
+    zIndex: '2147483646',
+    fontFamily: 'monospace',
+    fontSize: '13px',
+    lineHeight: '1.4',
+    padding: '6px 10px',
+    borderRadius: '8px',
+    background: 'rgba(0,0,0,0.7)',
+    color: '#fff',
+    backdropFilter: 'blur(6px)',
+    WebkitBackdropFilter: 'blur(6px)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    display: 'none',
+    pointerEvents: 'none',
+    userSelect: 'none',
+  })
+  el.id = 'fps-monitor'
+  el.textContent = '-- FPS'
+  document.body.appendChild(el)
+
+  let frames = 0
+  let lastTime = performance.now()
+  let fps = 0
+
+  function tick(now) {
+    frames++
+    const delta = now - lastTime
+    if (delta >= 1000) {
+      fps = Math.round((frames * 1000) / delta)
+      frames = 0
+      lastTime = now
+
+      el.textContent = `${fps} FPS`
+      if (fps >= 55) el.style.color = '#4ade80'
+      else if (fps >= 30) el.style.color = '#facc15'
+      else el.style.color = '#f87171'
+    }
+    requestAnimationFrame(tick)
+  }
+  requestAnimationFrame(tick)
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+      e.preventDefault()
+      el.style.display = el.style.display === 'none' ? 'block' : 'none'
+    }
+  })
+})()
+</script>
