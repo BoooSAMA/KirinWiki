@@ -87,13 +87,19 @@ function loop(timestamp) {
   rafId = requestAnimationFrame(loop)
 }
 
-export function init() {
-  // Immediate initial apply (don't wait for first RAF)
+function applyTheme() {
   const { hour, minute } = getSingaporeTime()
   currentColor = interpolateColor(hour, minute)
   applyColor(currentColor)
+}
 
-  // Start the RAF loop
+export function init() {
+  // Cancel any previous RAF loop (prevents duplicate loops on View Transition navigation)
+  if (rafId) cancelAnimationFrame(rafId)
+
+  applyTheme()
+
+  // Start the RAF loop for hourly color transitions
   rafId = requestAnimationFrame(loop)
 
   // Handle visibility change: re-sync time when page becomes visible
@@ -105,3 +111,8 @@ export function init() {
     }
   })
 }
+
+// Re-apply theme after Astro View Transitions navigation (ensures colors survive page swap)
+document.addEventListener('astro:page-load', () => {
+  applyTheme()
+})
