@@ -9,6 +9,10 @@ const categoryNames: Record<string, { zh: string; en: string }> = {
   "build-log": { zh: "建站日志", en: "Build Log" },
   blog: { zh: "默认", en: "Blog" },
   projects: { zh: "作品集", en: "Projects" },
+  interview: { zh: "面试", en: "Interview" },
+  game: { zh: "游戏", en: "Game" },
+  music: { zh: "音乐", en: "Music" },
+  AI: { zh: "AI", en: "AI" },
 }
 
 // Group posts by category, count them
@@ -16,7 +20,7 @@ const categories: Record<string, { count: number }> = {}
 
 for (const [filePath] of Object.entries(postModules)) {
   const parts = filePath.split("/")
-  const cat = parts[parts.length - 2]
+  const cat = parts[parts.indexOf("categories") + 1]
   if (!categories[cat]) categories[cat] = { count: 0 }
   categories[cat].count++
 }

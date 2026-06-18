@@ -50,7 +50,7 @@ for (const [filePath, mod] of Object.entries(postModules)) {
   if (!tags.map((t) => t.toLowerCase()).includes(tag)) continue
 
   const parts = filePath.split("/")
-  const category = parts[parts.length - 2]
+  const category = parts[parts.indexOf("categories") + 1]
   const filename = parts[parts.length - 1].replace(/\.md$/, "")
   const slug = filename.toLowerCase().replace(/\s+/g, "-")
 

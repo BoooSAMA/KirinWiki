@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
   return Object.keys(modules).map((filePath) => {
     const parts = filePath.split("/")
-    const category = parts[parts.length - 2]
+    const category = parts[parts.indexOf("categories") + 1]
     const slug = parts[parts.length - 1]
       .replace(/\.md$/, "")
       .toLowerCase()
@@ -25,6 +25,10 @@ const categoryNames: Record<string, { zh: string; en: string }> = {
   "build-log": { zh: "建站日志", en: "Build Log" },
   blog: { zh: "默认", en: "Blog" },
   projects: { zh: "作品集", en: "Projects" },
+  interview: { zh: "面试", en: "Interview" },
+  game: { zh: "游戏", en: "Game" },
+  music: { zh: "音乐", en: "Music" },
+  AI: { zh: "AI", en: "AI" },
 }
 const catName = categoryNames[category] ?? { zh: category, en: "" }
 
@@ -39,7 +43,7 @@ let ContentComp: any = null
 
 for (const [filePath, mod] of Object.entries(modules)) {
   const parts = filePath.split("/")
-  const cat = parts[parts.length - 2]
+  const cat = parts[parts.indexOf("categories") + 1]
   const slg = parts[parts.length - 1]
     .replace(/\.md$/, "")
     .toLowerCase()

@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   const categorySet = new Set<string>()
   for (const filePath of Object.keys(postModules)) {
     const parts = filePath.split("/")
-    categorySet.add(parts[parts.length - 2])
+    categorySet.add(parts[parts.indexOf("categories") + 1])
   }
 
   return Array.from(categorySet).map((cat) => ({
@@ -25,6 +25,10 @@ const categoryNames: Record<string, { zh: string; en: string }> = {
   "build-log": { zh: "建站日志", en: "Build Log" },
   blog: { zh: "默认", en: "Blog" },
   projects: { zh: "作品集", en: "Projects" },
+  interview: { zh: "面试", en: "Interview" },
+  game: { zh: "游戏", en: "Game" },
+  music: { zh: "音乐", en: "Music" },
+  AI: { zh: "AI", en: "AI" },
 }
 const display = categoryNames[category] ?? { zh: category, en: "" }
 
@@ -44,7 +48,7 @@ const posts: Array<{
 
 for (const [filePath, mod] of Object.entries(postModules)) {
   const parts = filePath.split("/")
-  const cat = parts[parts.length - 2]
+  const cat = parts[parts.indexOf("categories") + 1]
   if (cat !== category) continue
 
   const filename = parts[parts.length - 1].replace(/\.md$/, "")
