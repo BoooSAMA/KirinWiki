@@ -29,8 +29,20 @@ const categoryNames: Record<string, { zh: string; en: string }> = {
   game: { zh: "游戏", en: "Game" },
   music: { zh: "音乐", en: "Music" },
   AI: { zh: "AI", en: "AI" },
+  bible: { zh: "圣经", en: "Bible" },
 }
 const display = categoryNames[category] ?? { zh: category, en: "" }
+
+const categoryDescriptions: Record<string, string> = {
+  "build-log": "记录本站从零搭建的过程、技术选型思考、踩坑经验与迭代优化。",
+  bible: "探索《圣经》的文本结构、历史背景、作者群像与成书过程，从文学与历史角度理解这部影响深远的经典。",
+  projects: "个人项目作品展示，包含完整的开发背景、技术方案与实现细节。",
+  interview: "面试经验总结与技术题目解析，涵盖算法、系统设计与项目深挖。",
+  game: "游戏开发笔记与设计思考，记录从玩法构思到技术实现的全过程。",
+  music: "音乐相关的内容与思考，包括乐理学习、乐器练习与音乐欣赏。",
+  AI: "人工智能相关学习笔记，覆盖机器学习、深度学习与大模型应用。",
+}
+const description = categoryDescriptions[category]
 
 // Get posts for this category
 const postModules = import.meta.glob(
@@ -91,6 +103,16 @@ const allTags = Object.entries(allTagCounts).sort((a, b) => {
   >
     &larr; 返回分类
   </a>
+
+  {
+    description && (
+      <div class="bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-md rounded-2xl p-5 mb-6">
+        <p class="text-sm text-[var(--glass-text-secondary)] leading-relaxed">
+          {description}
+        </p>
+      </div>
+    )
+  }
 
   <div class="lg:flex lg:gap-8">
     <!-- 主内容区 -->
