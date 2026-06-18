@@ -1,6 +1,6 @@
 ---
 title: "Day 23 — 性能优化：修复 25fps 卡顿与 View Transitions 主题丢失"
-date: 2026-06-18
+date: 2026-06-19
 tags: ["performance", "debugging", "glassmorphism", "View Transitions", "Three.js", "CSS", "refactoring"]
 summary: "系统性修复网页卡顿问题：移除 backdrop-blur 性能杀手、替换所有硬编码颜色为 CSS 变量、修复 timeTheme 每帧重绘 bug、View Transitions 主题丢失"
 description: "从用户反馈的 '网页卡顿' 出发，深入诊断并修复了三层性能问题：backdrop-blur 导致 GPU 重绘过载、timeTheme.js 的 applyColor 每帧无脑调用造成 DOM 重排和 PMREM 环境贴图重建、所有页面使用硬编码颜色导致时间主题失效。同时修复了 View Transitions 切换页面后颜色回退到白色的兼容性问题。"
@@ -160,6 +160,21 @@ description: "从用户反馈的 '网页卡顿' 出发，深入诊断并修复�
 | `src/pages/shares.astro` | 中 | 全部 → CSS vars |
 | `src/pages/pictures.astro` | 中 | 全部 → CSS vars |
 | `src/pages/projects/index.astro` | 中 | 全部 → CSS vars |
+
+### 遗漏修复：文章详情页返回按钮未更新
+
+后续验证发现 `src/pages/blog/[category]/[slug].astro`（文章详情页）的两个返回按钮被遗漏，仍在使用硬编码颜色：
+
+```diff
+- border border-gray-200/40 hover:bg-gray-200/60
++ border border-[var(--glass-border)] hover:bg-white/60
+```
+
+`border-gray-200/40` 在深色模式下几乎透明（浅灰 40% 在黑背景上不可见），导致按钮"可以点击但看不见"。同步修复 `[category].astro` 返回按钮缺少 `<nav>` 包裹的结构问题，与全站其他页面保持一致。
+
+**涉及文件**：
+- `src/pages/blog/[category]/[slug].astro` — 两个返回按钮 `border`/`hover` → CSS 变量
+- `src/pages/blog/[category].astro` — 裸 `<a>` → `<nav>` 包裹（结构统一）
 
 ---
 
