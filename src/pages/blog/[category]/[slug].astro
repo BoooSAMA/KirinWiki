@@ -68,68 +68,150 @@ const tags: string[] = Array.isArray(fm.tags)
 ---
 
 <BaseLayout title={`${fm.title || slug} - ${catName.zh}`}>
-  <nav class="flex items-center gap-3 mb-8">
-    <a
-      href="/blog"
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
-    >
-      &larr; 分类
-    </a>
-    <a
-      href={`/blog/${category}`}
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
-    >
-      &larr; {catName.zh}
-    </a>
-  </nav>
-
-  <div class="lg:flex lg:gap-8">
-    <!-- 主内容卡片 -->
-    <div class="min-w-0 flex-1">
-      <ReadingBackdrop>
-        <article>
-          <header class="mb-8 pb-6 border-b border-gray-200/50">
-            <h1 class="text-3xl font-bold text-[var(--glass-text)] mb-2">
-              {fm.title || slug}
-            </h1>
-            {postDate && (
-              <time class="text-sm text-[var(--glass-text-muted)]">{postDate}</time>
-            )}
-            {fm.description && (
-              <p class="text-[var(--glass-text-secondary)] mt-3 text-base leading-relaxed">
-                {fm.description}
-              </p>
-            )}
-          </header>
-
-          <div class="prose max-w-none">
-            {ContentComp ? <ContentComp /> : <p class="text-[var(--glass-text-muted)]">暂无内容。</p>}
-          </div>
-        </article>
-      </ReadingBackdrop>
+  <!-- 左侧 TOC（fixed，不占文档流） -->
+  <aside id="toc-sidebar"
+    class="hidden lg:block fixed top-24 z-10 w-48"
+    style="display:none; left: max(0.5rem, calc(50% - 28rem - 12rem - 0.75rem));"
+  >
+    <div class="bg-[var(--glass-bg)] backdrop-blur-md rounded-xl border border-[var(--glass-border)] shadow-sm p-3">
+      <h3 class="text-xs font-semibold text-[var(--glass-text-muted)] tracking-wider mb-2">
+        目录
+      </h3>
+      <nav id="toc-nav" class="flex flex-col gap-1.5 max-h-[calc(100vh-12rem)] overflow-y-auto">
+      </nav>
     </div>
+  </aside>
 
-    <!-- 右侧标签栏 -->
+  <!-- 右侧标签栏（fixed，不占文档流，宽屏才显示） -->
+  {
+    tags.length > 0 && (
+      <aside
+        class="hidden xl:block fixed top-24 z-10 w-44"
+        style="left: calc(50% + 28rem + 0.75rem);"
+      >
+        <div class="bg-[var(--glass-bg)] backdrop-blur-md rounded-xl border border-[var(--glass-border)] shadow-sm p-3">
+          <h3 class="text-xs font-semibold text-[var(--glass-text-muted)] tracking-wider mb-2">
+            # 标签
+          </h3>
+          <div class="flex flex-wrap gap-1.5 xl:flex-col xl:gap-1">
+            {tags.map((tag) => (
+              <a
+                href={`/blog/tags/${tag.toLowerCase()}`}
+                class="inline-block text-xs no-underline bg-[var(--glass-bg)] text-[var(--glass-text-secondary)] rounded-full px-2.5 py-1 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors xl:w-full"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    )
+  }
+
+  <!-- 主内容（保持 max-w-4xl mx-auto 完全居中） -->
+  <div class="max-w-4xl mx-auto">
+    <nav class="flex items-center gap-3 mb-8">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+      >
+        &larr; 分类
+      </a>
+      <a
+        href={`/blog/${category}`}
+        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+      >
+        &larr; {catName.zh}
+      </a>
+    </nav>
+
+    <ReadingBackdrop>
+      <article>
+        <header class="mb-8 pb-6 border-b border-gray-200/50">
+          <h1 class="text-3xl font-bold text-[var(--glass-text)] mb-2">
+            {fm.title || slug}
+          </h1>
+          {postDate && (
+            <time class="text-sm text-[var(--glass-text-muted)]">{postDate}</time>
+          )}
+          {fm.description && (
+            <p class="text-[var(--glass-text-secondary)] mt-3 text-base leading-relaxed">
+              {fm.description}
+            </p>
+          )}
+        </header>
+
+        <div class="article-content">
+          {ContentComp ? <ContentComp /> : <p class="text-[var(--glass-text-muted)]">暂无内容。</p>}
+        </div>
+      </article>
+    </ReadingBackdrop>
+
+    <!-- 移动端标签（宽屏时 hidden，因为 fixed 版本会显示） -->
     {
       tags.length > 0 && (
-        <aside class="lg:w-44 shrink-0 mt-6 lg:mt-0">
-          <div class="lg:sticky lg:top-24">
-            <h3 class="text-xs font-semibold text-[var(--glass-text-muted)] tracking-wider mb-3">
-              # 标签
-            </h3>
-            <div class="flex flex-wrap gap-1.5 lg:flex-col lg:gap-1">
-              {tags.map((tag) => (
-                <a
-                  href={`/blog/tags/${tag.toLowerCase()}`}
-                  class="inline-block text-xs no-underline bg-[var(--glass-bg)] text-[var(--glass-text-secondary)] rounded-full px-2.5 py-1 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors lg:w-full"
-                >
-                  {tag}
-                </a>
-              ))}
-            </div>
-          </div>
-        </aside>
+        <div class="flex flex-wrap gap-1.5 mt-8 xl:hidden">
+          {tags.map((tag) => (
+            <a
+              href={`/blog/tags/${tag.toLowerCase()}`}
+              class="inline-block text-xs no-underline bg-[var(--glass-bg)] text-[var(--glass-text-secondary)] rounded-full px-2.5 py-1 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
       )
     }
   </div>
+<script>
+  function buildTOC() {
+    const sidebar = document.getElementById('toc-sidebar')
+    const nav = document.getElementById('toc-nav')
+    if (!sidebar || !nav) return
+
+    const headings = document.querySelectorAll('.article-content h2, .article-content h3, .article-content h4')
+    if (headings.length < 2) return
+
+    // Build TOC items
+    let html = ''
+    for (const h of headings) {
+      // Ensure each heading has an id (Astro auto-generates them)
+      if (!h.id) continue
+      const indent = h.tagName === 'H3' ? 'pl-4' : h.tagName === 'H4' ? 'pl-8 text-xs' : ''
+      const text = h.textContent || ''
+      html += `<a href="#${h.id}" class="text-sm no-underline transition-colors py-1 rounded hover:bg-white/40 text-[var(--glass-text-secondary)] hover:text-[var(--glass-text)] ${indent}">${text}</a>`
+    }
+    if (!html) return
+
+    nav.innerHTML = html
+    sidebar.style.display = ''
+
+    // Scroll spy: highlight current heading
+    const links = nav.querySelectorAll('a')
+
+    function updateActive() {
+      let currentId = ''
+      for (const h of headings) {
+        if (!h.id) continue
+        const rect = h.getBoundingClientRect()
+        if (rect.top <= 120) currentId = h.id
+      }
+      links.forEach((link) => {
+        const href = link.getAttribute('href') || ''
+        if (href === `#${currentId}`) {
+          link.style.color = 'var(--glass-text)'
+          link.style.fontWeight = '600'
+        } else {
+          link.style.color = ''
+          link.style.fontWeight = ''
+        }
+      })
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true })
+    updateActive()
+  }
+
+  document.addEventListener('astro:page-load', buildTOC)
+</script>
 </BaseLayout>

@@ -78,4 +78,130 @@
   .glass-blur {
     will-change: backdrop-filter;
   }
+
+  /* Article content: comfortable reading typography */
+  .article-content {
+    line-height: 2;
+    color: var(--glass-text);
+    font-size: 1rem;
+  }
+
+  .article-content p {
+    margin-bottom: 1.2em;
+  }
+
+  .article-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    scroll-margin-top: 5rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+    scroll-margin-top: 5rem;
+  }
+
+  .article-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+    scroll-margin-top: 5rem;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  .article-content li {
+    margin-bottom: 0.4em;
+  }
+
+  .article-content blockquote {
+    border-left: 3px solid var(--glass-border);
+    padding-left: 1em;
+    margin: 1.2em 0;
+    color: var(--glass-text-secondary);
+    font-style: italic;
+  }
+
+  .article-content strong {
+    font-weight: 600;
+  }
+
+  .article-content a {
+    color: #3b82f6;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .article-content a:hover {
+    color: #2563eb;
+  }
+
+  .article-content code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: ui-monospace, monospace;
+  }
+
+  .article-content pre {
+    margin: 1.2em 0;
+    padding: 1em;
+    border-radius: 8px;
+    overflow-x: auto;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--glass-border);
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  .article-content pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  .article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2em 0;
+    font-size: 0.95em;
+  }
+
+  .article-content th,
+  .article-content td {
+    border: 1px solid var(--glass-border);
+    padding: 0.6em 0.8em;
+    text-align: left;
+  }
+
+  .article-content th {
+    background: var(--glass-bg-secondary);
+    font-weight: 600;
+  }
+
+  .article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.2em 0;
+  }
+
+  .article-content hr {
+    border: none;
+    border-top: 1px solid var(--glass-border);
+    margin: 2em 0;
+  }
 }
