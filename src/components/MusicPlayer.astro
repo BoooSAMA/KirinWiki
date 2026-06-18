@@ -86,6 +86,41 @@
 #bar-progress::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg,#818cf8,#6366f1); cursor: pointer; border: 2px solid rgba(255,255,255,0.25); }
 #br-time-row { display: flex; justify-content: center; }
 .bar-time { font-size: 11px; color: rgba(255,255,255,0.4); font-variant-numeric: tabular-nums; }
+
+/* ─── 迷你播放器（收起状态） ─── */
+#mini-player {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px;
+}
+.mini-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  cursor: pointer;
+  color: rgba(255,255,255,0.8);
+  font-size: 17px;
+  transition: background 0.15s, color 0.15s;
+}
+.mini-btn:hover {
+  background: rgba(129,140,248,0.2);
+  color: #818cf8;
+}
+.mini-btn svg { display: block; }
+
+/* ─── 收起展开动画 ─── */
+#player-bar.collapsing,
+#player-panel.collapsing {
+  transition: transform 0.35s ease, opacity 0.3s ease !important;
+  transform-origin: bottom left !important;
+  pointer-events: none !important;
+}
 </style>
 
 <script>
@@ -146,6 +181,7 @@
             <button id="btn-prev" class="ctrl-btn sm" title="上一首">${I.prev}</button>
             <button id="btn-next" class="ctrl-btn sm" title="下一首">${I.next}</button>
             <button id="btn-list" class="ctrl-btn" title="歌单">${I.menu}</button>
+            <button id="btn-collapse" class="ctrl-btn sm" title="收起播放器">▾</button>
           </div>
         </div>
         <div class="br-sep"></div>
@@ -163,6 +199,10 @@
           <span id="bar-time" class="bar-time">0:00</span>
         </div>
       </div>
+    </div>
+    <div id="mini-player">
+      <button class="mini-btn" id="mini-play-btn">${I.play}</button>
+      <button class="mini-btn" id="mini-expand-btn">▲</button>
     </div>
   `;
 
@@ -182,6 +222,8 @@
   const treeEl = $('panel-tree');
   const emptyEl = $('panel-empty');
   const borderEl = $('bar-border');
+  const btnCollapse = $('btn-collapse');
+  const miniPlayBtn = $('mini-play-btn');
 
   /* ===== 工具函数 ===== */
   function escapeHtml(s) {
@@ -258,12 +300,14 @@
         barTitle.textContent = song.name;
         barArtist.textContent = song.artist;
         btnPlay.innerHTML = st.isPlaying ? I.pause : I.play;
+        if (miniPlayBtn) miniPlayBtn.innerHTML = st.isPlaying ? I.pause : I.play;
         return;
       }
     }
     barTitle.textContent = '未在播放';
     barArtist.textContent = '—';
     btnPlay.innerHTML = I.play;
+    if (miniPlayBtn) miniPlayBtn.innerHTML = I.play;
   }
 
   function updateProgressBar() {
@@ -405,6 +449,21 @@
         renderTree();
       }
     }
+
+    // 恢复收起状态
+    try {
+      if (localStorage.getItem('player-collapsed') === 'true') {
+        const barEl = $('player-bar');
+        const pnl = $('player-panel');
+        const mini = $('mini-player');
+        if (barEl) barEl.style.display = 'none';
+        if (pnl) pnl.style.display = 'none';
+        if (mini) {
+          mini.style.display = 'flex';
+          syncMiniPlayBtn();
+        }
+      }
+    } catch {}
   }).catch(e => {
     if (emptyEl) {
       emptyEl.textContent = '歌单加载失败';
@@ -451,6 +510,76 @@
     if (state.queue.length === 0) return;
     state.queueIndex = (state.queueIndex - 1 + state.queue.length) % state.queue.length;
     playUrl(state.queue[state.queueIndex]);
+  }
+
+  /* ===== 收起/展开 ===== */
+  function collapsePlayer() {
+    const barEl = $('player-bar');
+    const pnl = $('player-panel');
+    const mini = $('mini-player');
+    if (!barEl || !pnl || !mini) return;
+
+    barEl.classList.add('collapsing');
+    pnl.classList.add('collapsing');
+    barEl.style.transform = 'scale(0.08)';
+    barEl.style.opacity = '0';
+    pnl.style.transform = 'scale(0.08)';
+    pnl.style.opacity = '0';
+
+    setTimeout(() => {
+      barEl.style.display = 'none';
+      pnl.style.display = 'none';
+      barEl.classList.remove('collapsing');
+      pnl.classList.remove('collapsing');
+      barEl.style.transform = '';
+      barEl.style.opacity = '';
+      pnl.style.transform = '';
+      pnl.style.opacity = '';
+      mini.style.display = 'flex';
+      syncMiniPlayBtn();
+    }, 350);
+
+    try { localStorage.setItem('player-collapsed', 'true'); } catch {}
+  }
+
+  function expandPlayer() {
+    const barEl = $('player-bar');
+    const pnl = $('player-panel');
+    const mini = $('mini-player');
+    if (!barEl || !pnl || !mini) return;
+
+    mini.style.display = 'none';
+    barEl.style.display = '';
+    pnl.style.display = '';
+
+    barEl.classList.add('collapsing');
+    pnl.classList.add('collapsing');
+    barEl.style.transform = 'scale(0.08)';
+    barEl.style.opacity = '0';
+    pnl.style.transform = 'scale(0.08)';
+    pnl.style.opacity = '0';
+    void barEl.offsetHeight;
+
+    barEl.style.transform = 'scale(1)';
+    barEl.style.opacity = '1';
+    pnl.style.transform = 'scale(1)';
+    pnl.style.opacity = '1';
+
+    setTimeout(() => {
+      barEl.classList.remove('collapsing');
+      pnl.classList.remove('collapsing');
+      barEl.style.transform = '';
+      barEl.style.opacity = '';
+      pnl.style.transform = '';
+      pnl.style.opacity = '';
+    }, 350);
+
+    try { localStorage.setItem('player-collapsed', 'false'); } catch {}
+  }
+
+  function syncMiniPlayBtn() {
+    if (!miniPlayBtn) return;
+    miniPlayBtn.innerHTML = state.isPlaying ? I.pause : I.play;
   }
 
   /* ===== 事件绑定 ===== */
@@ -504,6 +633,10 @@
       document.removeEventListener('click', closePanelOutside);
     }
   }
+
+  btnCollapse.addEventListener('click', collapsePlayer);
+  $('mini-play-btn')?.addEventListener('click', () => { btnPlay.click(); });
+  $('mini-expand-btn')?.addEventListener('click', expandPlayer);
 
   progress.addEventListener('input', () => {
     if (!audio.duration) return;
