@@ -1,7 +1,6 @@
 # Flood Detection System — 项目深度解析
 
-> **针对公司**: GMM Technoworld Pte Ltd  
-> **候选人**: 冯一朗 (FENG YILANG)  
+> **针对公司**: GMM Technoworld Pte Ltd    
 > **项目时间**: May 2025 – Jun 2025  
 > **课程**: Microcontroller Applications  
 > **MCU**: PIC16F877A  
