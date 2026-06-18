@@ -100,15 +100,18 @@ const allTags = Object.entries(allTagCounts).sort((a, b) => {
   <nav class="flex items-center gap-3 mb-6">
     <a
       href="/blog"
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] shadow-md border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors rounded-lg px-3 py-1.5"
     >
-      &larr; 返回分类
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 shrink-0">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+      </svg>
+      返回分类
     </a>
   </nav>
 
   {
     description && (
-      <div class="bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-md rounded-2xl p-5 mb-6">
+      <div class="bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-2xl p-5 mb-6">
         <p class="text-sm text-[var(--glass-text-secondary)] leading-relaxed">
           {description}
         </p>

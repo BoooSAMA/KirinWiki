@@ -113,13 +113,13 @@ const tags: string[] = Array.isArray(fm.tags)
     <nav class="flex items-center gap-3 mb-8">
       <a
         href="/blog"
-        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] shadow-sm rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
       >
         &larr; 分类
       </a>
       <a
         href={`/blog/${category}`}
-        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+        class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] shadow-sm rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
       >
         &larr; {catName.zh}
       </a>
@@ -179,7 +179,7 @@ const tags: string[] = Array.isArray(fm.tags)
       if (!h.id) continue
       const indent = h.tagName === 'H3' ? 'pl-4' : h.tagName === 'H4' ? 'pl-8 text-xs' : ''
       const text = h.textContent || ''
-      html += `<a href="#${h.id}" class="text-sm no-underline transition-colors py-1 rounded hover:bg-white/40 text-[var(--glass-text-secondary)] hover:text-[var(--glass-text)] ${indent}">${text}</a>`
+      html += `<a href="#${h.id}" class="text-sm no-underline transition-colors py-1.5 rounded hover:bg-white/40 text-[var(--glass-text-secondary)] hover:text-[var(--glass-text)] ${indent}">${text}</a>`
     }
     if (!html) return
 

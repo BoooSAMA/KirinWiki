@@ -172,9 +172,23 @@ description: "从用户反馈的 '网页卡顿' 出发，深入诊断并修复�
 
 `border-gray-200/40` 在深色模式下几乎透明（浅灰 40% 在黑背景上不可见），导致按钮"可以点击但看不见"。同步修复 `[category].astro` 返回按钮缺少 `<nav>` 包裹的结构问题，与全站其他页面保持一致。
 
+此外，日间模式下按钮 `#6b7280` 文字在 `rgba(243,244,246,0.85)` 背景上对比度仅约 2:1，且完全没有阴影层次。全站 9 个返回按钮统一添加 `shadow-sm` 增强视觉深度和可识别性：
+
+```diff
+- rounded-lg px-3 py-1.5
++ shadow-sm rounded-lg px-3 py-1.5
+```
+
 **涉及文件**：
-- `src/pages/blog/[category]/[slug].astro` — 两个返回按钮 `border`/`hover` → CSS 变量
-- `src/pages/blog/[category].astro` — 裸 `<a>` → `<nav>` 包裹（结构统一）
+- `src/pages/blog/[category]/[slug].astro` — 两个返回按钮 `border`/`hover` → CSS 变量 + `shadow-sm`
+- `src/pages/blog/[category].astro` — 裸 `<a>` → `<nav>` 包裹（结构统一）+ `shadow-sm`
+- `src/pages/blog/index.astro` — `shadow-sm`
+- `src/pages/blog/tags/index.astro` — `shadow-sm`
+- `src/pages/blog/tags/[tag].astro` — `shadow-sm`（2 处）
+- `src/pages/shares.astro` — `shadow-sm`
+- `src/pages/about.astro` — `shadow-sm`
+- `src/pages/pictures.astro` — `shadow-sm`
+- `src/pages/projects/index.astro` — `shadow-sm`
 
 ---
 
@@ -406,6 +420,65 @@ window.__setSceneBackground = (hex) => {
 | **`contain: strict` 的性能意义** | `contain: layout style paint` 将元素声明为独立渲染子树。浏览器在 View Transitions 页面切换时不必为此子树重新计算布局和样式，可以直接复用上一帧的合成结果 |
 | **PMREMGenerator 的开销** | Three.js 的 PMREMGenerator 通过预过滤环境图生成粗糙度-金属度 PBR 贴图，每次生成都涉及多级下采样和卷积计算。在动画循环中每帧调用会造成严重的 GPU 管线阻塞 |
 | **`window.__` 全局变量作为模块间通信的轻量手段** | 当两个模块（`crystalScene.js` 生成数据、`BaseLayout.astro` 的调试面板消费数据）在 Astro 的模块系统中无法直接导入引用时，通过约定的全局变量（`window.__cameraState`）传递高频更新的运行时数据是一种低开销方案。在 animate 循环中每帧赋值、调试面板每秒读取，避免了 props 传递或事件派发的复杂性和性能开销 |
+
+---
+
+---
+
+## 问题 5：`backdrop-filter` 导致前序元素不可见（GPU 合成层冲突）
+
+### 背景
+
+在 `/blog/bible` 页面为「分类简介」卡片添加 `backdrop-blur-md` 之后，用户反馈整个页面的返回按钮「可以点击但看不见」——按钮在 DOM 中存在、样式完全正确、Playwright 自动化测试中渲染正常，但在用户浏览器中完全透明。
+
+随后排查发现受影响的不仅是返回按钮，还包括导航栏的 "Blog" 链接、标签云等一系列使用 CSS 变量的元素。
+
+### 诊断历程
+
+| 步骤 | 尝试 | 结果 |
+|------|------|------|
+| 1 | 怀疑 CSS 变量 `--glass-bg-secondary` 未解析 | ❌ Playwright 确认变量正确解析为 `rgba(0,0,0,0.5)` |
+| 2 | 按钮改用硬编码 Tailwind 颜色（`bg-gray-100/90`） | ❌ 仍不可见；且发现 `bg-gray-100/90` 在 Tailwind v4 中不存在 |
+| 3 | 按钮改用 hex 色值 `#f3f4f6` + `!important` 行内样式 | ❌ 仍然不可见 |
+| 4 | 替换 `&larr;` 为 SVG 图标，排除字体渲染问题 | ❌ 仍然不可见 |
+| 5 | 用户用浏览器 DevTools 确认元素在 DOM 中存在、Computed 样式正确 | ✅ 确认不是 CSS 层叠问题 |
+| 6 | 移除描述卡片的 `backdrop-blur-md` | ✅ 元素**闪现**出现，但片刻后消失 |
+| 7 | 给 `<main>` 添加 `relative z-10` 明确层叠顺序 | ✅ 所有元素稳定可见 |
+
+### 根因
+
+**`backdrop-filter: blur()` 与 WebGL 3D 场景的 GPU 合成层冲突。**
+
+当在分类简介卡片上使用 `backdrop-blur-md` 时：
+
+1. `backdrop-filter` 触发浏览器为此元素创建独立的 **GPU 合成层**
+2. 同时 `#bg3d` 中的 Three.js WebGL 画布也占用独立的 **GPU 合成层**
+3. Chrome 的 GPU 合成器在同时处理多个合成层时，`backdrop-filter` 元素之前的**前序普通静态元素**（如返回按钮所在的 `<nav>`）被错误地标记为"不在视口内"，GPU 不为其分配渲染资源
+4. 这就是为什么元素在 DOM 中存在、Computed 样式完全正确、Playwright 的软件渲染下可见，但硬件加速的浏览器中不可见
+
+移除 `backdrop-blur-md` 后，GPU 合成层减少，元素短暂可见。但 3D 场景的 WebGL 层仍可能抢占渲染资源。加上 `position: relative; z-index: 10` 后，`<main>` 的层序被明确定义在 3D 场景（`z-index: 0`）之上，浏览器合成器不再混淆。
+
+关键的排查线索是用户描述的「刷新瞬间能看到→然后消失」，这暴露了**硬件合成层 vs 软件渲染**的差异——初始帧由软件渲染（可见），激活 GPU 合成后（消失）。
+
+### 修复
+
+1. **移除 `backdrop-blur-md`**：分类简介卡片不再使用 backdrop-filter，保留 `bg-[var(--glass-bg)]` 半透明底 + `border-[var(--glass-border)]` 边框保持玻璃质感
+2. **`<main>` 添加层序**：`relative z-10` 确保主内容在 3D 场景之上
+3. **返回按钮恢复到 CSS 变量毛玻璃样式**：用 `var(--glass-bg-secondary)`、`var(--glass-text-secondary)`、`var(--glass-border)` 实现主题自适应
+4. **SVG 箭头图标**：替换 `←` 字符为内联 SVG，避免字体渲染差异
+
+### 涉及文件
+
+| 文件 | 改动 |
+|------|------|
+| `src/pages/blog/[category].astro` | 分类简介卡片移除 `backdrop-blur-md`；返回按钮使用 CSS 变量 + SVG 图标 |
+| `src/layouts/BaseLayout.astro` | `<main>` 添加 `relative z-10` |
+
+### 学到的一课
+
+- **`backdrop-filter` 不仅仅是性能问题**——它在特定配置下可以与 WebGL 3D 场景产生 GPU 合成层冲突，导致前序 DOM 元素不可见。这类 Bug 极难在自动化测试中发现（因为 Playwright/Headless Chrome 使用软件渲染），需要实际硬件加速环境才能复现
+- **按钮等小尺寸元素建议使用 `shadow-sm`/`shadow-md`**：没有阴影的纯色按钮在毛玻璃背景下显得扁平，与页面背景融为一体。微弱的阴影提供必要的视觉深度感
+- **Tailwind v4 的透明度修饰器**：不是所有数值都内置。`bg-gray-100/90` 不被生成，需使用 `bg-gray-100/80` 或在 CSS 中自定义 `@theme`
 
 ---
 
