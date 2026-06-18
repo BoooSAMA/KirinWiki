@@ -265,47 +265,14 @@ export function createScene(el) {
       shadow.material.opacity = 0.65 - floatOffset * 0.2
     }
     renderer.render(scene, camera)
+
+    // Expose camera state for the debug panel (read by FPS monitor)
+    window.__cameraState = {
+      pos: { x: camera.position.x, y: camera.position.y, z: camera.position.z },
+      look: { x: cameraTarget.x, y: cameraTarget.y, z: cameraTarget.z },
+    }
   }
   animate()
-
-  const panel = document.createElement('div')
-  Object.assign(panel.style, {
-    position: 'fixed',
-    top: '24px',
-    left: '24px',
-    background: 'rgba(0,0,0,0.6)',
-    color: '#ccc',
-    padding: '10px 14px',
-    borderRadius: '8px',
-    font: '12px/1.7 monospace',
-    zIndex: '99999',
-    pointerEvents: 'auto',
-    userSelect: 'none',
-    backdropFilter: 'blur(4px)',
-    border: '1px solid rgba(255,255,255,0.08)',
-    cursor: 'pointer',
-    transition: 'background 0.15s',
-  })
-  const SVG_ICON = `<svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="10" rx="1"/><path d="M8 2V1a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1"/><path d="M3 6h2M3 9h4M3 12h5"/></svg>`
-  const SEP = `<span style="display:block;border-top:1px solid rgba(255,255,255,0.12);margin:5px 0 3px"></span>`
-  const panelContent = () =>
-    `<span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;opacity:0.6">${SVG_ICON}复制坐标</span>${SEP}pos (${camera.position.x.toFixed(2)}, ${camera.position.y.toFixed(2)}, ${camera.position.z.toFixed(2)})<br>look (${cameraTarget.x.toFixed(2)}, ${cameraTarget.y.toFixed(2)}, ${cameraTarget.z.toFixed(2)})`
-
-  panel.dataset.coordPanel = ''
-  panel.title = '点击复制坐标'
-  panel.innerHTML = panelContent()
-  panel.onclick = () => {
-    const text = `pos(${camera.position.x.toFixed(2)},${camera.position.y.toFixed(2)},${camera.position.z.toFixed(2)}),look(${cameraTarget.x.toFixed(2)},${cameraTarget.y.toFixed(2)},${cameraTarget.z.toFixed(2)})`
-    navigator.clipboard.writeText(text).then(() => {
-      panel.style.background = 'rgba(34,197,94,0.7)'
-      panel.textContent = '✓ 已复制'
-      setTimeout(() => {
-        panel.style.background = 'rgba(0,0,0,0.6)'
-        panel.innerHTML = panelContent()
-      }, 1200)
-    })
-  }
-  document.body.appendChild(panel)
 }
 
 export function destroyScene() {
@@ -325,7 +292,7 @@ export function destroyScene() {
     }
   })
 
-  document.querySelectorAll('[data-coord-panel]').forEach(el => el.remove())
+  window.__cameraState = null
   renderer.dispose()
   container.removeChild(renderer.domElement)
 
