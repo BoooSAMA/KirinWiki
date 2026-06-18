@@ -97,12 +97,14 @@ const allTags = Object.entries(allTagCounts).sort((a, b) => {
 ---
 
 <BaseLayout title={`${display.zh} - Blog`}>
-  <a
-    href="/blog"
-    class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors mb-6"
-  >
-    &larr; 返回分类
-  </a>
+  <nav class="flex items-center gap-3 mb-6">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors"
+    >
+      &larr; 返回分类
+    </a>
+  </nav>
 
   {
     description && (
