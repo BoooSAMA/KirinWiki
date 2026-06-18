@@ -141,22 +141,24 @@ parts[parts.indexOf("categories") + 1]
 执行 `npm run build` 后，路由结构如下：
 
 ```
-✓ /blog/interview/index.html                         ← 面试分类页
-✓ /blog/interview/flood_detection_project_deepdive    ← GMM 文章
-✓ /blog/interview/面试错题集                           ← Digital Dream 文章
-✓ /blog/interview/面试官背调                           ← NCS 文章
-✓ /blog/interview/mock_interview_feng_yilang
-✓ /blog/interview/selfintro_feng_yilang
-✓ /blog/interview/interview_checklist
-✓ /blog/interview/intern_work_analysis
-✓ /blog/interview/python_项目问答模拟
-✓ /blog/interview/smart_bakery_技术栈详解
-✓ /blog/interview/基础问答模拟
-✓ /blog/interview/实习生实操指南
-✓ /blog/interview/company_background
+✓ /blog/interview/index.html                                          ← 面试分类页
+✓ /blog/interview/gmm-technoworld-flood_detection_project_deepdive    ← GMM 文章
+✓ /blog/interview/gmm-technoworld-intern_work_analysis
+✓ /blog/interview/gmm-technoworld-company_background
+✓ /blog/interview/digital-dream-面试错题集                              ← Digital Dream 文章
+✓ /blog/interview/digital-dream-mock_interview_feng_yilang
+✓ /blog/interview/digital-dream-selfintro_feng_yilang
+✓ /blog/interview/digital-dream-interview_checklist
+✓ /blog/interview/digital-dream-company_background
+✓ /blog/interview/ncs_qa-engineer-面试官背调                            ← NCS 文章
+✓ /blog/interview/ncs_qa-engineer-基础问答模拟
+✓ /blog/interview/ncs_qa-engineer-实习生实操指南
+✓ /blog/interview/ncs_qa-engineer-smart_bakery_技术栈详解
+✓ /blog/interview/ncs_qa-engineer-python_项目问答模拟
+✓ /blog/interview/ncs_qa-engineer-company_background
 
 ✓ /blog/game/index.html                               ← 游戏分类页
-✓ /blog/game/gtnh                                     ← Minecraft 文章
+✓ /blog/game/minecraft-gtnh                           ← Minecraft 文章
 ```
 
 所有 interview 相关内容正确归入 `/blog/interview/`，不再有公司名作为独立分类的问题。
@@ -165,23 +167,32 @@ parts[parts.indexOf("categories") + 1]
 
 ## 边界情况
 
-### slug 冲突（已知问题）
+### slug 冲突修复
 
-构建时出现 warning：
+首次修复路由后出现 warning——三篇 `COMPANY_BACKGROUND.md` 同属 `interview` 分类，纯文件名 slug 均为 `company_background` 导致冲突。
 
+**修复**：在 slug 生成逻辑中引入子目录前缀。核心公式改为：
+
+```javascript
+const slug = parts.slice(parts.indexOf("categories") + 2)
+  .map(s => s.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-"))
+  .join("-")
 ```
-Could not render `/blog/interview/company_background` from route
-`/blog/[category]/[slug]` as it conflicts with higher priority route
-```
 
-原因：三个不同公司目录下都有 `COMPANY_BACKGROUND.md`：
-- `interview/GMM Technoworld/COMPANY_BACKGROUND.md`
-- `interview/Digital Dream/COMPANY_BACKGROUND.md`
-- `interview/NCS_QA engineer/COMPANY_BACKGROUND.md`
+原理：取 `categories/` 之后、文件扩展名之前的所有路径段，各自规范化后以 `-` 拼接。
 
-修复后它们都归入 `interview` 分类，slug 生成逻辑是纯文件名（`company_background`），三条记录 slug 相同 → Astro 只保留第一个。
+对比效果：
 
-**当前状态**：第一个被保留，后两个被忽略。这在当前场景下是可接受的（三篇背景分析内容相关性高），但如需完全区分，需要在 slug 生成逻辑中加入子目录前缀。
+| 文件路径 | 旧 slug | 新 slug |
+|----------|---------|---------|
+| `interview/GMM Technoworld/COMPANY_BACKGROUND.md` | `company_background` ❌ | `gmm-technoworld-company_background` ✅ |
+| `interview/Digital Dream/COMPANY_BACKGROUND.md` | `company_background` ❌ | `digital-dream-company_background` ✅ |
+| `interview/NCS_QA engineer/COMPANY_BACKGROUND.md` | `company_background` ❌ | `ncs_qa-engineer-company_background` ✅ |
+| `interview/Digital Dream/面试错题集.md` | `面试错题集` ⚠️ | `digital-dream-面试错题集` ✅ |
+| `game/Minecraft/GTNH.md` | `gtnh` ⚠️ | `minecraft-gtnh` ✅（更有辨识度） |
+| `build-log/day21.md` | `day21` ✅ | `day21` ✅（单层路径，不变） |
+
+修改了 **4 处 slug 生成逻辑**（与之前分类提取修改在同一组文件中），构建后 **15 个 interview 页面全部唯一**，无任何 conflict warning。
 
 ### 路径兼容性
 
@@ -194,9 +205,9 @@ Could not render `/blog/interview/company_background` from route
 | 文件 | 操作 | 说明 |
 |------|------|------|
 | `src/pages/blog/index.astro` | **修改** | 分类分组改用 `indexOf("categories") + 1`；补全分类中文名 |
-| `src/pages/blog/[category].astro` | **修改** | `getStaticPaths` + 分类过滤逻辑修正；补全分类中文名 |
-| `src/pages/blog/[category]/[slug].astro` | **修改** | `getStaticPaths` + 文章匹配逻辑修正；补全分类中文名 |
-| `src/pages/blog/tags/[tag].astro` | **修改** | 文章分类提取逻辑修正 |
+| `src/pages/blog/[category].astro` | **修改** | `getStaticPaths` + 分类过滤 + slug 生成逻辑修正；补全分类中文名 |
+| `src/pages/blog/[category]/[slug].astro` | **修改** | `getStaticPaths` + 文章匹配 + slug 生成逻辑修正；补全分类中文名 |
+| `src/pages/blog/tags/[tag].astro` | **修改** | 文章分类提取 + slug 生成逻辑修正 |
 
 ---
 
@@ -209,3 +220,4 @@ Could not render `/blog/interview/company_background` from route
 | **slug 冲突处理** | Astro 中如果 `getStaticPaths` 返回了相同的 `[category, slug]` 对，后定义的会静默覆盖前面的。Astro 会发出 warning 但不会阻止构建。需在设计 slug 生成策略时考虑文件路径的唯一性 |
 | **Astro 的 `getStaticPaths` 去重行为** | `getStaticPaths` 返回相同 params 的多条记录时，Astro 不会报错（只会 warning），实际生成的是**较早**的那个条目。观察：遍历 `Object.keys(modules)` 时，glob 返回顺序即文件系统遍历顺序 |
 | **import.meta.glob 的路径计算** | `import.meta.glob` 的模式匹配路径是相对于当前文件的相对路径。Vite 会在编译时展开 `**` 通配符，实际运行时 `split("/")` 得到的数组长度取决于匹配到的文件在磁盘上的真实路径深度 |
+| **slug 唯一性设计** | `parts.slice(anchor + 2).join("-")` —— 取分类之后的所有路径段规范化后拼接，天然保证唯一性。无论多少层嵌套，都不会出现同名文件 slug 冲突。这个公式同时适用于单层和嵌套路径 |
