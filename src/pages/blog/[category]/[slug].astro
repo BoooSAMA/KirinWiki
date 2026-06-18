@@ -71,13 +71,13 @@ const tags: string[] = Array.isArray(fm.tags)
   <nav class="flex items-center gap-3 mb-8">
     <a
       href="/blog"
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] backdrop-blur-sm rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
     >
       &larr; 分类
     </a>
     <a
       href={`/blog/${category}`}
-      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] backdrop-blur-sm rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
+      class="inline-flex items-center gap-1.5 text-sm no-underline text-[var(--glass-text-secondary)] bg-[var(--glass-bg-secondary)] rounded-lg px-3 py-1.5 border border-gray-200/40 hover:bg-gray-200/60 hover:text-gray-700 transition-colors"
     >
       &larr; {catName.zh}
     </a>
@@ -121,7 +121,7 @@ const tags: string[] = Array.isArray(fm.tags)
               {tags.map((tag) => (
                 <a
                   href={`/blog/tags/${tag.toLowerCase()}`}
-                  class="inline-block text-xs no-underline bg-[var(--glass-bg)] backdrop-blur-sm text-[var(--glass-text-secondary)] rounded-full px-2.5 py-1 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors lg:w-full"
+                  class="inline-block text-xs no-underline bg-[var(--glass-bg)] text-[var(--glass-text-secondary)] rounded-full px-2.5 py-1 border border-[var(--glass-border)] hover:bg-white/60 hover:text-gray-700 transition-colors lg:w-full"
                 >
                   {tag}
                 </a>

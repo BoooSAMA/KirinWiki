@@ -51,7 +51,7 @@ export default function LikeButton({ slug }: Props) {
       onClick={handleLike}
       disabled={loading || count === null}
       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl
-             bg-white/40 backdrop-blur-sm border border-white/40
+             bg-white/60 border border-white/40
              hover:bg-white/60 hover:shadow-md hover:-translate-y-0.5
              active:translate-y-0 active:shadow-sm
              disabled:opacity-50 disabled:cursor-not-allowed
