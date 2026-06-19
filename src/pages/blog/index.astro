@@ -13,6 +13,42 @@ const categoryNames: Record<string, { zh: string; en: string }> = {
   game: { zh: "游戏", en: "Game" },
   music: { zh: "音乐", en: "Music" },
   AI: { zh: "AI", en: "AI" },
+  bible: { zh: "圣经", en: "Bible" },
+}
+
+const categoryDescriptions: Record<string, { zh: string; en: string }> = {
+  "build-log": {
+    zh: "记录本站从零搭建的过程、技术选型与踩坑经验",
+    en: "Build process, tech choices & lessons learned",
+  },
+  blog: {
+    zh: "日常随笔与默认分类",
+    en: "General posts & random thoughts",
+  },
+  projects: {
+    zh: "个人作品展示，包含完整技术方案与实现细节",
+    en: "Project showcases with tech details",
+  },
+  interview: {
+    zh: "面试经验总结与算法、系统设计解析",
+    en: "Interview prep & problem solving",
+  },
+  game: {
+    zh: "游戏开发笔记，从玩法构思到技术实现",
+    en: "Game dev notes & design thinking",
+  },
+  music: {
+    zh: "乐理学习、乐器练习与音乐欣赏",
+    en: "Music theory, practice & appreciation",
+  },
+  AI: {
+    zh: "机器学习、深度学习与大模型应用学习笔记",
+    en: "ML, DL & LLM learning notes",
+  },
+  bible: {
+    zh: "探索圣经 — 文本研读、历史背景与神学主题",
+    en: "Bible study — text, history & theology",
+  },
 }
 
 // Group posts by category, count them
@@ -53,6 +89,7 @@ const entries = Object.entries(categories)
     {
       entries.map(([cat, info]) => {
         const name = categoryNames[cat] ?? { zh: cat, en: "" }
+        const desc = categoryDescriptions[cat]
         return (
           <a
             href={`/blog/${cat}`}
@@ -62,6 +99,15 @@ const entries = Object.entries(categories)
             {name.en && (
               <span class="text-sm text-[var(--glass-text-muted)] font-mono">{name.en}</span>
             )}
+            {
+              desc && (
+                <p class="text-xs text-[var(--glass-text-secondary)] mt-2 leading-relaxed">
+                  <span>{desc.zh}</span>
+                  <br />
+                  <span class="italic">{desc.en}</span>
+                </p>
+              )
+            }
             <p class="text-sm text-[var(--glass-text-secondary)] mt-2">
               {info.count} 篇文章
             </p>
