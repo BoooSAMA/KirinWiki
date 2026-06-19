@@ -1,6 +1,6 @@
 ---
 title: "Day 24 — 文章排版优化 + 左侧目录导航栏"
-date: 2026-06-19
+date: 2026-06-20
 tags: ["typography", "TOC", "UX", "CSS", "JavaScript", "refactoring"]
 summary: "移除无效的 prose 类，自定义文章排版样式（行距2.0、标题间距、代码块/引用/表格样式）；客户端动态生成左侧 fixed 目录栏，支持毛玻璃背景、层级缩进、滚动高亮"
 description: "修复了两个问题：1) 项目使用 Tailwind 的 prose 类但未安装 @tailwindcss/typography 插件，导致文章排版完全依赖浏览器默认样式，阅读体验差；2) 为长文章添加可跳转的左侧目录栏。方案上用自定义 .article-content 替换 prose，避免引入外部依赖；TOC 用客户端 JS 动态扫描 heading 生成，fixed 定位不占文档流，配合毛玻璃背景和滚动高亮。"
