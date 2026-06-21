@@ -1,553 +1,1324 @@
 [
   {
-    "name": "不万能的喜剧",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E4%B8%8D%E4%B8%87%E8%83%BD%E7%9A%84%E5%96%9C%E5%89%A7.mp3",
+    "name": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/01%20Nirvana%20-%20Smells%20Like%20Teen%20Spirit.mp3",
     "cover": ""
   },
   {
-    "name": "十万嬉皮",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%8D%81%E4%B8%87%E5%AC%89%E7%9A%AE.mp3",
+    "name": "In Bloom (Nevermind Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/02%20Nirvana%20-%20In%20Bloom%20%28Nevermind%20Version%29.mp3",
     "cover": ""
   },
   {
-    "name": "在这颗行星所有的酒馆",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%9C%A8%E8%BF%99%E9%A2%97%E8%A1%8C%E6%98%9F%E6%89%80%E6%9C%89%E7%9A%84%E9%85%92%E9%A6%86.mp3",
+    "name": "Come As You Are",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/03%20Nirvana%20-%20Come%20As%20You%20Are.mp3",
     "cover": ""
   },
   {
-    "name": "大石碎胸口",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%A4%A7%E7%9F%B3%E7%A2%8E%E8%83%B8%E5%8F%A3.mp3",
+    "name": "Lithium",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/05%20Nirvana%20-%20Lithium.mp3",
     "cover": ""
   },
   {
-    "name": "揪心的玩笑与漫长的白日梦",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%8F%AA%E5%BF%83%E7%9A%84%E7%8E%A9%E7%AC%91%E4%B8%8E%E6%BC%AB%E9%95%BF%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6.mp3",
+    "name": "Polly (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/06%20Nirvana%20-%20Polly%20%28Album%20Version%29.mp3",
     "cover": ""
   },
   {
-    "name": "杀死那个石家庄人",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%9D%80%E6%AD%BB%E9%82%A3%E4%B8%AA%E7%9F%B3%E5%AE%B6%E5%BA%84%E4%BA%BA.mp3",
+    "name": "Territorial Pissings (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/07%20Nirvana%20-%20Territorial%20Pissings%20%28Album%20Version%29.mp3",
     "cover": ""
   },
   {
-    "name": "洋鸟消夏录",
-    "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%B4%8B%E9%B8%9F%E6%B6%88%E5%A4%8F%E5%BD%95.mp3",
+    "name": "Drain You (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/08%20Nirvana%20-%20Drain%20You%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Lounge Act (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/09%20Nirvana%20-%20Lounge%20Act%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Stay Away (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/10%20Nirvana%20-%20Stay%20Away%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "On A Plain (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/11%20Nirvana%20-%20On%20A%20Plain%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Something In The Way (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/12%20Nirvana%20-%20Something%20In%20The%20Way%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Endless, Nameless (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/13%20Nirvana%20-%20Endless%2C%20Nameless%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Breed",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "https://music.myproxy2.cc.cd/Nirvana/Nevermind/Nirvana%20-%20Breed.mp3",
     "cover": ""
   },
   {
     "name": "狗尿馆",
     "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E7%8B%97%E5%B0%BF%E9%A6%86.mp3",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/01.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E7%8B%97%E5%B0%BF%E9%A6%86.mp3",
+    "cover": ""
+  },
+  {
+    "name": "不万能的喜剧",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/02.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E4%B8%8D%E4%B8%87%E8%83%BD%E7%9A%84%E5%96%9C%E5%89%A7.mp3",
+    "cover": ""
+  },
+  {
+    "name": "揪心的玩笑与漫长的白日梦",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/03.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%8F%AA%E5%BF%83%E7%9A%84%E7%8E%A9%E7%AC%91%E4%B8%8E%E6%BC%AB%E9%95%BF%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6.mp3",
+    "cover": ""
+  },
+  {
+    "name": "大石碎胸口",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/04.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%A4%A7%E7%9F%B3%E7%A2%8E%E8%83%B8%E5%8F%A3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "洋鸟消夏录",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/05.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%B4%8B%E9%B8%9F%E6%B6%88%E5%A4%8F%E5%BD%95.mp3",
     "cover": ""
   },
   {
     "name": "秦皇岛",
     "artist": "万能青年旅店",
-    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E7%A7%A6%E7%9A%87%E5%B2%9B.mp3",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/06.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E7%A7%A6%E7%9A%87%E5%B2%9B.mp3",
     "cover": ""
   },
   {
-    "name": "OSCA",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20OSCA%20%281%29.mp3",
+    "name": "十万嬉皮",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/07.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%8D%81%E4%B8%87%E5%AC%89%E7%9A%AE.mp3",
     "cover": ""
   },
   {
-    "name": "うるうるうるう",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%20%281%29.mp3",
+    "name": "在这颗行星所有的酒馆",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/08.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%9C%A8%E8%BF%99%E9%A2%97%E8%A1%8C%E6%98%9F%E6%89%80%E6%9C%89%E7%9A%84%E9%85%92%E9%A6%86.mp3",
     "cover": ""
   },
   {
-    "name": "ただならぬ関係",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%9F%E3%81%A0%E3%81%AA%E3%82%89%E3%81%AC%E9%96%A2%E4%BF%82%20%281%29.mp3",
+    "name": "杀死那个石家庄人",
+    "artist": "万能青年旅店",
+    "album": "万能青年旅店",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97/09.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%9D%80%E6%AD%BB%E9%82%A3%E4%B8%AA%E7%9F%B3%E5%AE%B6%E5%BA%84%E4%BA%BA.mp3",
     "cover": ""
   },
   {
-    "name": "キラーチューン",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%AD%E3%83%A9%E3%83%BC%E3%83%81%E3%83%A5%E3%83%BC%E3%83%B3%20%281%29.mp3",
+    "name": "早",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/1.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%97%A9.mp3",
     "cover": ""
   },
   {
-    "name": "スーパースター",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%281%29.mp3",
+    "name": "泥河",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/2.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%B3%A5%E6%B2%B3.mp3",
     "cover": ""
   },
   {
-    "name": "ドーパミント！",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%83%89%E3%83%BC%E3%83%91%E3%83%9F%E3%83%B3%E3%83%88%20%281%29.mp3",
+    "name": "平等云雾",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/3.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%B9%B3%E7%AD%89%E4%BA%91%E9%9B%BE.mp3",
     "cover": ""
   },
   {
-    "name": "今夜はから騒ぎ",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8A%E5%A4%9C%E3%81%AF%E3%81%8B%E3%82%89%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "name": "采石",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/4.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E9%87%87%E7%9F%B3.mp3",
     "cover": ""
   },
   {
-    "name": "仏だけ徒歩",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8F%E3%81%A0%E3%81%91%E5%BE%92%E6%AD%A9%20%281%29.mp3",
+    "name": "山雀",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/5.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E5%B1%B1%E9%9B%80.mp3",
     "cover": ""
   },
   {
-    "name": "修羅場",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BF%AE%E7%BE%85%E5%A0%B4%20%281%29.mp3",
+    "name": "绕越",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/6.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E7%BB%95%E8%B6%8A.mp3",
     "cover": ""
   },
   {
-    "name": "勝ち戦",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8B%9D%E3%81%A1%E6%88%A6%20%281%29.mp3",
+    "name": "河北墨麒麟",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/7.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E6%B2%B3%E5%8C%97%E5%A2%A8%E9%BA%92%E9%BA%9F.mp3",
     "cover": ""
   },
   {
-    "name": "原罪と福音",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8E%9F%E7%BD%AA%E3%81%A8%E7%A6%8F%E9%9F%B3%20%281%29.mp3",
+    "name": "郊眠寺",
+    "artist": "万能青年旅店",
+    "album": "冀西南林路行",
+    "url": "https://music.myproxy2.cc.cd/%E4%B8%87%E9%9D%92/%E5%86%80%E8%A5%BF%E5%8D%97%E6%9E%97%E8%B7%AF%E8%A1%8C/8.%E4%B8%87%E8%83%BD%E9%9D%92%E5%B9%B4%E6%97%85%E5%BA%97%20-%20%E9%83%8A%E7%9C%A0%E5%AF%BA.mp3",
     "cover": ""
   },
   {
-    "name": "夢のあと",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A2%E3%81%AE%E3%81%82%E3%81%A8%20%281%29.mp3",
+    "name": "Wait & See -Risk-",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/01%20Utada%20Hikaru%20-%20Wait%20%20%20See%20-Risk-.mp3",
     "cover": ""
   },
   {
-    "name": "天国へようこそ",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A9%E5%9B%BD%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D%20%281%29.mp3",
+    "name": "Can You Keep A Secret?",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/02%20Utada%20Hikaru%20-%20Can%20You%20Keep%20A%20Secret.mp3",
     "cover": ""
   },
   {
-    "name": "女の子は誰でも",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A5%B3%E3%81%AE%E5%AD%90%E3%81%AF%E8%AA%B0%E3%81%A7%E3%82%82%20%281%29.mp3",
+    "name": "Distance",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/03%20Utada%20Hikaru%20-%20Distance.mp3",
     "cover": ""
   },
   {
-    "name": "御祭騒ぎ",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%BE%A1%E7%A5%AD%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "name": "Sunglasses",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/04%20Utada%20Hikaru%20-%20Sunglasses.mp3",
     "cover": ""
   },
   {
-    "name": "新しい文明開化",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%96%B0%E3%81%97%E3%81%84%E6%96%87%E6%98%8E%E9%96%8B%E5%8C%96%20%281%29.mp3",
+    "name": "Drama",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/05%20Utada%20Hikaru%20-%20Drama.mp3",
     "cover": ""
   },
   {
-    "name": "某都民",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%9F%90%E9%83%BD%E6%B0%91%20%281%29.mp3",
+    "name": "Eternally",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/06%20Utada%20Hikaru%20-%20Eternally.mp3",
     "cover": ""
   },
   {
-    "name": "永遠の不在証明",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%B0%B8%E9%81%A0%E3%81%AE%E4%B8%8D%E5%9C%A8%E8%A8%BC%E6%98%8E%20%281%29.mp3",
+    "name": "Addicted To You (Up-In-Heaven Mix)",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/07%20Utada%20Hikaru%20-%20Addicted%20To%20You%20%28Up-In-Heaven%20Mix%29.mp3",
     "cover": ""
   },
   {
-    "name": "生きる",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%94%9F%E3%81%8D%E3%82%8B%20%281%29.mp3",
+    "name": "For You",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/08%20Utada%20Hikaru%20-%20For%20You.mp3",
     "cover": ""
   },
   {
-    "name": "秘密",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A7%98%E5%AF%86%20%281%29.mp3",
+    "name": "Kettobase!",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/09%20Utada%20Hikaru%20-%20Kettobase%21.mp3",
     "cover": ""
   },
   {
-    "name": "空が鳴っている",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A9%BA%E3%81%8C%E9%B3%B4%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%20%281%29.mp3",
+    "name": "Parody",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/10%20Utada%20Hikaru%20-%20Parody.mp3",
     "cover": ""
   },
   {
-    "name": "緑酒",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%B7%91%E9%85%92%20%281%29.mp3",
+    "name": "Time Limit",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/11%20Utada%20Hikaru%20-%20Time%20Limit.mp3",
     "cover": ""
   },
   {
-    "name": "群青日和",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%BE%A4%E9%9D%92%E6%97%A5%E5%92%8C%20%281%29.mp3",
+    "name": "Kotoba Ni Naranai Kimochi",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/12%20Utada%20Hikaru%20-%20Kotoba%20Ni%20Naranai%20Kimochi.mp3",
     "cover": ""
   },
   {
-    "name": "能動的三分間",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%83%BD%E5%8B%95%E7%9A%84%E4%B8%89%E5%88%86%E9%96%93%20%281%29.mp3",
+    "name": "Hayatochi-Remix",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/13%20Utada%20Hikaru%20-%20Hayatochi-Remix.mp3",
     "cover": ""
   },
   {
-    "name": "落日",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%90%BD%E6%97%A5%20%281%29.mp3",
+    "name": "Hayatochiri",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/14%20Utada%20Hikaru%20-%20Hayatochiri.mp3",
     "cover": ""
   },
   {
-    "name": "赤の同盟",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%B5%A4%E3%81%AE%E5%90%8C%E7%9B%9F%20%281%29.mp3",
+    "name": "Automatic",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/01%20Utada%20Hikaru%20-%20Automatic.mp3",
     "cover": ""
   },
   {
-    "name": "透明人間",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%80%8F%E6%98%8E%E4%BA%BA%E9%96%93%20%281%29.mp3",
+    "name": "Movin' On Without You",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/02%20Utada%20Hikaru%20-%20Movin%27%20On%20Without%20You.mp3",
     "cover": ""
   },
   {
-    "name": "遭難",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%AD%E9%9B%A3%20%281%29.mp3",
+    "name": "In My Room",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/03%20Utada%20Hikaru%20-%20In%20My%20Room.mp3",
     "cover": ""
   },
   {
-    "name": "選ばれざる国民",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%B8%E3%81%B0%E3%82%8C%E3%81%96%E3%82%8B%E5%9B%BD%E6%B0%91%20%281%29.mp3",
+    "name": "First Love",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/04%20Utada%20Hikaru%20-%20First%20Love.mp3",
     "cover": ""
   },
   {
-    "name": "閃光少女",
-    "artist": "東京事変",
-    "url": "https://music.myproxy2.cc.cd/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%96%83%E5%85%89%E5%B0%91%E5%A5%B3%20%281%29.mp3",
+    "name": "Amai Wana - Paint It, Black",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/05%20Utada%20Hikaru%20-%20Amai%20Wana%20-%20Paint%20It%2C%20Black.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Time Will Tell",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/06%20Utada%20Hikaru%20-%20Time%20Will%20Tell.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Never Let Go",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/07%20Utada%20Hikaru%20-%20Never%20Let%20Go.mp3",
+    "cover": ""
+  },
+  {
+    "name": "B & C",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/08%20Utada%20Hikaru%20-%20B%20%26%20C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Another Chance",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/09%20Utada%20Hikaru%20-%20Another%20Chance.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Interlude",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/10%20Utada%20Hikaru%20-%20Interlude.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Give Me A Reason",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/11%20Utada%20Hikaru%20-%20Give%20Me%20A%20Reason.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Automatic (Johnny Vicious Remix)",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "https://music.myproxy2.cc.cd/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/12%20Utada%20Hikaru%20-%20Automatic%20%28Johnny%20Vicious%20Remix%29.mp3",
     "cover": ""
   },
   {
     "name": "多些那些…",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/1.%E5%A4%9A%E4%BA%9B%E9%82%A3%E4%BA%9B%20-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "决心",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/10.%E5%86%B3%E5%BF%83-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "芝加哥的故事",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/2.%E8%8A%9D%E5%8A%A0%E5%93%A5%E7%9A%84%E6%95%85%E4%BA%8B-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "谁像你好",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/3.%E8%B0%81%E5%83%8F%E4%BD%A0%E5%A5%BD-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "对不起了爱",
-    "artist": "林忆莲 伦永亮",
+    "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/4.%E5%AF%B9%E4%B8%8D%E8%B5%B7%E4%BA%86%E7%88%B1-%E6%9E%97%E5%BF%86%E8%8E%B2%20%E4%BC%A6%E6%B0%B8%E4%BA%AE.flac",
     "cover": ""
   },
   {
     "name": "决心 (Remix)",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/5.%E5%86%B3%E5%BF%83%20%28Remix%29-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "赤裸的秘密",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/6.%E8%B5%A4%E8%A3%B8%E7%9A%84%E7%A7%98%E5%AF%86-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "沉沦",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/7.%E6%B2%89%E6%B2%A6-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "感情不老",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/8.%E6%84%9F%E6%83%85%E4%B8%8D%E8%80%81-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "明天醒来时…",
     "artist": "林忆莲",
+    "album": "94 Sandy",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/9.%E6%98%8E%E5%A4%A9%E9%86%92%E6%9D%A5%E6%97%B6%20-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Go For It!",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Go%20For%20It%21-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Heart Beat",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Heart%20Beat-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "I'll Never Forget You",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/I%20ll%20Never%20Forget%20You-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Never Give Up On Love",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Never%20Give%20Up%20On%20Love-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Pieces Of Mind",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Pieces%20Of%20Mind-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Remember",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Remember-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Rememeber (Overtrue)",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Rememeber%20%28Overtrue%29-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Steal A Kiss",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Steal%20A%20Kiss-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "Tokyo Gray Line",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/Tokyo%20Gray%20Line-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "大好きな人生",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/%E5%A4%A7%E5%A5%BD%E3%81%8D%E3%81%AA%E4%BA%BA%E7%94%9F-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "看吧",
     "artist": "林忆莲",
+    "album": "Open Up",
     "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/Open%20Up/%E7%9C%8B%E5%90%A7-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "WILDFLOWER (OVERTURE)",
     "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/WILDFLOWER%20%28OVERTURE%29-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "一辈子心情",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E4%B8%80%E8%BE%88%E5%AD%90%E5%BF%83%E6%83%85-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "再生恋",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E5%86%8D%E7%94%9F%E6%81%8B-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "只要我活过哭过 (Reprise)",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E5%8F%AA%E8%A6%81%E6%88%91%E6%B4%BB%E8%BF%87%E5%93%AD%E8%BF%87%20%28Reprise%29-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "只要我活过哭过",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E5%8F%AA%E8%A6%81%E6%88%91%E6%B4%BB%E8%BF%87%E5%93%AD%E8%BF%87-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "夜来香",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E5%A4%9C%E6%9D%A5%E9%A6%99-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "没有你 还是爱你",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E6%B2%A1%E6%9C%89%E4%BD%A0%20%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "没有发生的爱情",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E6%B2%A1%E6%9C%89%E5%8F%91%E7%94%9F%E7%9A%84%E7%88%B1%E6%83%85-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "花之色",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E8%8A%B1%E4%B9%8B%E8%89%B2-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
-    "name": "蔷薇之恋",
-    "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E8%94%B7%E8%96%87%E4%B9%8B%E6%81%8B-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/01.WILDFLOWER%20%28OVERTURE%29%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
     "name": "野花",
     "artist": "林忆莲",
-    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E9%87%8E%E8%8A%B1-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/02.%E9%87%8E%E8%8A%B1%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "一辈子心情",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/03.%E4%B8%80%E8%BE%88%E5%AD%90%E5%BF%83%E6%83%85%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "花之色",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/04.%E8%8A%B1%E4%B9%8B%E8%89%B2%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "夜来香",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/05.%E5%A4%9C%E6%9D%A5%E9%A6%99%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "蔷薇之恋",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/06.%E8%94%B7%E8%96%87%E4%B9%8B%E6%81%8B%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "再生恋",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/07.%E5%86%8D%E7%94%9F%E6%81%8B%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "没有发生的爱情",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/08.%E6%B2%A1%E6%9C%89%E5%8F%91%E7%94%9F%E7%9A%84%E7%88%B1%E6%83%85%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "没有你 还是爱你",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/09.%E6%B2%A1%E6%9C%89%E4%BD%A0%20%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "只要我活过哭过",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/10.%E5%8F%AA%E8%A6%81%E6%88%91%E6%B4%BB%E8%BF%87%E5%93%AD%E8%BF%87%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "只要我活过哭过 (Reprise)",
+    "artist": "林忆莲",
+    "album": "野花",
+    "url": "https://music.myproxy2.cc.cd/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/11.%E5%8F%AA%E8%A6%81%E6%88%91%E6%B4%BB%E8%BF%87%E5%93%AD%E8%BF%87%20%28Reprise%29%20-%20%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "凡才肌",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/1.%E5%87%A1%E6%89%8D%E8%82%8C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "旬",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/10.%E6%97%AC.mp3",
+    "cover": ""
+  },
+  {
+    "name": "尖った手口",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/11.%E5%B0%96%E3%81%A3%E3%81%9F%E6%89%8B%E5%8F%A3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "都合のいい身体",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/12.%E9%83%BD%E5%90%88%E3%81%AE%E3%81%84%E3%81%84%E8%BA%AB%E4%BD%93.mp3",
+    "cover": ""
+  },
+  {
+    "name": "余興",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/13.%E4%BD%99%E8%88%88.mp3",
+    "cover": ""
+  },
+  {
+    "name": "あたしは零地点から",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/14.%E3%81%82%E3%81%9F%E3%81%97%E3%81%AF%E9%9B%B6%E5%9C%B0%E7%82%B9%E3%81%8B%E3%82%89.mp3",
+    "cover": ""
+  },
+  {
+    "name": "二人ぼっち時間",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/2.%E4%BA%8C%E4%BA%BA%E3%81%BC%E3%81%A3%E3%81%A1%E6%99%82%E9%96%93.mp3",
+    "cover": ""
+  },
+  {
+    "name": "色恋沙汰",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/3.%E8%89%B2%E6%81%8B%E6%B2%99%E6%B1%B0.mp3",
+    "cover": ""
+  },
+  {
+    "name": "カリソメ乙女",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/4.%E3%82%AB%E3%83%AA%E3%82%BD%E3%83%A1%E4%B9%99%E5%A5%B3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "丸ノ内サディスティック",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/5.%E4%B8%B8%E3%83%8E%E5%86%85%E3%82%B5%E3%83%87%E3%82%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF.mp3",
+    "cover": ""
+  },
+  {
+    "name": "マヤカシ優男",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/6.%E3%83%9E%E3%83%A4%E3%82%AB%E3%82%B7%E5%84%AA%E7%94%B7.mp3",
+    "cover": ""
+  },
+  {
+    "name": "密偵物語",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/7.%E5%AF%86%E5%81%B5%E7%89%A9%E8%AA%9E.mp3",
+    "cover": ""
+  },
+  {
+    "name": "労働者",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/8.%E5%8A%B4%E5%83%8D%E8%80%85.mp3",
+    "cover": ""
+  },
+  {
+    "name": "流行",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/9.%E6%B5%81%E8%A1%8C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "虚言症",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/1.%E8%99%9A%E8%A8%80%E7%97%87.flac",
+    "cover": ""
+  },
+  {
+    "name": "サカナ",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/10.%E3%82%B5%E3%82%AB%E3%83%8A.flac",
+    "cover": ""
+  },
+  {
+    "name": "病床パブリック",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/11.%E7%97%85%E5%BA%8A%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF.flac",
+    "cover": ""
+  },
+  {
+    "name": "本能",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/12.%E6%9C%AC%E8%83%BD.flac",
+    "cover": ""
+  },
+  {
+    "name": "依存症",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/13.%E4%BE%9D%E5%AD%98%E7%97%87.flac",
+    "cover": ""
+  },
+  {
+    "name": "弁解ドビュッシー",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/3.%E5%BC%81%E8%A7%A3%E3%83%89%E3%83%93%E3%83%A5%E3%83%83%E3%82%B7%E3%83%BC.flac",
+    "cover": ""
+  },
+  {
+    "name": "ギブス",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/4.%E3%82%AE%E3%83%96%E3%82%B9.flac",
+    "cover": ""
+  },
+  {
+    "name": "闇に降る雨",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/5.%E9%97%87%E3%81%AB%E9%99%8D%E3%82%8B%E9%9B%A8.flac",
+    "cover": ""
+  },
+  {
+    "name": "アイデンティティ",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/6.%E3%82%A2%E3%82%A4%E3%83%87%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3.flac",
+    "cover": ""
+  },
+  {
+    "name": "罪と罰",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/7.%E7%BD%AA%E3%81%A8%E7%BD%B0.flac",
+    "cover": ""
+  },
+  {
+    "name": "ストイシズム",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/8.%E3%82%B9%E3%83%88%E3%82%A4%E3%82%B7%E3%82%BA%E3%83%A0.flac",
+    "cover": ""
+  },
+  {
+    "name": "月に負け犬",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/9.%E6%9C%88%E3%81%AB%E8%B2%A0%E3%81%91%E7%8A%AC.flac",
+    "cover": ""
+  },
+  {
+    "name": "OSCA",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20OSCA%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "うるうるうるう",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ただならぬ関係",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%9F%E3%81%A0%E3%81%AA%E3%82%89%E3%81%AC%E9%96%A2%E4%BF%82%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "キラーチューン",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%AD%E3%83%A9%E3%83%BC%E3%83%81%E3%83%A5%E3%83%BC%E3%83%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "スーパースター",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ドーパミント",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%83%89%E3%83%BC%E3%83%91%E3%83%9F%E3%83%B3%E3%83%88%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "今夜はから騒ぎ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8A%E5%A4%9C%E3%81%AF%E3%81%8B%E3%82%89%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "仏だけ徒歩",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8F%E3%81%A0%E3%81%91%E5%BE%92%E6%AD%A9%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "修羅場",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BF%AE%E7%BE%85%E5%A0%B4%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "勝ち戦",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8B%9D%E3%81%A1%E6%88%A6%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "原罪と福音",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8E%9F%E7%BD%AA%E3%81%A8%E7%A6%8F%E9%9F%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "夢のあと",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A2%E3%81%AE%E3%81%82%E3%81%A8%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "天国へようこそ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A9%E5%9B%BD%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "女の子は誰でも",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A5%B3%E3%81%AE%E5%AD%90%E3%81%AF%E8%AA%B0%E3%81%A7%E3%82%82%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "御祭騒ぎ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%BE%A1%E7%A5%AD%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "新しい文明開化",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%96%B0%E3%81%97%E3%81%84%E6%96%87%E6%98%8E%E9%96%8B%E5%8C%96%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "某都民",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%9F%90%E9%83%BD%E6%B0%91%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "永遠の不在証明",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%B0%B8%E9%81%A0%E3%81%AE%E4%B8%8D%E5%9C%A8%E8%A8%BC%E6%98%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "生きる",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%94%9F%E3%81%8D%E3%82%8B%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "秘密",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A7%98%E5%AF%86%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "空が鳴っている",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A9%BA%E3%81%8C%E9%B3%B4%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "緑酒",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%B7%91%E9%85%92%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "群青日和",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%BE%A4%E9%9D%92%E6%97%A5%E5%92%8C%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "能動的三分間",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%83%BD%E5%8B%95%E7%9A%84%E4%B8%89%E5%88%86%E9%96%93%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "落日",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%90%BD%E6%97%A5%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "赤の同盟",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%B5%A4%E3%81%AE%E5%90%8C%E7%9B%9F%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "透明人間",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%80%8F%E6%98%8E%E4%BA%BA%E9%96%93%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "遭難",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%AD%E9%9B%A3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "選ばれざる国民",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%B8%E3%81%B0%E3%82%8C%E3%81%96%E3%82%8B%E5%9B%BD%E6%B0%91%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "閃光少女",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%96%83%E5%85%89%E5%B0%91%E5%A5%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Nippon",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/1.Nippon.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Manipulate The Time",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/10.Manipulate%20The%20Time.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Present",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/11.Present.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Quiet Counterattack",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/12.Quiet%20Counterattack.mp3",
+    "cover": ""
+  },
+  {
+    "name": "To That Ocean Of Trees",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/13.To%20That%20Ocean%20Of%20Trees.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ありあまる富",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/2.%E3%81%82%E3%82%8A%E3%81%82%E3%81%BE%E3%82%8B%E5%AF%8C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ありきたりな女",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/3.%E3%81%82%E3%82%8A%E3%81%8D%E3%81%9F%E3%82%8A%E3%81%AA%E5%A5%B3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "カーネーション",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/4.%E3%82%AB%E3%83%BC%E3%83%8D%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Cruzar A Linha Do Equador",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/5.Cruzar%20A%20Linha%20Do%20Equador.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Flight JL005",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/6.Flight%20JL005.mp3",
+    "cover": ""
+  },
+  {
+    "name": "いろはにほへと",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/7.%E3%81%84%E3%82%8D%E3%81%AF%E3%81%AB%E3%81%BB%E3%81%B8%E3%81%A8.mp3",
+    "cover": ""
+  },
+  {
+    "name": "自由へ道連れ",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/8.%E8%87%AA%E7%94%B1%E3%81%B8%E9%81%93%E9%80%A3%E3%82%8C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ラ・ソリチュード・ド・ローブ",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/9.%E3%83%A9%E3%83%BB%E3%82%BD%E3%83%AA%E3%83%81%E3%83%A5%E3%83%BC%E3%83%89%E3%83%BB%E3%83%89%E3%83%BB%E3%83%AD%E3%83%BC%E3%83%96.mp3",
+    "cover": ""
+  },
+  {
+    "name": "正しい街",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/1.%E6%AD%A3%E3%81%97%E3%81%84%E8%A1%97.flac",
+    "cover": ""
+  },
+  {
+    "name": "警告",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/10.%E8%AD%A6%E5%91%8A.flac",
+    "cover": ""
+  },
+  {
+    "name": "モルヒネ",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/11.%E3%83%A2%E3%83%AB%E3%83%92%E3%83%8D.flac",
+    "cover": ""
+  },
+  {
+    "name": "歌舞伎町の女王",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/2.%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA%E3%81%AE%E5%A5%B3%E7%8E%8B.flac",
+    "cover": ""
+  },
+  {
+    "name": "丸の内サディスティック",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/3.%E4%B8%B8%E3%81%AE%E5%86%85%E3%82%B5%E3%83%87%E3%82%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF.flac",
+    "cover": ""
+  },
+  {
+    "name": "幸福論 (悦楽編)",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/4.%E5%B9%B8%E7%A6%8F%E8%AB%96%20%28%E6%82%A6%E6%A5%BD%E7%B7%A8%29.flac",
+    "cover": ""
+  },
+  {
+    "name": "茜さす 帰路照らされど…",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/5.%E8%8C%9C%E3%81%95%E3%81%99%20%E5%B8%B0%E8%B7%AF%E7%85%A7%E3%82%89%E3%81%95%E3%82%8C%E3%81%A9%E2%80%A6.flac",
+    "cover": ""
+  },
+  {
+    "name": "シドと白昼夢",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/6.%E3%82%B7%E3%83%89%E3%81%A8%E7%99%BD%E6%98%BC%E5%A4%A2.flac",
+    "cover": ""
+  },
+  {
+    "name": "積木遊び",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/7.%E7%A9%8D%E6%9C%A8%E9%81%8A%E3%81%B3.flac",
+    "cover": ""
+  },
+  {
+    "name": "ここでキスして。",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/8.%E3%81%93%E3%81%93%E3%81%A7%E3%82%AD%E3%82%B9%E3%81%97%E3%81%A6%E3%80%82.flac",
+    "cover": ""
+  },
+  {
+    "name": "同じ夜",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "https://music.myproxy2.cc.cd/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/9.%E5%90%8C%E3%81%98%E5%A4%9C.flac",
     "cover": ""
   },
   {
     "name": "会不会",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E4%BC%9A%E4%B8%8D%E4%BC%9A.flac",
     "cover": ""
   },
   {
     "name": "和你在一起",
     "artist": "陈绮贞",
+    "album": "滚石香港黄金十年 陈绮贞精选",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%92%8C%E4%BD%A0%E5%9C%A8%E4%B8%80%E8%B5%B7.flac",
     "cover": ""
   },
   {
     "name": "天使",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%A4%A9%E4%BD%BF.flac",
     "cover": ""
   },
   {
     "name": "嫉妒",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%AB%89%E5%A6%92.flac",
     "cover": ""
   },
   {
     "name": "孤岛",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%AD%A4%E5%B2%9B.flac",
     "cover": ""
   },
   {
     "name": "孩子",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%AD%A9%E5%AD%90.flac",
     "cover": ""
   },
   {
     "name": "微凉的你",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%BE%AE%E5%87%89%E7%9A%84%E4%BD%A0.flac",
     "cover": ""
   },
   {
     "name": "情歌",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%83%85%E6%AD%8C.flac",
     "cover": ""
   },
   {
     "name": "漫漫长夜",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%BC%AB%E6%BC%AB%E9%95%BF%E5%A4%9C.flac",
     "cover": ""
   },
   {
     "name": "让我想一想",
     "artist": "陈绮贞",
+    "album": "让我想一想",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3.flac",
     "cover": ""
   },
   {
     "name": "下午三点",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E4%B8%8B%E5%8D%88%E4%B8%89%E7%82%B9.flac",
     "cover": ""
   },
   {
     "name": "午餐的约会",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%8D%88%E9%A4%90%E7%9A%84%E7%BA%A6%E4%BC%9A.flac",
     "cover": ""
   },
   {
     "name": "告诉我",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%91%8A%E8%AF%89%E6%88%91.flac",
     "cover": ""
   },
   {
     "name": "慢歌1",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%85%A2%E6%AD%8C1.flac",
     "cover": ""
   },
   {
     "name": "慢歌3",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%85%A2%E6%AD%8C3.flac",
     "cover": ""
   },
   {
     "name": "我的骄傲无可救药",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%88%91%E7%9A%84%E9%AA%84%E5%82%B2%E6%97%A0%E5%8F%AF%E6%95%91%E8%8D%AF.flac",
     "cover": ""
   },
   {
     "name": "温室花朵",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E6%B8%A9%E5%AE%A4%E8%8A%B1%E6%9C%B5.flac",
     "cover": ""
   },
   {
     "name": "灵感",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E7%81%B5%E6%84%9F.flac",
     "cover": ""
   },
   {
     "name": "等待",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E7%AD%89%E5%BE%85.flac",
     "cover": ""
   },
   {
     "name": "越洋电话",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E8%B6%8A%E6%B4%8B%E7%94%B5%E8%AF%9D.flac",
     "cover": ""
   },
   {
     "name": "还是会寂寞",
     "artist": "陈绮贞",
+    "album": "还是会寂寞",
     "url": "https://music.myproxy2.cc.cd/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E8%BF%98%E6%98%AF%E4%BC%9A%E5%AF%82%E5%AF%9E.flac",
     "cover": ""
   }
