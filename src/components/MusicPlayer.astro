@@ -343,28 +343,36 @@
   /* ===== 加载歌单 ===== */
   async function loadPlaylist() {
     const ts = Date.now();
-    let res = await fetch('/music/playlist.json?' + ts);
+    // 生产优先: playlist.r2.json 已有正确的 R2 全量 URL
+    // 回退:     playlist.json + 浏览器端 URL 重写
+    let res = await fetch('/music/playlist.r2.json?' + ts);
     if (!res.ok) {
-      res = await fetch('/music/playlist.r2.json?' + ts);
+      res = await fetch('/music/playlist.json?' + ts);
     }
     if (!res.ok) throw new Error('歌单加载失败');
-    return res.json();
+
+    const songs = await res.json();
+
+    // 如果加载的是 playlist.json（本地开发），仍然做 URL 重写
+    if (res.url.includes('playlist.json') && !res.url.includes('playlist.r2.json')) {
+      const isProd = import.meta.env.PROD;
+      const r2Base = 'https://music.myproxy2.cc.cd/';
+      if (isProd) {
+        for (const s of songs) {
+          if (s.url && s.url.startsWith('/music/audio/')) {
+            s.url = r2Base + s.url.slice('/music/audio/'.length);
+          }
+        }
+      }
+    }
+
+    return songs;
   }
 
   loadPlaylist().then(songs => {
     if (!songs || songs.length === 0) return;
 
-    // 生产环境将本地 URL 转 R2 URL
-    const isProd = import.meta.env.PROD;
-    if (isProd) {
-      const r2Base = 'https://music.myproxy2.cc.cd/';
-      for (const s of songs) {
-        if (s.url && s.url.startsWith('/music/audio/')) {
-          s.url = r2Base + s.url.slice('/music/audio/'.length);
-        }
-      }
-    }
-
+    // URL 已在 loadPlaylist() 中处理好，这里直接使用
     state.songs = songs;
     state.tree = buildTree(songs);
 
