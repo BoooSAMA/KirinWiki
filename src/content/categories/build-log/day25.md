@@ -1,6 +1,6 @@
 ---
 title: "Day 25 — 播放器持久化与 View Transitions 的兼容之战"
-date: 2026-06-22
+date: 2026-06-21
 tags: ["Debug", "View Transitions", "DOM", "R2", "Music Library"]
 description: "修复播放器三连 bug（浏览器后退失效、页面切换累积 UI、URL不更新），根因直指一个空字符串的 persist-id。R2 重传 189 首。音乐库大整理：東京事変独立、专辑排序、元数据修复。"
 ---
