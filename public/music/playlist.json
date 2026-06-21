@@ -308,6 +308,27 @@
     "cover": ""
   },
   {
+    "name": "Automatic",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/01%20Utada%20Hikaru%20-%20Automatic.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Movin' On Without You",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/02%20Utada%20Hikaru%20-%20Movin%27%20On%20Without%20You.mp3",
+    "cover": ""
+  },
+  {
+    "name": "In My Room",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/03%20Utada%20Hikaru%20-%20In%20My%20Room.mp3",
+    "cover": ""
+  },
+  {
     "name": "First Love",
     "artist": "宇多田光",
     "album": "First Love",
@@ -318,77 +339,56 @@
     "name": "Amai Wana - Paint It, Black",
     "artist": "宇多田光",
     "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Amai%20Wana%20-%20Paint%20It%2C%20Black.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Another Chance",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Another%20Chance.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Automatic (Johnny Vicious Remix)",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Automatic%20%28Johnny%20Vicious%20Remix%29.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Automatic",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Automatic.mp3",
-    "cover": ""
-  },
-  {
-    "name": "B & C",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20B%20%20%20C.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Give Me A Reason",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Give%20Me%20A%20Reason.mp3",
-    "cover": ""
-  },
-  {
-    "name": "In My Room",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20In%20My%20Room.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Interlude",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Interlude.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Movin' On Without You",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Movin%20%20On%20Without%20You.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Never Let Go",
-    "artist": "宇多田光",
-    "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Never%20Let%20Go.mp3",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/05%20Utada%20Hikaru%20-%20Amai%20Wana%20-%20Paint%20It%2C%20Black.mp3",
     "cover": ""
   },
   {
     "name": "Time Will Tell",
     "artist": "宇多田光",
     "album": "First Love",
-    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Time%20Will%20Tell.mp3",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/06%20Utada%20Hikaru%20-%20Time%20Will%20Tell.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Never Let Go",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/07%20Utada%20Hikaru%20-%20Never%20Let%20Go.mp3",
+    "cover": ""
+  },
+  {
+    "name": "B & C",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/08%20Utada%20Hikaru%20-%20B%20%26%20C.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Another Chance",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/09%20Utada%20Hikaru%20-%20Another%20Chance.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Interlude",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/10%20Utada%20Hikaru%20-%20Interlude.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Give Me A Reason",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/11%20Utada%20Hikaru%20-%20Give%20Me%20A%20Reason.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Automatic (Johnny Vicious Remix)",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/12%20Utada%20Hikaru%20-%20Automatic%20%28Johnny%20Vicious%20Remix%29.mp3",
     "cover": ""
   },
   {
