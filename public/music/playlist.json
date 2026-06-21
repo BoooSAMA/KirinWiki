@@ -1,5 +1,96 @@
 [
   {
+    "name": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/01%20Nirvana%20-%20Smells%20Like%20Teen%20Spirit.mp3",
+    "cover": ""
+  },
+  {
+    "name": "In Bloom (Nevermind Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/02%20Nirvana%20-%20In%20Bloom%20%28Nevermind%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Come As You Are",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/03%20Nirvana%20-%20Come%20As%20You%20Are.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Lithium",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/05%20Nirvana%20-%20Lithium.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Polly (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/06%20Nirvana%20-%20Polly%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Territorial Pissings (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/07%20Nirvana%20-%20Territorial%20Pissings%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Drain You (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/08%20Nirvana%20-%20Drain%20You%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Lounge Act (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/09%20Nirvana%20-%20Lounge%20Act%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Stay Away (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/10%20Nirvana%20-%20Stay%20Away%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "On A Plain (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/11%20Nirvana%20-%20On%20A%20Plain%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Something In The Way (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/12%20Nirvana%20-%20Something%20In%20The%20Way%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Endless, Nameless (Album Version)",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/13%20Nirvana%20-%20Endless%2C%20Nameless%20%28Album%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Breed",
+    "artist": "Nirvana",
+    "album": "Nevermind (Remastered)",
+    "url": "/music/audio/Nirvana/Nevermind/Nirvana%20-%20Breed.mp3",
+    "cover": ""
+  },
+  {
     "name": "不万能的喜剧",
     "artist": "万能青年旅店",
     "album": "万能青年旅店",
@@ -63,213 +154,185 @@
     "cover": ""
   },
   {
-    "name": "OSCA",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20OSCA%20%281%29.mp3",
+    "name": "Wait & See -Risk-",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/01%20Utada%20Hikaru%20-%20Wait%20%20%20See%20-Risk-.mp3",
     "cover": ""
   },
   {
-    "name": "うるうるうるう",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%20%281%29.mp3",
+    "name": "Can You Keep A Secret?",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/02%20Utada%20Hikaru%20-%20Can%20You%20Keep%20A%20Secret.mp3",
     "cover": ""
   },
   {
-    "name": "ただならぬ関係",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%9F%E3%81%A0%E3%81%AA%E3%82%89%E3%81%AC%E9%96%A2%E4%BF%82%20%281%29.mp3",
+    "name": "Distance",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/03%20Utada%20Hikaru%20-%20Distance.mp3",
     "cover": ""
   },
   {
-    "name": "キラーチューン",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%AD%E3%83%A9%E3%83%BC%E3%83%81%E3%83%A5%E3%83%BC%E3%83%B3%20%281%29.mp3",
+    "name": "Sunglasses",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/04%20Utada%20Hikaru%20-%20Sunglasses.mp3",
     "cover": ""
   },
   {
-    "name": "スーパースター",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%281%29.mp3",
+    "name": "Drama",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/05%20Utada%20Hikaru%20-%20Drama.mp3",
     "cover": ""
   },
   {
-    "name": "ドーパミント！",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%83%89%E3%83%BC%E3%83%91%E3%83%9F%E3%83%B3%E3%83%88%20%281%29.mp3",
+    "name": "Eternally",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/06%20Utada%20Hikaru%20-%20Eternally.mp3",
     "cover": ""
   },
   {
-    "name": "今夜はから騒ぎ",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8A%E5%A4%9C%E3%81%AF%E3%81%8B%E3%82%89%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "name": "Addicted To You (Up-In-Heaven Mix)",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/07%20Utada%20Hikaru%20-%20Addicted%20To%20You%20%28Up-In-Heaven%20Mix%29.mp3",
     "cover": ""
   },
   {
-    "name": "仏だけ徒歩",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8F%E3%81%A0%E3%81%91%E5%BE%92%E6%AD%A9%20%281%29.mp3",
+    "name": "For You",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/08%20Utada%20Hikaru%20-%20For%20You.mp3",
     "cover": ""
   },
   {
-    "name": "修羅場",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BF%AE%E7%BE%85%E5%A0%B4%20%281%29.mp3",
+    "name": "Kettobase!",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/09%20Utada%20Hikaru%20-%20Kettobase%21.mp3",
     "cover": ""
   },
   {
-    "name": "勝ち戦",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8B%9D%E3%81%A1%E6%88%A6%20%281%29.mp3",
+    "name": "Parody",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/10%20Utada%20Hikaru%20-%20Parody.mp3",
     "cover": ""
   },
   {
-    "name": "原罪と福音",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8E%9F%E7%BD%AA%E3%81%A8%E7%A6%8F%E9%9F%B3%20%281%29.mp3",
+    "name": "Time Limit",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/11%20Utada%20Hikaru%20-%20Time%20Limit.mp3",
     "cover": ""
   },
   {
-    "name": "夢のあと",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A2%E3%81%AE%E3%81%82%E3%81%A8%20%281%29.mp3",
+    "name": "Kotoba Ni Naranai Kimochi",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/12%20Utada%20Hikaru%20-%20Kotoba%20Ni%20Naranai%20Kimochi.mp3",
     "cover": ""
   },
   {
-    "name": "天国へようこそ",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A9%E5%9B%BD%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D%20%281%29.mp3",
+    "name": "Hayatochi-Remix",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/13%20Utada%20Hikaru%20-%20Hayatochi-Remix.mp3",
     "cover": ""
   },
   {
-    "name": "女の子は誰でも",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A5%B3%E3%81%AE%E5%AD%90%E3%81%AF%E8%AA%B0%E3%81%A7%E3%82%82%20%281%29.mp3",
+    "name": "Hayatochiri",
+    "artist": "宇多田光",
+    "album": "Distance",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/Distance/14%20Utada%20Hikaru%20-%20Hayatochiri.mp3",
     "cover": ""
   },
   {
-    "name": "御祭騒ぎ",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%BE%A1%E7%A5%AD%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "name": "First Love",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/04%20Utada%20Hikaru%20-%20First%20Love.mp3",
     "cover": ""
   },
   {
-    "name": "新しい文明開化",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%96%B0%E3%81%97%E3%81%84%E6%96%87%E6%98%8E%E9%96%8B%E5%8C%96%20%281%29.mp3",
+    "name": "Amai Wana - Paint It, Black",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Amai%20Wana%20-%20Paint%20It%2C%20Black.mp3",
     "cover": ""
   },
   {
-    "name": "某都民",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%9F%90%E9%83%BD%E6%B0%91%20%281%29.mp3",
+    "name": "Another Chance",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Another%20Chance.mp3",
     "cover": ""
   },
   {
-    "name": "永遠の不在証明",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%B0%B8%E9%81%A0%E3%81%AE%E4%B8%8D%E5%9C%A8%E8%A8%BC%E6%98%8E%20%281%29.mp3",
+    "name": "Automatic (Johnny Vicious Remix)",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Automatic%20%28Johnny%20Vicious%20Remix%29.mp3",
     "cover": ""
   },
   {
-    "name": "生きる",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%94%9F%E3%81%8D%E3%82%8B%20%281%29.mp3",
+    "name": "Automatic",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Automatic.mp3",
     "cover": ""
   },
   {
-    "name": "秘密",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A7%98%E5%AF%86%20%281%29.mp3",
+    "name": "B & C",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20B%20%20%20C.mp3",
     "cover": ""
   },
   {
-    "name": "空が鳴っている",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A9%BA%E3%81%8C%E9%B3%B4%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%20%281%29.mp3",
+    "name": "Give Me A Reason",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Give%20Me%20A%20Reason.mp3",
     "cover": ""
   },
   {
-    "name": "緑酒",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%B7%91%E9%85%92%20%281%29.mp3",
+    "name": "In My Room",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20In%20My%20Room.mp3",
     "cover": ""
   },
   {
-    "name": "群青日和",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%BE%A4%E9%9D%92%E6%97%A5%E5%92%8C%20%281%29.mp3",
+    "name": "Interlude",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Interlude.mp3",
     "cover": ""
   },
   {
-    "name": "能動的三分間",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%83%BD%E5%8B%95%E7%9A%84%E4%B8%89%E5%88%86%E9%96%93%20%281%29.mp3",
+    "name": "Movin' On Without You",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Movin%20%20On%20Without%20You.mp3",
     "cover": ""
   },
   {
-    "name": "落日",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%90%BD%E6%97%A5%20%281%29.mp3",
+    "name": "Never Let Go",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Never%20Let%20Go.mp3",
     "cover": ""
   },
   {
-    "name": "赤の同盟",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%B5%A4%E3%81%AE%E5%90%8C%E7%9B%9F%20%281%29.mp3",
-    "cover": ""
-  },
-  {
-    "name": "透明人間",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%80%8F%E6%98%8E%E4%BA%BA%E9%96%93%20%281%29.mp3",
-    "cover": ""
-  },
-  {
-    "name": "遭難",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%AD%E9%9B%A3%20%281%29.mp3",
-    "cover": ""
-  },
-  {
-    "name": "選ばれざる国民",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%B8%E3%81%B0%E3%82%8C%E3%81%96%E3%82%8B%E5%9B%BD%E6%B0%91%20%281%29.mp3",
-    "cover": ""
-  },
-  {
-    "name": "閃光少女",
-    "artist": "東京事変",
-    "album": "総合",
-    "url": "/music/audio/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%96%83%E5%85%89%E5%B0%91%E5%A5%B3%20%281%29.mp3",
+    "name": "Time Will Tell",
+    "artist": "宇多田光",
+    "album": "First Love",
+    "url": "/music/audio/%E5%AE%87%E5%A4%9A%E7%94%B0%E5%85%89/First%20Love/Utada%20Hikaru%20-%20Time%20Will%20Tell.mp3",
     "cover": ""
   },
   {
@@ -494,6 +557,566 @@
     "artist": "林忆莲",
     "album": "野花",
     "url": "/music/audio/%E6%9E%97%E5%BF%86%E8%8E%B2/%E9%87%8E%E8%8A%B1/%E9%87%8E%E8%8A%B1-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "Bonsai Hada -Ordinary Ability-",
+    "artist": "Sheena Ringo",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Bonsai%20Hada%20-Ordinary%20Ability-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Futari-bocchi Jikan -Just The Two Of Us-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Futari-bocchi%20Jikan%20-Just%20The%20Two%20Of%20Us-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Irokoizata -Excitement-",
+    "artist": "Sheena Ringo",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Irokoizata%20-Excitement-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Karisome Otome -\"Temporary\" Virgin- (Death Jazz Version)",
+    "artist": "Sheena Ringo",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Karisome%20Otome%20-%20Temporary%20%20Virgin-%20%28Death%20Ja.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Marunouchi Sadistic (EXPO Version)",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Marunouchi%20Sadistic%20%28EXPO%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Mayakashi Yasaotoko -Fake Fellow-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Mayakashi%20Yasaotoko%20-Fake%20Fellow-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Mittei Monogatari -Clandestine-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Mittei%20Monogatari%20-Clandestine-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Roudousha -Blue Collar-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Roudousha%20-Blue%20Collar-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Ryuukou -Vogue-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Ryuukou%20-Vogue-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Shun -Season-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Shun%20-Season-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Togatta Teguchi -Sharp Practice-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Togatta%20Teguchi%20-Sharp%20Practice-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Tsugou No Ii Karada -The Leading Hitter-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Tsugou%20No%20Ii%20Karada%20-The%20Leading%20Hitter-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Yokyou -Alone-",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Yokyou%20-Alone-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Zero Chiten Kara",
+    "artist": "Sheena Ringo",
+    "album": "Sanmon Gossip",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E5%85%AB%E5%8D%A6/Sheena%20Ringo%20-%20Zero%20Chiten%20Kara.mp3",
+    "cover": ""
+  },
+  {
+    "name": "虚言症",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/1.%E8%99%9A%E8%A8%80%E7%97%87.flac",
+    "cover": ""
+  },
+  {
+    "name": "サカナ",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/10.%E3%82%B5%E3%82%AB%E3%83%8A.flac",
+    "cover": ""
+  },
+  {
+    "name": "病床パブリック",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/11.%E7%97%85%E5%BA%8A%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF.flac",
+    "cover": ""
+  },
+  {
+    "name": "本能",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/12.%E6%9C%AC%E8%83%BD.flac",
+    "cover": ""
+  },
+  {
+    "name": "依存症",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/13.%E4%BE%9D%E5%AD%98%E7%97%87.flac",
+    "cover": ""
+  },
+  {
+    "name": "弁解ドビュッシー",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/3.%E5%BC%81%E8%A7%A3%E3%83%89%E3%83%93%E3%83%A5%E3%83%83%E3%82%B7%E3%83%BC.flac",
+    "cover": ""
+  },
+  {
+    "name": "ギブス",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/4.%E3%82%AE%E3%83%96%E3%82%B9.flac",
+    "cover": ""
+  },
+  {
+    "name": "闇に降る雨",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/5.%E9%97%87%E3%81%AB%E9%99%8D%E3%82%8B%E9%9B%A8.flac",
+    "cover": ""
+  },
+  {
+    "name": "アイデンティティ",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/6.%E3%82%A2%E3%82%A4%E3%83%87%E3%83%B3%E3%83%86%E3%82%A3%E3%83%86%E3%82%A3.flac",
+    "cover": ""
+  },
+  {
+    "name": "罪と罰",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/7.%E7%BD%AA%E3%81%A8%E7%BD%B0.flac",
+    "cover": ""
+  },
+  {
+    "name": "ストイシズム",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/8.%E3%82%B9%E3%83%88%E3%82%A4%E3%82%B7%E3%82%BA%E3%83%A0.flac",
+    "cover": ""
+  },
+  {
+    "name": "月に負け犬",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/9.%E6%9C%88%E3%81%AB%E8%B2%A0%E3%81%91%E7%8A%AC.flac",
+    "cover": ""
+  },
+  {
+    "name": "OSCA",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20OSCA%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "うるうるうるう",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%E3%82%8B%E3%81%86%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ただならぬ関係",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%81%9F%E3%81%A0%E3%81%AA%E3%82%89%E3%81%AC%E9%96%A2%E4%BF%82%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "キラーチューン",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%AD%E3%83%A9%E3%83%BC%E3%83%81%E3%83%A5%E3%83%BC%E3%83%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "スーパースター",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "ドーパミント！",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E3%83%89%E3%83%BC%E3%83%91%E3%83%9F%E3%83%B3%E3%83%88%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "今夜はから騒ぎ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8A%E5%A4%9C%E3%81%AF%E3%81%8B%E3%82%89%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "仏だけ徒歩",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BB%8F%E3%81%A0%E3%81%91%E5%BE%92%E6%AD%A9%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "修羅場",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E4%BF%AE%E7%BE%85%E5%A0%B4%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "勝ち戦",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8B%9D%E3%81%A1%E6%88%A6%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "原罪と福音",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%8E%9F%E7%BD%AA%E3%81%A8%E7%A6%8F%E9%9F%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "夢のあと",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A2%E3%81%AE%E3%81%82%E3%81%A8%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "天国へようこそ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A4%A9%E5%9B%BD%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "女の子は誰でも",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%A5%B3%E3%81%AE%E5%AD%90%E3%81%AF%E8%AA%B0%E3%81%A7%E3%82%82%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "御祭騒ぎ",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E5%BE%A1%E7%A5%AD%E9%A8%92%E3%81%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "新しい文明開化",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%96%B0%E3%81%97%E3%81%84%E6%96%87%E6%98%8E%E9%96%8B%E5%8C%96%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "某都民",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%9F%90%E9%83%BD%E6%B0%91%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "永遠の不在証明",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E6%B0%B8%E9%81%A0%E3%81%AE%E4%B8%8D%E5%9C%A8%E8%A8%BC%E6%98%8E%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "生きる",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%94%9F%E3%81%8D%E3%82%8B%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "秘密",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A7%98%E5%AF%86%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "空が鳴っている",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%A9%BA%E3%81%8C%E9%B3%B4%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "緑酒",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%B7%91%E9%85%92%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "群青日和",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E7%BE%A4%E9%9D%92%E6%97%A5%E5%92%8C%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "能動的三分間",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%83%BD%E5%8B%95%E7%9A%84%E4%B8%89%E5%88%86%E9%96%93%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "落日",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%90%BD%E6%97%A5%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "赤の同盟",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E8%B5%A4%E3%81%AE%E5%90%8C%E7%9B%9F%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "透明人間",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%80%8F%E6%98%8E%E4%BA%BA%E9%96%93%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "遭難",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%AD%E9%9B%A3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "選ばれざる国民",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%81%B8%E3%81%B0%E3%82%8C%E3%81%96%E3%82%8B%E5%9B%BD%E6%B0%91%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "閃光少女",
+    "artist": "東京事変",
+    "album": "総合",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%80%BB%E7%BB%93/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89%20-%20%E9%96%83%E5%85%89%E5%B0%91%E5%A5%B3%20%281%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Nippon",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/12%20Sheena%20Ringo%20-%20Nippon.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Ariamaru Tomi -The Invaluable-",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Ariamaru%20Tomi%20-The%20Invaluable-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Arikitarino Onna",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Arikitarino%20Onna.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Carnation -L'œillet-",
+    "artist": "Sheena Ringo",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Carnation%20-L%20%3Fillet-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Cruzar A Linha Do Equador",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Cruzar%20A%20Linha%20Do%20Equador.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Flight JL005",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Flight%20JL005.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Irohanihoheto -Les Couleurs Chantent-",
+    "artist": "Sheena Ringo",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Irohanihoheto%20-Les%20Couleurs%20Chantent-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Jiyuu E Michizure -Collateral Damage-",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Jiyuu%20E%20Michizure%20-Collateral%20Damage-.mp3",
+    "cover": ""
+  },
+  {
+    "name": "La Solitude de l'aube (Nobu Neko Version)",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20La%20Solitude%20de%20l%20aube%20%28Nobu%20Neko%20Version%29.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Manipulate The Time",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Manipulate%20The%20Time.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Present",
+    "artist": "Sheena Ringo",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Present.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Quiet Counterattack",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20Quiet%20Counterattack.mp3",
+    "cover": ""
+  },
+  {
+    "name": "To That Ocean Of Trees",
+    "artist": "Sheena Ringo",
+    "album": "Hiizurutokoro",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/Sheena%20Ringo%20-%20To%20That%20Ocean%20Of%20Trees.mp3",
+    "cover": ""
+  },
+  {
+    "name": "正しい街",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/1.%E6%AD%A3%E3%81%97%E3%81%84%E8%A1%97.flac",
+    "cover": ""
+  },
+  {
+    "name": "警告",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/10.%E8%AD%A6%E5%91%8A.flac",
+    "cover": ""
+  },
+  {
+    "name": "モルヒネ",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/11.%E3%83%A2%E3%83%AB%E3%83%92%E3%83%8D.flac",
+    "cover": ""
+  },
+  {
+    "name": "歌舞伎町の女王",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/2.%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA%E3%81%AE%E5%A5%B3%E7%8E%8B.flac",
+    "cover": ""
+  },
+  {
+    "name": "丸の内サディスティック",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/3.%E4%B8%B8%E3%81%AE%E5%86%85%E3%82%B5%E3%83%87%E3%82%A3%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF.flac",
+    "cover": ""
+  },
+  {
+    "name": "幸福論 (悦楽編)",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/4.%E5%B9%B8%E7%A6%8F%E8%AB%96%20%28%E6%82%A6%E6%A5%BD%E7%B7%A8%29.flac",
+    "cover": ""
+  },
+  {
+    "name": "茜さす 帰路照らされど…",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/5.%E8%8C%9C%E3%81%95%E3%81%99%20%E5%B8%B0%E8%B7%AF%E7%85%A7%E3%82%89%E3%81%95%E3%82%8C%E3%81%A9%E2%80%A6.flac",
+    "cover": ""
+  },
+  {
+    "name": "シドと白昼夢",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/6.%E3%82%B7%E3%83%89%E3%81%A8%E7%99%BD%E6%98%BC%E5%A4%A2.flac",
+    "cover": ""
+  },
+  {
+    "name": "積木遊び",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/7.%E7%A9%8D%E6%9C%A8%E9%81%8A%E3%81%B3.flac",
+    "cover": ""
+  },
+  {
+    "name": "ここでキスして。",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/8.%E3%81%93%E3%81%93%E3%81%A7%E3%82%AD%E3%82%B9%E3%81%97%E3%81%A6%E3%80%82.flac",
+    "cover": ""
+  },
+  {
+    "name": "同じ夜",
+    "artist": "椎名林檎",
+    "album": "無罪モラトリアム",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E7%84%A1%E7%BD%AA%E3%83%A2%E3%83%A9%E3%83%88%E3%83%AA%E3%82%A2%E3%83%A0/9.%E5%90%8C%E3%81%98%E5%A4%9C.flac",
     "cover": ""
   },
   {
