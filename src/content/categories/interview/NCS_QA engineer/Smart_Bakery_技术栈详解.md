@@ -1346,6 +1346,6 @@ httpx==0.27.0  # FastAPI 测试客户端
 
 ---
 
-> **文档说明**：本文档基于 Feng Yilang 的 Smart Bakery（Flutter + Raspberry Pi IoT 项目）和 Online Exam Platform（Blazor + Chart.js 项目）的技术栈整理，旨在为 NCS Quality Engineer Intern 面试提供系统性的 Python、FastAPI、RESTful API、Chart.js、Linux 自动化等领域的技术知识储备。
+> **文档说明**：本文档基于 https://github.com/BoooSAMA 的 Smart Bakery（Flutter + Raspberry Pi IoT 项目）和 Online Exam Platform（Blazor + Chart.js 项目）的技术栈整理，旨在为 NCS Quality Engineer Intern 面试提供系统性的 Python、FastAPI、RESTful API、Chart.js、Linux 自动化等领域的技术知识储备。
 
 > **最后更新**: 2026-06-10 | 准备用于 NCS QA Engineer Intern 面试
