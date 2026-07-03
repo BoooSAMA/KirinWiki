@@ -594,5 +594,5 @@ PIC16 (UART TX) → MAX232 电平转换 → RS232 → USB 转串口 → PC (Supe
 
 ---
 
-*文档生成日期：2026-06-12 | 基于简历项目描述 + 面试策略分析*
+*基于简历项目描述 + 面试策略分析*
 *目标岗位：GMM Technoworld — Technical Support Assistant*
