@@ -1,3 +1,10 @@
+---
+title: "Flood Detection System — 项目深度解析"
+date: "2026-06-12"
+description: "基于 PIC16F877A 微控制器的实时水位检测系统，在 368 字节 RAM、4MHz 时钟的极端资源限制下实现了超声波+红外双传感器融合的洪水监测方案。"
+tags: ["PIC16", "嵌入式", "C", "传感器融合", "MCU"]
+---
+
 # Flood Detection System — 项目深度解析
 
 > **针对公司**: GMM Technoworld Pte Ltd    

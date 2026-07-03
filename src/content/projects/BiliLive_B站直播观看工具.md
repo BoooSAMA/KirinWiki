@@ -1,3 +1,10 @@
+---
+title: "BiliLive — B 站直播观看工具项目深度解析"
+date: "2026-07-03"
+description: "基于 Flutter 的哔哩哔哩直播观看 Android 客户端。从 Simple Live 项目 fork 后精简优化，专注 B 站直播体验，支持分区浏览、本地关注、直播间录音等特色功能。"
+tags: ["Flutter", "Dart", "Bilibili", "直播", "FFmpeg", "Android"]
+---
+
 # BiliLive — B 站直播观看工具项目深度解析
 
 > **项目**: 基于 Flutter 的哔哩哔哩直播观看 Android 客户端

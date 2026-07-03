@@ -1,3 +1,10 @@
+---
+title: "KirinWiki 博客项目 — 架构与技术实现详解"
+date: "2026-07-03"
+description: "基于 Astro 6 + Tailwind CSS v4 + Three.js 的个人博客站点的完整技术实现与架构解析。覆盖时基主题、3D 场景、自建音乐播放器等核心功能。"
+tags: ["Astro", "Tailwind CSS", "Three.js", "Cloudflare", "博客"]
+---
+
 # KirinWiki 博客项目 — 架构与技术实现详解
 
 > **项目**: 个人博客与知识维基站点

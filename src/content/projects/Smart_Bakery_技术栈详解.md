@@ -1,3 +1,10 @@
+---
+title: "Smart Bakery 项目技术栈详解 — Python / FastAPI / RESTful API / Chart.js / Linux 自动化"
+date: "2026-06-10"
+description: "从 Smart Bakery（Flutter + 树莓派 IoT）和 Online Exam Platform（Blazor + Chart.js）两个项目出发，系统性梳理 Python 后端开发、FastAPI、RESTful API、Chart.js 数据可视化与 Linux 自动化的核心知识点。"
+tags: ["Python", "FastAPI", "RESTful API", "Chart.js", "树莓派", "Linux"]
+---
+
 # Smart Bakery 项目技术栈详解 — Python / FastAPI / RESTful API / Chart.js / Linux 自动化
 
 > **目的**：本文档从 Smart Bakery（智能面包房 IoT 监控系统）和 Online Exam Platform（在线考试平台）两个项目出发，系统梳理 Python 后端开发、RESTful API 设计、FastAPI 框架、Chart.js 数据可视化、Linux 操作与树莓派自动化部署等技术的核心知识点，用于面试 QA Engineer / 后端开发岗位时的技术问答准备。

@@ -1,6 +1,43 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
+import SmallPostCard from "../../components/SmallPostCard.astro"
+
+const projectModules = import.meta.glob(
+  "../../content/projects/*.md",
+  { eager: true },
+) as Record<string, { frontmatter: Record<string, any> }>
+
+const projects: Array<{
+  title: string
+  date: string
+  slug: string
+  description?: string
+  tags?: string[]
+}> = []
+
+for (const [filePath, mod] of Object.entries(projectModules)) {
+  const fm = mod.frontmatter
+  const slug = filePath.split("/").pop()?.replace(/\.md$/, "").toLowerCase().replace(/\s+/g, "-") ?? ""
+
+  projects.push({
+    title: fm.title || slug,
+    date: fm.date || "",
+    slug,
+    description: fm.description,
+    tags: Array.isArray(fm.tags) ? fm.tags : undefined,
+  })
+}
+
+projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+function fmtDate(date: string) {
+  if (!date) return ""
+  const d = new Date(date)
+  if (isNaN(d.getTime())) return ""
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
 ---
+
 <BaseLayout title="Projects">
   <nav class="flex items-center gap-3 mb-6">
     <a
@@ -12,12 +49,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
   </nav>
 
   <h1 class="text-3xl font-bold text-[var(--glass-text)] mb-2">Projects</h1>
-  <p class="text-[var(--glass-text-secondary)] mb-8">Projects not created yet, coming soon.</p>
-  <!-- 先放一个占位卡片，后面换成真实项目列表 -->
+  <p class="text-[var(--glass-text-secondary)] mb-8">项目作品展示，包含完整的开发背景、技术方案与实现细节。</p>
+
   <div class="space-y-4">
-    <a href="/projects/first-project" class="block ring-glow bg-[var(--glass-bg)] rounded-2xl p-6 shadow-lg border border-[var(--glass-border)] hover:shadow-xl transition-shadow no-underline">
-      <h2 class="text-lg font-medium text-[var(--glass-text)] mt-1">还没有项目</h2>
-      <p class="text-[var(--glass-text-secondary)] text-sm mt-1">第一个项目正在路上……</p>
-    </a>
+    {projects.length > 0 ? (
+      projects.map((project) => (
+        <SmallPostCard
+          title={project.title}
+          date={fmtDate(project.date)}
+          href={`/projects/${project.slug}`}
+          description={project.description}
+        />
+      ))
+    ) : (
+      <div class="block ring-glow bg-[var(--glass-bg)] rounded-2xl p-6 shadow-lg border border-[var(--glass-border)]">
+        <h2 class="text-lg font-medium text-[var(--glass-text)]">还没有项目</h2>
+        <p class="text-[var(--glass-text-secondary)] text-sm mt-1">第一个项目正在路上……</p>
+      </div>
+    )}
   </div>
 </BaseLayout>

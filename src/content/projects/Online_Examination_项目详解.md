@@ -1,3 +1,10 @@
+---
+title: "Online Examination — 在线考试系统项目深度解析"
+date: "2026-07-03"
+description: "基于 ASP.NET Core 8.0 + Blazor Interactive Server 的在线考试平台，支持管理员创建管理考试、学生通过访问码参加、自动评分、Chart.js 数据可视化与模拟测试。"
+tags: ["ASP.NET Core", "Blazor", "C#", "SQL Server", "Entity Framework Core", "Chart.js"]
+---
+
 # Online Examination — 在线考试系统项目深度解析
 
 > **项目**: 基于 ASP.NET Core Blazor 的在线考试 Web 应用

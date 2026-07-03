@@ -1,3 +1,10 @@
+---
+title: "Simple Recorder — 多平台直播音频录制工具项目深度解析"
+date: "2026-07-03"
+description: "基于 Flutter 的多平台直播音频录制工具，支持 Bilibili/抖音/斗鱼/虎牙/猫耳FM 五大平台直播间音频录制。基于 FFmpeg 实现纯音频流拷贝，支持并行录制、后台保活与文件管理。"
+tags: ["Flutter", "Dart", "FFmpeg", "直播", "音频录制", "跨平台"]
+---
+
 # Simple Recorder — 多平台直播音频录制工具项目深度解析
 
 > **项目**: 基于 Flutter 的多平台直播音频录制工具
