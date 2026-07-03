@@ -1,7 +1,6 @@
 # Python 项目面试问答模拟 — "你用过 Python 做自动化/网络请求/小工具吗？"
 
 > **面试场景**: Quality Engineer Intern 面试中，面试官问"你之前有用 Python 做过任何自动化、网络请求或者小工具吗？哪怕是学校项目"
-> **候选人**: 冯一朗 (FENG YILANG) — 淡马锡理工学院 计算机工程
 > **适用公司**: NCS Quality Engineer Intern 及其他 QA/后端岗位
 
 ---

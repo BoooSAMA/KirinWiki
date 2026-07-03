@@ -405,4 +405,4 @@ Keywords: video analytics, video management, test automation, scripting, SQL val
 
 ---
 
-*Last updated: 2026-06-10 | For AI agent consumption | Candidate: FENG YILANG (冯一朗)*
+*Last updated: 2026-06-10*

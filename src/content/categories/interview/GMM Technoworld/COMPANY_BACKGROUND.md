@@ -1,6 +1,6 @@
 # Company & Role Background — GMM Technoworld Pte Ltd (Technical Support Assistant)
 
-> **Purpose**: This document provides AI agents with instant context about GMM Technoworld, the domain, and the role requirements. Use this as a quick-reference baseline when generating tailored resumes, cover letters, interview prep, or technical Q&A.
+> **Purpose**: This document context about GMM Technoworld, the domain, and the role requirements. Use this as a quick-reference baseline when generating tailored resumes, cover letters, interview prep, or technical Q&A.
 
 ---
 

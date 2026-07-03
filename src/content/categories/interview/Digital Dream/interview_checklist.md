@@ -1,9 +1,7 @@
 # 🎯 面试流程 Checklist — 小厂 VR/CAVE 程序实习生
-
-> **候选人**: 冯一朗 (FENG YILANG)  
+ 
 > **目标公司**: 沉浸式交互 CAVE 小厂  
-> **岗位**: Technical Engineering Programmer (Intern)  
-> **面试语言**: 英文为主，中文为备用  
+> **岗位**: Technical Engineering Programmer (Intern)   
 > **面试轮次**: 小厂通常 1-2 轮（HR 初筛 + 技术面/创始人面合并）
 
 ---
@@ -425,7 +423,7 @@
   Please don't hesitate to reach out if you need any additional information.
   
   Best regards,
-  FENG YILANG
+  [Your name]
   ```
 - [ ] **复盘记录**：
   - 回答了哪些技术问题？哪个答得不好？（查漏补缺）
@@ -504,4 +502,4 @@
 
 ---
 
-*Generated for FENG YILANG | Immersive CAVE Programmer Intern Interview | May 2026*
+*Immersive CAVE Programmer Intern Interview | May 2026*

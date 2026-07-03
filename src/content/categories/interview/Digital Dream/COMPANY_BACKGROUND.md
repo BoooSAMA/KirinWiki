@@ -170,4 +170,4 @@ Role level: Intern (learning while contributing)
 
 ---
 
-*Last updated: 2026-05-25 | For AI agent consumption*
+*Last updated: 2026-05-25*
