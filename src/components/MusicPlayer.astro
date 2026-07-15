@@ -13,7 +13,7 @@
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 280px;
+  width: 340px;
   z-index: 2147483647;
   display: flex;
   flex-direction: column;
@@ -61,6 +61,8 @@
 .ctrl-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .ctrl-btn:active { transform: scale(0.92); }
 .ctrl-btn.sm { font-size: 14px; padding: 4px 5px; }
+.ctrl-btn.on { color: #818cf8 !important; }
+.ctrl-btn.on:hover { color: #a78bfa !important; }
 #btn-play { font-size: 20px; padding: 4px 8px; }
 #btn-prev, #btn-next { font-size: 22px; }
 #btn-list { font-size: 26px; }
@@ -159,6 +161,8 @@
     volMuted: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M2 7v6h3.5l4.5 4V3L5.5 7H2zm8.5 3l-2 2m0-4l2 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
     menu: '<svg viewBox="0 0 20 20" width="1em" height="1em"><rect x="2" y="4" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="9" width="16" height="2" rx="1" fill="currentColor"/><rect x="2" y="14" width="16" height="2" rx="1" fill="currentColor"/></svg>',
     close: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>',
+    repeat1: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 10a6.5 6.5 0 0111.5-5V3H17v5.5h-5.5V7a5 5 0 104 7.5h2a7 7 0 01-11.5-4.5z" fill="currentColor"/><path d="M13 12.5h2v4h-2zm0 3h3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
+    autoPlay: '<svg viewBox="0 0 20 20" width="1em" height="1em"><path d="M4 4l11 6-11 6V4z" fill="currentColor"/><rect x="4" y="16.5" width="12" height="1.5" rx="0.75" fill="currentColor" opacity="0.6"/></svg>',
   };
 
   /* ===== 构建 UI ===== */
@@ -181,7 +185,9 @@
             <button id="btn-prev" class="ctrl-btn sm" title="上一首">${I.prev}</button>
             <button id="btn-next" class="ctrl-btn sm" title="下一首">${I.next}</button>
             <button id="btn-list" class="ctrl-btn" title="歌单">${I.menu}</button>
-            <button id="btn-collapse" class="ctrl-btn sm" title="收起播放器">▾</button>
+            <button id="btn-repeat" class="ctrl-btn sm" title="单曲循环">${I.repeat1}</button>
+            <button id="btn-autoplay" class="ctrl-btn sm on" title="自动连播">${I.autoPlay}</button>
+            <button id="btn-collapse" class="ctrl-btn" title="收起播放器">▾</button>
           </div>
         </div>
         <div class="br-sep"></div>
@@ -213,6 +219,8 @@
   const btnNext = $('btn-next');
   const btnVol  = $('btn-vol');
   const btnList = $('btn-list');
+  const btnRepeat = $('btn-repeat');
+  const btnAutoplay = $('btn-autoplay');
   const progress = $('bar-progress');
   const volSlider = $('vol-slider');
   const barTime  = $('bar-time');
@@ -337,6 +345,8 @@
     isPlaying: false,
     panelOpen: false,
     expanded: {},
+    repeatOne: false,
+    autoPlay: true,
   };
   window.__player = state;
 
@@ -378,8 +388,22 @@
 
     audio.ontimeupdate = () => updateProgressBar();
     audio.onloadedmetadata = () => updateProgressBar();
-    audio.onended = () => { nextSong(); };
-    audio.onerror = () => { setTimeout(nextSong, 1000); };
+    audio.onended = () => {
+      if (state.repeatOne) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+        return;
+      }
+      if (state.autoPlay) { nextSong(); }
+    };
+    audio.onerror = () => {
+      if (state.repeatOne) {
+        audio.currentTime = 0;
+        setTimeout(() => audio.play().catch(() => {}), 1000);
+      } else {
+        setTimeout(nextSong, 1000);
+      }
+    };
     audio.onplay = () => { if (borderEl) borderEl.classList.add('active'); };
     audio.onpause = () => { if (borderEl) borderEl.classList.remove('active'); };
 
@@ -428,6 +452,8 @@
         localStorage.setItem('player-ui', JSON.stringify({
           expanded: state.expanded,
           panelOpen: state.panelOpen,
+          repeatOne: state.repeatOne,
+          autoPlay: state.autoPlay,
         }));
       } catch {}
     }
@@ -445,6 +471,10 @@
           state.panelOpen = true;
           panel.classList.add('open');
         }
+        if (ui.repeatOne != null) state.repeatOne = ui.repeatOne;
+        if (ui.autoPlay != null) state.autoPlay = ui.autoPlay;
+        btnRepeat.classList.toggle('on', state.repeatOne);
+        btnAutoplay.classList.toggle('on', state.autoPlay);
       }
     } catch {}
 
@@ -597,6 +627,7 @@
       return;
     }
     if (audio.paused) {
+      if (audio.ended) audio.currentTime = 0;
       audio.play().catch(() => {});
       state.isPlaying = true;
     } else {
@@ -642,6 +673,14 @@
     }
   }
 
+  btnRepeat.addEventListener('click', () => {
+    state.repeatOne = !state.repeatOne;
+    btnRepeat.classList.toggle('on');
+  });
+  btnAutoplay.addEventListener('click', () => {
+    state.autoPlay = !state.autoPlay;
+    btnAutoplay.classList.toggle('on');
+  });
   btnCollapse.addEventListener('click', collapsePlayer);
   $('mini-play-btn')?.addEventListener('click', () => { btnPlay.click(); });
   $('mini-expand-btn')?.addEventListener('click', expandPlayer);
