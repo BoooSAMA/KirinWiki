@@ -422,8 +422,22 @@
     if (saved && saved.url) {
       const idx = songs.findIndex(s => s.url === saved.url);
       if (idx >= 0) {
-        state.queue = [saved.url];
-        state.queueIndex = 0;
+        // 用所属专辑构建队列，恢复后"下一首"正常工作
+        const restSong = songs[idx];
+        const albumList = state.tree[restSong.artist]?.[restSong.album];
+        if (albumList && albumList.length > 0) {
+          const qIdx = albumList.findIndex(s => s.url === saved.url);
+          if (qIdx >= 0) {
+            state.queue = albumList.map(s => s.url);
+            state.queueIndex = qIdx;
+          } else {
+            state.queue = [saved.url];
+            state.queueIndex = 0;
+          }
+        } else {
+          state.queue = [saved.url];
+          state.queueIndex = 0;
+        }
         state.currentUrl = saved.url;
         audio.src = saved.url;
         audio.currentTime = saved.currentTime || 0;
@@ -521,8 +535,16 @@
   }
 
   function playSong(url) {
-    state.queue = [url];
-    state.queueIndex = 0;
+    // 用所属专辑中的全部歌曲构建队列，让"下一首"和自动连播正确工作
+    const song = state.songs.find(s => s.url === url);
+    if (song && state.tree[song.artist]?.[song.album]) {
+      const albumList = state.tree[song.artist][song.album];
+      state.queue = albumList.map(s => s.url);
+      state.queueIndex = albumList.findIndex(s => s.url === url);
+    } else {
+      state.queue = [url];
+      state.queueIndex = 0;
+    }
     playUrl(url);
   }
 
