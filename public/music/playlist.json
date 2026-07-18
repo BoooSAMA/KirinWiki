@@ -889,13 +889,6 @@
     "cover": ""
   },
   {
-    "name": "决心",
-    "artist": "林忆莲",
-    "album": "94 Sandy",
-    "url": "/music/audio/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/10.%E5%86%B3%E5%BF%83-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
-    "cover": ""
-  },
-  {
     "name": "芝加哥的故事",
     "artist": "林忆莲",
     "album": "94 Sandy",
@@ -949,6 +942,13 @@
     "artist": "林忆莲",
     "album": "94 Sandy",
     "url": "/music/audio/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/9.%E6%98%8E%E5%A4%A9%E9%86%92%E6%9D%A5%E6%97%B6%20-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
+    "cover": ""
+  },
+  {
+    "name": "决心",
+    "artist": "林忆莲",
+    "album": "94 Sandy",
+    "url": "/music/audio/%E6%9E%97%E5%BF%86%E8%8E%B2/94%20Sandy/10.%E5%86%B3%E5%BF%83-%E6%9E%97%E5%BF%86%E8%8E%B2.flac",
     "cover": ""
   },
   {
@@ -1113,41 +1113,6 @@
     "cover": ""
   },
   {
-    "name": "旬",
-    "artist": "椎名林檎",
-    "album": "三文ゴシップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/10.%E6%97%AC.mp3",
-    "cover": ""
-  },
-  {
-    "name": "尖った手口",
-    "artist": "椎名林檎",
-    "album": "三文ゴシップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/11.%E5%B0%96%E3%81%A3%E3%81%9F%E6%89%8B%E5%8F%A3.mp3",
-    "cover": ""
-  },
-  {
-    "name": "都合のいい身体",
-    "artist": "椎名林檎",
-    "album": "三文ゴシップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/12.%E9%83%BD%E5%90%88%E3%81%AE%E3%81%84%E3%81%84%E8%BA%AB%E4%BD%93.mp3",
-    "cover": ""
-  },
-  {
-    "name": "余興",
-    "artist": "椎名林檎",
-    "album": "三文ゴシップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/13.%E4%BD%99%E8%88%88.mp3",
-    "cover": ""
-  },
-  {
-    "name": "あたしは零地点から",
-    "artist": "椎名林檎",
-    "album": "三文ゴシップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/14.%E3%81%82%E3%81%9F%E3%81%97%E3%81%AF%E9%9B%B6%E5%9C%B0%E7%82%B9%E3%81%8B%E3%82%89.mp3",
-    "cover": ""
-  },
-  {
     "name": "二人ぼっち時間",
     "artist": "椎名林檎",
     "album": "三文ゴシップ",
@@ -1204,38 +1169,45 @@
     "cover": ""
   },
   {
+    "name": "旬",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/10.%E6%97%AC.mp3",
+    "cover": ""
+  },
+  {
+    "name": "尖った手口",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/11.%E5%B0%96%E3%81%A3%E3%81%9F%E6%89%8B%E5%8F%A3.mp3",
+    "cover": ""
+  },
+  {
+    "name": "都合のいい身体",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/12.%E9%83%BD%E5%90%88%E3%81%AE%E3%81%84%E3%81%84%E8%BA%AB%E4%BD%93.mp3",
+    "cover": ""
+  },
+  {
+    "name": "余興",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/13.%E4%BD%99%E8%88%88.mp3",
+    "cover": ""
+  },
+  {
+    "name": "あたしは零地点から",
+    "artist": "椎名林檎",
+    "album": "三文ゴシップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E4%B8%89%E6%96%87%E3%82%B4%E3%82%B7%E3%83%83%E3%83%97/14.%E3%81%82%E3%81%9F%E3%81%97%E3%81%AF%E9%9B%B6%E5%9C%B0%E7%82%B9%E3%81%8B%E3%82%89.mp3",
+    "cover": ""
+  },
+  {
     "name": "虚言症",
     "artist": "椎名林檎",
     "album": "勝訴ストリップ",
     "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/1.%E8%99%9A%E8%A8%80%E7%97%87.flac",
-    "cover": ""
-  },
-  {
-    "name": "サカナ",
-    "artist": "椎名林檎",
-    "album": "勝訴ストリップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/10.%E3%82%B5%E3%82%AB%E3%83%8A.flac",
-    "cover": ""
-  },
-  {
-    "name": "病床パブリック",
-    "artist": "椎名林檎",
-    "album": "勝訴ストリップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/11.%E7%97%85%E5%BA%8A%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF.flac",
-    "cover": ""
-  },
-  {
-    "name": "本能",
-    "artist": "椎名林檎",
-    "album": "勝訴ストリップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/12.%E6%9C%AC%E8%83%BD.flac",
-    "cover": ""
-  },
-  {
-    "name": "依存症",
-    "artist": "椎名林檎",
-    "album": "勝訴ストリップ",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/13.%E4%BE%9D%E5%AD%98%E7%97%87.flac",
     "cover": ""
   },
   {
@@ -1288,38 +1260,38 @@
     "cover": ""
   },
   {
+    "name": "サカナ",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/10.%E3%82%B5%E3%82%AB%E3%83%8A.flac",
+    "cover": ""
+  },
+  {
+    "name": "病床パブリック",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/11.%E7%97%85%E5%BA%8A%E3%83%91%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF.flac",
+    "cover": ""
+  },
+  {
+    "name": "本能",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/12.%E6%9C%AC%E8%83%BD.flac",
+    "cover": ""
+  },
+  {
+    "name": "依存症",
+    "artist": "椎名林檎",
+    "album": "勝訴ストリップ",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E5%8B%9D%E8%A8%B4%E3%82%B9%E3%83%88%E3%83%AA%E3%83%83%E3%83%97/13.%E4%BE%9D%E5%AD%98%E7%97%87.flac",
+    "cover": ""
+  },
+  {
     "name": "Nippon",
     "artist": "椎名林檎",
     "album": "日出処",
     "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/1.Nippon.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Manipulate The Time",
-    "artist": "椎名林檎",
-    "album": "日出処",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/10.Manipulate%20The%20Time.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Present",
-    "artist": "椎名林檎",
-    "album": "日出処",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/11.Present.mp3",
-    "cover": ""
-  },
-  {
-    "name": "Quiet Counterattack",
-    "artist": "椎名林檎",
-    "album": "日出処",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/12.Quiet%20Counterattack.mp3",
-    "cover": ""
-  },
-  {
-    "name": "To That Ocean Of Trees",
-    "artist": "椎名林檎",
-    "album": "日出処",
-    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/13.To%20That%20Ocean%20Of%20Trees.mp3",
     "cover": ""
   },
   {
@@ -1376,6 +1348,34 @@
     "artist": "椎名林檎",
     "album": "日出処",
     "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/9.%E3%83%A9%E3%83%BB%E3%82%BD%E3%83%AA%E3%83%81%E3%83%A5%E3%83%BC%E3%83%89%E3%83%BB%E3%83%89%E3%83%BB%E3%83%AD%E3%83%BC%E3%83%96.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Manipulate The Time",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/10.Manipulate%20The%20Time.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Present",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/11.Present.mp3",
+    "cover": ""
+  },
+  {
+    "name": "Quiet Counterattack",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/12.Quiet%20Counterattack.mp3",
+    "cover": ""
+  },
+  {
+    "name": "To That Ocean Of Trees",
+    "artist": "椎名林檎",
+    "album": "日出処",
+    "url": "/music/audio/%E6%A4%8E%E5%90%8D%E6%9E%97%E6%AA%8E/%E6%97%A5%E5%87%BA%E5%A4%84/13.To%20That%20Ocean%20Of%20Trees.mp3",
     "cover": ""
   },
   {
@@ -1463,13 +1463,6 @@
     "cover": ""
   },
   {
-    "name": "和你在一起",
-    "artist": "陈绮贞",
-    "album": "滚石香港黄金十年 陈绮贞精选",
-    "url": "/music/audio/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%92%8C%E4%BD%A0%E5%9C%A8%E4%B8%80%E8%B5%B7.flac",
-    "cover": ""
-  },
-  {
     "name": "天使",
     "artist": "陈绮贞",
     "album": "让我想一想",
@@ -1523,6 +1516,13 @@
     "artist": "陈绮贞",
     "album": "让我想一想",
     "url": "/music/audio/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3.flac",
+    "cover": ""
+  },
+  {
+    "name": "和你在一起",
+    "artist": "陈绮贞",
+    "album": "滚石香港黄金十年 陈绮贞精选",
+    "url": "/music/audio/%E9%99%88%E7%BB%AE%E8%B4%9E/%E8%AE%A9%E6%88%91%E6%83%B3%E4%B8%80%E6%83%B3/%E9%99%88%E7%BB%AE%E8%B4%9E%20-%20%E5%92%8C%E4%BD%A0%E5%9C%A8%E4%B8%80%E8%B5%B7.flac",
     "cover": ""
   },
   {
